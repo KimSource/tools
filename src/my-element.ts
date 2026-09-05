@@ -2,6 +2,7 @@ import '@awesome.me/webawesome/dist/styles/webawesome.css'
 import '@awesome.me/webawesome/dist/components/button/button.js'
 import '@awesome.me/webawesome/dist/components/select/select.js'
 import '@awesome.me/webawesome/dist/components/option/option.js'
+import '@awesome.me/webawesome/dist/components/dialog/dialog.js'
 import { LitElement, css, html } from 'lit'
 import { customElement } from 'lit/decorators.js'
 import { navigate, parseHash, subscribeToRoute, type Route } from './app/router'
@@ -26,6 +27,7 @@ export class AppShell extends LitElement {
   private unsubscribeTheme?: () => void
   private unsubscribePwa?: () => void
   private updateAvailable = isUpdateAvailable()
+  private confirmUpdateOpen = false
   connectedCallback() {
     super.connectedCallback()
     this.unsubscribe = subscribeToRoute((route) => {
@@ -105,11 +107,20 @@ export class AppShell extends LitElement {
         >`
     return html`<json-formatter-tool></json-formatter-tool>`
   }
+  private openUpdateDialog() {
+    this.confirmUpdateOpen = true
+    super.requestUpdate()
+  }
+
+  private confirmUpdate() {
+    this.confirmUpdateOpen = false
+    void applyUpdate()
+  }
   render() {
     return html`<header class="header">
         <a class="brand" href="/tools/">Local Tools</a>
         <div class="actions">
-          ${this.updateAvailable ? html`<wa-button variant="brand" size="s" title=${t('pwa.updateAvailable')} @click=${() => void applyUpdate()}>${t('pwa.update')}</wa-button>` : ''}
+          ${this.updateAvailable ? html`<wa-button variant="brand" size="s" title=${t('pwa.updateAvailable')} @click=${this.openUpdateDialog}>${t('pwa.update')}</wa-button>` : ''}
           <wa-select
             label=${t('settings.language')}
             size="s"
@@ -132,7 +143,25 @@ export class AppShell extends LitElement {
           >
         </div>
       </header>
-      <main class="main">${this.renderMain()}</main>`
+      <main class="main">${this.renderMain()}</main>
+      <wa-dialog
+        label=${t('pwa.confirmTitle')}
+        ?open=${this.confirmUpdateOpen}
+        @wa-hide=${() => {
+          this.confirmUpdateOpen = false
+        }}
+        ><p>${t('pwa.confirmMessage')}</p>
+        <div slot="footer">
+          <wa-button
+            @click=${() => {
+              this.confirmUpdateOpen = false
+            }}
+            >${t('actions.cancel')}</wa-button
+          ><wa-button variant="brand" @click=${this.confirmUpdate}
+            >${t('pwa.update')}</wa-button
+          >
+        </div></wa-dialog
+      >`
   }
   static styles = css`
     :host {

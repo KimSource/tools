@@ -1,6 +1,9 @@
 import type { Messages } from './types'
 export const ko: Messages = {
   'app.name': 'Local Tools',
+  'pwa.confirmTitle': '업데이트할까요?',
+  'pwa.confirmMessage': '현재 작업 중인 입력이 사라질 수 있습니다.',
+  'actions.cancel': '취소',
   'pwa.updateAvailable': '새 버전 사용 가능',
   'pwa.update': '업데이트',
   'settings.language': '언어',
