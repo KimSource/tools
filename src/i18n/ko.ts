@@ -18,6 +18,8 @@ export const ko = {
   'home.description':
     '브라우저 안에서 안전하게 처리하는 개인용 도구 모음입니다.',
   'tools.title': '도구',
+  'tools.offlineReady': '오프라인 사용 가능',
+  'tools.onlineOnly': '온라인 연결 필요',
   'actions.open': '열기',
   'actions.home': '홈으로',
   'actions.language': 'English',

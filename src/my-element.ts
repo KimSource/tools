@@ -81,6 +81,9 @@ export class AppShell extends LitElement {
                 <span class="tool-icon">{ }</span>
                 <h3>${t(tool.titleKey)}</h3>
                 <p>${t(tool.descriptionKey)}</p>
+                <p class="tool-availability">
+                  ${tool.offlineSupport === 'precache' ? t('tools.offlineReady') : t('tools.onlineOnly')}
+                </p>
                 <wa-button variant="brand" @click=${() => navigate(tool.id)}
                   >${t('actions.open')}</wa-button
                 >
@@ -106,7 +109,10 @@ export class AppShell extends LitElement {
         <wa-button @click=${() => void this.loadTool(this.route)}
           >${t('actions.retry')}</wa-button
         >`
-    return html`${unsafeStatic(`<${tool.elementTag}></${tool.elementTag}>`)}`
+    return html`<p class="tool-availability">
+        ${tool.offlineSupport === 'precache' ? t('tools.offlineReady') : t('tools.onlineOnly')}
+      </p>
+      ${unsafeStatic(`<${tool.elementTag}></${tool.elementTag}>`)}`
   }
   private openUpdateDialog() {
     this.confirmUpdateOpen = true
@@ -251,6 +257,11 @@ export class AppShell extends LitElement {
     .description,
     .tool-card p {
       color: var(--app-muted);
+    }
+    .tool-availability {
+      color: var(--app-brand) !important;
+      font-size: 0.875rem;
+      font-weight: 600;
     }
     .tool-grid {
       display: grid;

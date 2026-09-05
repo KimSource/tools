@@ -16,6 +16,8 @@ export const en = {
   'home.description':
     'A collection of personal tools that process data safely in your browser.',
   'tools.title': 'Tools',
+  'tools.offlineReady': 'Available offline',
+  'tools.onlineOnly': 'Online required',
   'actions.open': 'Open',
   'actions.home': 'Home',
   'actions.language': '한국어',
