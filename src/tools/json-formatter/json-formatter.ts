@@ -4,6 +4,8 @@ import { copyText } from '../../services/clipboard'
 import { downloadText } from '../../services/files'
 import { transformJson, type JsonOperation } from './json-formatter.core'
 import { subscribeToLocale, t } from '../../i18n/i18n'
+import '@awesome.me/webawesome/dist/components/select/select.js'
+import '@awesome.me/webawesome/dist/components/option/option.js'
 
 @customElement('json-formatter-tool')
 export class JsonFormatterTool extends LitElement {
@@ -82,19 +84,20 @@ export class JsonFormatterTool extends LitElement {
           >${t('actions.minify')}</wa-button
         ><label
           >${t('json.indent')}
-          <select
+          <wa-select
+            label=${t('json.indent')}
+            size="small"
             .value=${String(this.indentation)}
             @change=${(event: Event) => {
               this.indentation = Number(
-                (event.target as HTMLSelectElement).value,
+                (event.target as HTMLElement & { value: string }).value,
               ) as 2 | 4
               this.output = ''
               this.notice = ''
             }}
-          >
-            <option value="2">${t('json.indent2')}</option>
-            <option value="4">${t('json.indent4')}</option>
-          </select></label
+            ><wa-option value="2">${t('json.indent2')}</wa-option
+            ><wa-option value="4">${t('json.indent4')}</wa-option></wa-select
+          ></label
         ><wa-button
           appearance="outlined"
           @click=${() => {
@@ -192,6 +195,28 @@ export class JsonFormatterTool extends LitElement {
       border-radius: 8px;
       background: var(--app-surface);
       color: var(--app-text);
+    }
+    wa-select::part(form-control-label) {
+      color: var(--app-text);
+    }
+    wa-select::part(combobox),
+    wa-select::part(display-input),
+    wa-select::part(listbox) {
+      background: var(--app-surface);
+      color: var(--app-text);
+    }
+    wa-option {
+      --wa-color-neutral-fill-normal: var(--app-surface);
+      --wa-color-neutral-on-normal: var(--app-text);
+      --wa-form-control-activated-color: var(--app-brand);
+      --wa-color-brand-on-loud: #fff;
+      color: var(--app-text);
+    }
+    wa-option::part(label) {
+      color: var(--app-text);
+    }
+    wa-option[aria-selected='true']::part(label) {
+      color: #fff;
     }
     .error {
       padding: 12px;

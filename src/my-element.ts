@@ -1,11 +1,19 @@
 import '@awesome.me/webawesome/dist/styles/webawesome.css'
 import '@awesome.me/webawesome/dist/components/button/button.js'
+import '@awesome.me/webawesome/dist/components/select/select.js'
+import '@awesome.me/webawesome/dist/components/option/option.js'
 import { LitElement, css, html } from 'lit'
 import { customElement } from 'lit/decorators.js'
 import { navigate, parseHash, subscribeToRoute, type Route } from './app/router'
 import { getTool, toolRegistry } from './app/tool-registry'
-import { getLocale, setLocale, subscribeToLocale, t } from './i18n/i18n'
-import { toggleTheme } from './theme/theme'
+import {
+  getLocalePreference,
+  setLocale,
+  subscribeToLocale,
+  t,
+  type LocalePreference,
+} from './i18n/i18n'
+import { getTheme, setTheme, subscribeToTheme, type Theme } from './theme/theme'
 
 @customElement('app-shell')
 export class AppShell extends LitElement {
@@ -14,6 +22,7 @@ export class AppShell extends LitElement {
   private failed = false
   private unsubscribe?: () => void
   private unsubscribeLocale?: () => void
+  private unsubscribeTheme?: () => void
   connectedCallback() {
     super.connectedCallback()
     this.unsubscribe = subscribeToRoute((route) => {
@@ -22,10 +31,12 @@ export class AppShell extends LitElement {
       this.requestUpdate()
     })
     this.unsubscribeLocale = subscribeToLocale(() => this.requestUpdate())
+    this.unsubscribeTheme = subscribeToTheme(() => this.requestUpdate())
   }
   disconnectedCallback() {
     this.unsubscribe?.()
     this.unsubscribeLocale?.()
+    this.unsubscribeTheme?.()
     super.disconnectedCallback()
   }
   private async loadTool(route: Route) {
@@ -90,13 +101,25 @@ export class AppShell extends LitElement {
     return html`<header class="header">
         <a class="brand" href="/tools/">Local Tools</a>
         <div class="actions">
-          <wa-button
-            appearance="outlined"
+          <wa-select
+            label=${t('settings.language')}
             size="small"
-            @click=${() => setLocale(getLocale() === 'ko' ? 'en' : 'ko')}
-            >${t('actions.language')}</wa-button
-          ><wa-button appearance="outlined" size="small" @click=${toggleTheme}
-            >${t('actions.theme')}</wa-button
+            .value=${getLocalePreference()}
+            @change=${(event: Event) => setLocale((event.target as HTMLElement & { value: string }).value as LocalePreference)}
+            ><wa-option value="system">${t('settings.system')}</wa-option
+            ><wa-option value="ko">한국어</wa-option
+            ><wa-option value="en">English</wa-option></wa-select
+          >
+          <wa-select
+            label=${t('settings.theme')}
+            size="small"
+            .value=${getTheme()}
+            @change=${(event: Event) => setTheme((event.target as HTMLElement & { value: string }).value as Theme)}
+            ><wa-option value="system">${t('settings.system')}</wa-option
+            ><wa-option value="light">${t('settings.light')}</wa-option
+            ><wa-option value="dark"
+              >${t('settings.dark')}</wa-option
+            ></wa-select
           >
         </div>
       </header>
@@ -123,7 +146,45 @@ export class AppShell extends LitElement {
     }
     .actions {
       display: flex;
+      align-items: center;
       gap: var(--app-space-2);
+    }
+    .actions label {
+      color: var(--app-muted);
+      font-size: 0.8rem;
+    }
+    .actions select {
+      margin-left: 4px;
+      padding: 6px 8px;
+      border: 1px solid var(--app-border);
+      border-radius: 8px;
+      background: var(--app-surface);
+      color: var(--app-text);
+    }
+    .actions wa-select {
+      --label-color: var(--app-muted);
+    }
+    .actions wa-select::part(form-control-label) {
+      color: var(--app-muted);
+    }
+    .actions wa-select::part(combobox),
+    .actions wa-select::part(display-input),
+    .actions wa-select::part(listbox) {
+      background: var(--app-surface);
+      color: var(--app-text);
+    }
+    .actions wa-option {
+      --wa-color-neutral-fill-normal: var(--app-surface);
+      --wa-color-neutral-on-normal: var(--app-text);
+      --wa-form-control-activated-color: var(--app-brand);
+      --wa-color-brand-on-loud: #fff;
+      color: var(--app-text);
+    }
+    .actions wa-option::part(label) {
+      color: var(--app-text);
+    }
+    .actions wa-option[aria-selected='true']::part(label) {
+      color: #fff;
     }
     .main {
       width: min(1120px, calc(100% - 48px));
