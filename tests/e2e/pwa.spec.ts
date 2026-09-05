@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { readFile } from 'node:fs/promises'
 
 test('loads the manifest and works offline after the service worker is ready', async ({
   page,
@@ -54,4 +55,37 @@ test('loads the manifest and works offline after the service worker is ready', a
   await page.getByRole('button', { name: 'Download' }).click()
   const download = await downloadPromise
   expect(download.suggestedFilename()).toBe('formatted.json')
+  const downloadPath = await download.path()
+  expect(downloadPath).not.toBeNull()
+  await expect(readFile(downloadPath!, 'utf8')).resolves.toBe(`{
+  "offline": true
+}`)
+})
+
+test('opens the formatter for the first time while offline', async ({
+  page,
+  context,
+}) => {
+  await page.goto('/tools/')
+  await expect(
+    page.getByRole('heading', { name: 'Small tools for your work' }),
+  ).toBeVisible()
+  await page.evaluate(async () => {
+    await navigator.serviceWorker.ready
+  })
+  await page.reload()
+  await expect
+    .poll(() =>
+      page.evaluate(() => Boolean(navigator.serviceWorker.controller)),
+    )
+    .toBe(true)
+
+  await context.setOffline(true)
+  await page.goto('/tools/#/json-formatter')
+  await expect(page.getByLabel('Input JSON')).toBeVisible()
+  await page.getByLabel('Input JSON').fill('{"firstOffline":true}')
+  await page.getByRole('button', { name: 'Format' }).click()
+  await expect(page.getByLabel('Output')).toHaveValue(`{
+  "firstOffline": true
+}`)
 })
