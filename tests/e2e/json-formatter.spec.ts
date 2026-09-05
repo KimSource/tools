@@ -10,6 +10,61 @@ test.describe('JSON Formatter', () => {
     )
   })
 
+  test('formats with four-space indentation selected in the UI', async ({
+    page,
+  }) => {
+    await page.goto('/tools/#/json-formatter')
+    await page.getByLabel('Input JSON').fill('{"nested":{"value":true}}')
+    const indentation = page.locator('json-formatter-tool wa-select')
+    await indentation.click()
+    await page.locator('wa-option[value="4"]').click({ force: true })
+    await page.getByRole('button', { name: 'Format' }).click()
+    await expect(page.getByLabel('Output')).toHaveValue(`{
+    "nested": {
+        "value": true
+    }
+}`)
+  })
+
+  test('clears stale results and disables result actions after changes', async ({
+    page,
+  }) => {
+    await page.goto('/tools/#/json-formatter')
+    const input = page.getByLabel('Input JSON')
+    const output = page.getByLabel('Output')
+    const copy = page.getByRole('button', { name: 'Copy result' })
+    const download = page.getByRole('button', { name: 'Download' })
+    const indentation = page.locator('json-formatter-tool wa-select')
+
+    await input.fill('{"value":1}')
+    await page.getByRole('button', { name: 'Format' }).click()
+    await expect(output).toHaveValue(`{
+  "value": 1
+}`)
+    await expect(copy).toBeEnabled()
+    await expect(download).toBeEnabled()
+
+    await input.fill('{"value":2}')
+    await expect(output).toHaveValue('')
+    await expect(copy).toBeDisabled()
+    await expect(download).toBeDisabled()
+
+    await page.getByRole('button', { name: 'Format' }).click()
+    await indentation.click()
+    await page.locator('wa-option[value="4"]').click({ force: true })
+    await expect(output).toHaveValue('')
+    await expect(copy).toBeDisabled()
+    await expect(download).toBeDisabled()
+
+    await input.fill('{"value":3}')
+    await page.getByRole('button', { name: 'Format' }).click()
+    await page.getByRole('button', { name: 'Reset' }).click()
+    await expect(input).toHaveValue('')
+    await expect(output).toHaveValue('')
+    await expect(copy).toBeDisabled()
+    await expect(download).toBeDisabled()
+  })
+
   test('shows an error and recovers with valid input', async ({ page }) => {
     await page.goto('/tools/#/json-formatter')
     await page.getByLabel('Input JSON').fill('{')

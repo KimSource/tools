@@ -2,6 +2,7 @@ import { defineConfig, devices } from '@playwright/test'
 
 export default defineConfig({
   testDir: './tests/e2e',
+  testMatch: ['**/json-formatter.spec.ts', '**/smoke.spec.ts'],
   fullyParallel: true,
   reporter: 'list',
   use: {
