@@ -1,7 +1,7 @@
 import '@awesome.me/webawesome/dist/styles/webawesome.css'
 import '@awesome.me/webawesome/dist/components/button/button.js'
-import '@awesome.me/webawesome/dist/components/dialog/dialog.js'
 import './app-header'
+import './update-confirm-dialog'
 import { LitElement, css } from 'lit'
 import { html, unsafeStatic } from 'lit/static-html.js'
 import { customElement } from 'lit/decorators.js'
@@ -166,21 +166,11 @@ export class AppShell extends LitElement {
         @update-request=${() => this.openUpdateDialog()}
       ></app-header>
       <main class="main">${this.renderMain()}</main>
-      <wa-dialog
-        label=${t('pwa.confirmTitle')}
-        ?open=${this.confirmUpdateOpen}
-        @wa-hide=${() => {
-          this.confirmUpdateOpen = false
-        }}
-        ><p>${t('pwa.confirmMessage')}</p>
-        <div slot="footer">
-          <wa-button @click=${this.cancelUpdate}
-            >${t('actions.cancel')}</wa-button
-          ><wa-button variant="brand" @click=${this.confirmUpdate}
-            >${t('pwa.update')}</wa-button
-          >
-        </div></wa-dialog
-      >`
+      <update-confirm-dialog
+        .open=${this.confirmUpdateOpen}
+        @confirm=${() => this.confirmUpdate()}
+        @cancel=${() => this.cancelUpdate()}
+      ></update-confirm-dialog>`
   }
   static styles = css`
     :host {
