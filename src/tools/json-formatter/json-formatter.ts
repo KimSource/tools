@@ -196,28 +196,6 @@ export class JsonFormatterTool extends LitElement {
       background: var(--app-surface);
       color: var(--app-text);
     }
-    wa-select::part(form-control-label) {
-      color: var(--app-text);
-    }
-    wa-select::part(combobox),
-    wa-select::part(display-input),
-    wa-select::part(listbox) {
-      background: var(--app-surface);
-      color: var(--app-text);
-    }
-    wa-option {
-      --wa-color-neutral-fill-normal: var(--app-surface);
-      --wa-color-neutral-on-normal: var(--app-text);
-      --wa-form-control-activated-color: var(--app-brand);
-      --wa-color-brand-on-loud: #fff;
-      color: var(--app-text);
-    }
-    wa-option::part(label) {
-      color: var(--app-text);
-    }
-    wa-option[aria-selected='true']::part(label) {
-      color: #fff;
-    }
     .error {
       padding: 12px;
       border-radius: 8px;

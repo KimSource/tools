@@ -11,6 +11,8 @@ export function getResolvedTheme(): 'light' | 'dark' {
 function applyTheme() {
   const resolved = getResolvedTheme()
   document.documentElement.dataset.theme = resolved
+  document.documentElement.classList.toggle('wa-dark', resolved === 'dark')
+  document.documentElement.classList.toggle('wa-light', resolved === 'light')
   document.documentElement.style.colorScheme = resolved
 }
 applyTheme()
