@@ -3,7 +3,8 @@ import '@awesome.me/webawesome/dist/components/button/button.js'
 import '@awesome.me/webawesome/dist/components/select/select.js'
 import '@awesome.me/webawesome/dist/components/option/option.js'
 import '@awesome.me/webawesome/dist/components/dialog/dialog.js'
-import { LitElement, css, html } from 'lit'
+import { LitElement, css } from 'lit'
+import { html, unsafeStatic } from 'lit/static-html.js'
 import { customElement } from 'lit/decorators.js'
 import { navigate, parseHash, subscribeToRoute, type Route } from './app/router'
 import { getTool, toolRegistry } from './app/tool-registry'
@@ -105,7 +106,7 @@ export class AppShell extends LitElement {
         <wa-button @click=${() => void this.loadTool(this.route)}
           >${t('actions.retry')}</wa-button
         >`
-    return html`<json-formatter-tool></json-formatter-tool>`
+    return html`${unsafeStatic(`<${tool.elementTag}></${tool.elementTag}>`)}`
   }
   private openUpdateDialog() {
     this.confirmUpdateOpen = true
