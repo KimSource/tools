@@ -35,6 +35,19 @@ export class JsonFormatterTool extends LitElement {
     }
   }
 
+  private download() {
+    try {
+      downloadText(
+        'formatted.json',
+        this.output,
+        'application/json;charset=utf-8',
+      )
+      this.notice = '다운로드를 시작했습니다.'
+    } catch {
+      this.notice = '다운로드하지 못했습니다.'
+    }
+  }
+
   render() {
     return html`<section class="tool" aria-labelledby="title">
       <p class="eyebrow">DEVELOPER TOOL</p>
@@ -93,9 +106,7 @@ export class JsonFormatterTool extends LitElement {
       <div class="result-actions">
         <wa-button ?disabled=${!this.output} @click=${this.copy}
           >결과 복사</wa-button
-        ><wa-button
-          ?disabled=${!this.output}
-          @click=${() => downloadText('formatted.json', this.output, 'application/json;charset=utf-8')}
+        ><wa-button ?disabled=${!this.output} @click=${this.download}
           >다운로드</wa-button
         >${this.notice ? html`<span role="status">${this.notice}</span>` : ''}
       </div>
