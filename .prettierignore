@@ -1,0 +1,7 @@
+node_modules
+dist
+playwright-report
+test-results
+implementation-plan.md
+local-tools-pwa-architecture.md
+docs/agents/git-convention.md
