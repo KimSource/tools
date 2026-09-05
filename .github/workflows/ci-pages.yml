@@ -41,6 +41,8 @@ jobs:
         run: npm run build
       - name: Production smoke test
         run: npm run e2e:smoke
+      - name: Production PWA test
+        run: npm run e2e:pwa
       - name: Upload Pages artifact
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3
