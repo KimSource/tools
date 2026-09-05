@@ -5,11 +5,11 @@ let theme: Theme =
   storedTheme === 'light' || storedTheme === 'dark' ? storedTheme : 'system'
 const listeners = new Set<() => void>()
 const media = window.matchMedia('(prefers-color-scheme: dark)')
-function resolvedTheme(): 'light' | 'dark' {
+export function getResolvedTheme(): 'light' | 'dark' {
   return theme === 'system' ? (media.matches ? 'dark' : 'light') : theme
 }
 function applyTheme() {
-  const resolved = resolvedTheme()
+  const resolved = getResolvedTheme()
   document.documentElement.dataset.theme = resolved
   document.documentElement.style.colorScheme = resolved
 }

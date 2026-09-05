@@ -3,6 +3,9 @@ import '@awesome.me/webawesome/dist/components/button/button.js'
 import '@awesome.me/webawesome/dist/components/select/select.js'
 import '@awesome.me/webawesome/dist/components/option/option.js'
 import '@awesome.me/webawesome/dist/components/dialog/dialog.js'
+import '@awesome.me/webawesome/dist/components/dropdown/dropdown.js'
+import '@awesome.me/webawesome/dist/components/dropdown-item/dropdown-item.js'
+import '@awesome.me/webawesome/dist/components/icon/icon.js'
 import { LitElement, css } from 'lit'
 import { html, unsafeStatic } from 'lit/static-html.js'
 import { customElement } from 'lit/decorators.js'
@@ -15,7 +18,13 @@ import {
   t,
   type LocalePreference,
 } from './i18n/i18n'
-import { getTheme, setTheme, subscribeToTheme, type Theme } from './theme/theme'
+import {
+  getResolvedTheme,
+  getTheme,
+  setTheme,
+  subscribeToTheme,
+  type Theme,
+} from './theme/theme'
 import {
   applyUpdate,
   areAssetsCached,
@@ -144,31 +153,63 @@ export class AppShell extends LitElement {
     this.confirmUpdateOpen = false
     super.requestUpdate()
   }
+  private selectLocale(event: Event) {
+    const value = (event as CustomEvent<{ item: { value: string } }>).detail
+      .item.value
+    setLocale(value as LocalePreference)
+  }
+  private selectTheme(event: Event) {
+    const value = (event as CustomEvent<{ item: { value: string } }>).detail
+      .item.value
+    setTheme(value as Theme)
+  }
   render() {
     return html`<header class="header">
         <a class="brand" href="/tools/">Local Tools</a>
         <div class="actions">
           ${this.updateAvailable ? html`<wa-button variant="brand" size="s" title=${t('pwa.updateAvailable')} @click=${this.openUpdateDialog}>${t('pwa.update')}</wa-button>` : ''}
-          <wa-select
-            label=${t('settings.language')}
-            size="s"
-            .value=${getLocalePreference()}
-            @change=${(event: Event) => setLocale((event.target as HTMLElement & { value: string }).value as LocalePreference)}
-            ><wa-option value="system">${t('settings.system')}</wa-option
-            ><wa-option value="ko">한국어</wa-option
-            ><wa-option value="en">English</wa-option></wa-select
-          >
-          <wa-select
-            label=${t('settings.theme')}
-            size="s"
-            .value=${getTheme()}
-            @change=${(event: Event) => setTheme((event.target as HTMLElement & { value: string }).value as Theme)}
-            ><wa-option value="system">${t('settings.system')}</wa-option
-            ><wa-option value="light">${t('settings.light')}</wa-option
-            ><wa-option value="dark"
-              >${t('settings.dark')}</wa-option
-            ></wa-select
-          >
+          <wa-dropdown @wa-select=${this.selectLocale}>
+            <wa-button
+              slot="trigger"
+              appearance="plain"
+              size="s"
+              aria-label=${t('settings.language')}
+              title=${t('settings.language')}
+            >
+              <wa-icon name="language"></wa-icon>
+            </wa-button>
+            <wa-dropdown-item value="system"
+              >${getLocalePreference() === 'system' ? html`<wa-icon slot="icon" name="check"></wa-icon>` : ''}${t('settings.system')}</wa-dropdown-item
+            >
+            <wa-dropdown-item value="ko"
+              >${getLocalePreference() === 'ko' ? html`<wa-icon slot="icon" name="check"></wa-icon>` : ''}한국어</wa-dropdown-item
+            >
+            <wa-dropdown-item value="en"
+              >${getLocalePreference() === 'en' ? html`<wa-icon slot="icon" name="check"></wa-icon>` : ''}English</wa-dropdown-item
+            >
+          </wa-dropdown>
+          <wa-dropdown @wa-select=${this.selectTheme}>
+            <wa-button
+              slot="trigger"
+              appearance="plain"
+              size="s"
+              aria-label=${t('settings.theme')}
+              title=${t('settings.theme')}
+            >
+              <wa-icon
+                name=${getResolvedTheme() === 'dark' ? 'moon' : 'sun'}
+              ></wa-icon>
+            </wa-button>
+            <wa-dropdown-item value="system"
+              >${getTheme() === 'system' ? html`<wa-icon slot="icon" name="check"></wa-icon>` : ''}${t('settings.system')}</wa-dropdown-item
+            >
+            <wa-dropdown-item value="light"
+              >${getTheme() === 'light' ? html`<wa-icon slot="icon" name="check"></wa-icon>` : ''}${t('settings.light')}</wa-dropdown-item
+            >
+            <wa-dropdown-item value="dark"
+              >${getTheme() === 'dark' ? html`<wa-icon slot="icon" name="check"></wa-icon>` : ''}${t('settings.dark')}</wa-dropdown-item
+            >
+          </wa-dropdown>
         </div>
       </header>
       <main class="main">${this.renderMain()}</main>
@@ -224,30 +265,11 @@ export class AppShell extends LitElement {
       background: var(--app-surface);
       color: var(--app-text);
     }
-    .actions wa-select {
-      --label-color: var(--app-muted);
-    }
-    .actions wa-select::part(form-control-label) {
-      color: var(--app-muted);
-    }
-    .actions wa-select::part(combobox),
-    .actions wa-select::part(display-input),
-    .actions wa-select::part(listbox) {
-      background: var(--app-surface);
+    .actions wa-button {
       color: var(--app-text);
     }
-    .actions wa-option {
-      --wa-color-neutral-fill-normal: var(--app-surface);
-      --wa-color-neutral-on-normal: var(--app-text);
-      --wa-form-control-activated-color: var(--app-brand);
-      --wa-color-brand-on-loud: #fff;
-      color: var(--app-text);
-    }
-    .actions wa-option::part(label) {
-      color: var(--app-text);
-    }
-    .actions wa-option[aria-selected='true']::part(label) {
-      color: #fff;
+    .actions wa-icon {
+      font-size: 1.1rem;
     }
     .main {
       width: min(1120px, calc(100% - 48px));

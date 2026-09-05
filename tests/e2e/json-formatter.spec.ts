@@ -77,15 +77,15 @@ test.describe('JSON Formatter', () => {
 
   test('changes language and theme preferences', async ({ page }) => {
     await page.goto('/tools/#/')
-    const language = page.getByRole('combobox', { name: 'Language' })
-    const theme = page.locator('wa-select').nth(1)
-    await language.click()
-    await page.locator('wa-option[value="ko"]').click({ force: true })
+    const language = page.locator('wa-dropdown').nth(0)
+    const theme = page.locator('wa-dropdown').nth(1)
+    await language.locator('[slot="trigger"]').click()
+    await language.locator('wa-dropdown-item[value="ko"]').click()
     await expect(
       page.getByRole('heading', { name: '작업에 필요한 작은 도구들' }),
     ).toBeVisible()
-    await theme.click()
-    await page.locator('wa-option[value="dark"]').click({ force: true })
+    await theme.locator('[slot="trigger"]').click()
+    await theme.locator('wa-dropdown-item[value="dark"]').click()
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
   })
 
@@ -93,26 +93,18 @@ test.describe('JSON Formatter', () => {
     page,
   }) => {
     await page.goto('/tools/#/')
-    const language = page.getByRole('combobox', { name: 'Language' })
-    const theme = page.locator('wa-select').nth(1)
-    await language.click()
-    await page.locator('wa-option[value="ko"]').click({ force: true })
-    await theme.click()
-    await page.locator('wa-option[value="dark"]').click({ force: true })
+    const language = page.locator('wa-dropdown').nth(0)
+    const theme = page.locator('wa-dropdown').nth(1)
+    await language.locator('[slot="trigger"]').click()
+    await language.locator('wa-dropdown-item[value="ko"]').click()
+    await theme.locator('[slot="trigger"]').click()
+    await theme.locator('wa-dropdown-item[value="dark"]').click()
 
     await page.reload()
     await expect(
       page.getByRole('heading', { name: '작업에 필요한 작은 도구들' }),
     ).toBeVisible()
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
-    await expect(page.locator('wa-select').nth(0)).toHaveJSProperty(
-      'value',
-      'ko',
-    )
-    await expect(page.locator('wa-select').nth(1)).toHaveJSProperty(
-      'value',
-      'dark',
-    )
   })
 
   test('shows loading state during tool loading and renders after it completes', async ({
