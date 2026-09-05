@@ -107,6 +107,18 @@ test.describe('JSON Formatter', () => {
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
   })
 
+  test('keeps the formatter controls usable on a mobile viewport', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 })
+    await page.goto('/tools/#/json-formatter')
+    await expect(page.getByRole('button', { name: 'Format' })).toBeVisible()
+    await expect(page.getByRole('button', { name: 'Minify' })).toBeVisible()
+    await expect(page.getByRole('button', { name: 'Reset' })).toBeVisible()
+    await expect(page.getByLabel('Input JSON')).toBeVisible()
+    await expect(page.getByLabel('Output')).toBeVisible()
+  })
+
   test('shows loading state during tool loading and renders after it completes', async ({
     page,
   }) => {

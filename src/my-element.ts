@@ -325,6 +325,15 @@ export class AppShell extends LitElement {
       color: var(--app-brand);
       font-family: ui-monospace, monospace;
     }
+    @media (max-width: 600px) {
+      .header {
+        padding: 8px var(--app-space-4);
+      }
+      .main {
+        width: min(100% - 32px, 1120px);
+        padding: 40px 0;
+      }
+    }
   `
 }
 declare global {

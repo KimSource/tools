@@ -82,22 +82,19 @@ export class JsonFormatterTool extends LitElement {
           >${t('actions.format')}</wa-button
         ><wa-button @click=${() => this.run('minify')}
           >${t('actions.minify')}</wa-button
-        ><label
-          >${t('json.indent')}
-          <wa-select
-            label=${t('json.indent')}
-            size="s"
-            .value=${String(this.indentation)}
-            @change=${(event: Event) => {
-              this.indentation = Number(
-                (event.target as HTMLElement & { value: string }).value,
-              ) as 2 | 4
-              this.output = ''
-              this.notice = ''
-            }}
-            ><wa-option value="2">${t('json.indent2')}</wa-option
-            ><wa-option value="4">${t('json.indent4')}</wa-option></wa-select
-          ></label
+        ><wa-select
+          label=${t('json.indent')}
+          size="s"
+          .value=${String(this.indentation)}
+          @change=${(event: Event) => {
+            this.indentation = Number(
+              (event.target as HTMLElement & { value: string }).value,
+            ) as 2 | 4
+            this.output = ''
+            this.notice = ''
+          }}
+          ><wa-option value="2">${t('json.indent2')}</wa-option
+          ><wa-option value="4">${t('json.indent4')}</wa-option></wa-select
         ><wa-button
           appearance="outlined"
           @click=${() => {
@@ -177,17 +174,13 @@ export class JsonFormatterTool extends LitElement {
     .controls,
     .result-actions {
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       flex-wrap: wrap;
       gap: 12px;
       margin: 16px 0;
     }
-    .controls label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin: 0;
-      font-weight: 400;
+    .controls wa-select {
+      width: 240px;
     }
     .controls select {
       padding: 8px;
@@ -208,10 +201,30 @@ export class JsonFormatterTool extends LitElement {
     }
     @media (max-width: 600px) {
       .tool {
-        padding: 20px;
+        padding: 16px;
       }
-      .controls wa-button {
-        flex: 1;
+      .controls {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+      .controls > wa-button {
+        width: 100%;
+      }
+      .controls > wa-select {
+        grid-column: 1 / -1;
+        width: 100%;
+        min-width: 0;
+      }
+      .controls > wa-button:last-of-type {
+        grid-column: 1 / -1;
+      }
+      .result-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .result-actions wa-button {
+        width: 100%;
       }
     }
   `
