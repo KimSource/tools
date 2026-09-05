@@ -22,8 +22,9 @@ test('loads the manifest and works offline after the service worker is ready', a
     if (!registration.active) throw new Error('Service Worker is not active')
   })
   await page.reload()
+  const jsonToolCard = page.locator('[data-tool-id="json-formatter"]')
   await expect(
-    page.getByText('Available offline', { exact: true }),
+    jsonToolCard.getByText('Available offline', { exact: true }),
   ).toBeVisible()
   await expect
     .poll(() =>
@@ -69,8 +70,9 @@ test('does not use an old tool cache when the current tool asset is missing', as
   page,
 }) => {
   await page.goto('/tools/')
+  const jsonToolCard = page.locator('[data-tool-id="json-formatter"]')
   await expect(
-    page.getByText('Available offline', { exact: true }),
+    jsonToolCard.getByText('Available offline', { exact: true }),
   ).toBeVisible()
   await page.evaluate(async () => {
     for (const name of await caches.keys()) {
@@ -95,7 +97,7 @@ test('does not use an old tool cache when the current tool asset is missing', as
     await shell.updateComplete
   })
   await expect(
-    page.getByText('Available offline', { exact: true }),
+    jsonToolCard.getByText('Available offline', { exact: true }),
   ).toHaveCount(0)
 })
 

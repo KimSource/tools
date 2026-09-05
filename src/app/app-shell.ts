@@ -102,7 +102,7 @@ export class AppShell extends LitElement {
         <div class="tool-grid">
           ${toolRegistry.map(
             (tool) =>
-              html`<article class="tool-card">
+              html`<article class="tool-card" data-tool-id=${tool.id}>
                 <span class="tool-icon">{ }</span>
                 <h3>${t(tool.titleKey)}</h3>
                 <p>${t(tool.descriptionKey)}</p>
