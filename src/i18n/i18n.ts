@@ -1,20 +1,35 @@
 import { en } from './en'
 import { ko } from './ko'
+import { readStorage, writeStorage } from '../services/storage'
 import type { Locale, Messages } from './types'
-
+export type LocalePreference = Locale | 'system'
 const dictionaries: Record<Locale, Messages> = { ko, en }
-let locale: Locale = 'ko'
+const storedLocale = readStorage('locale')
+let preference: LocalePreference =
+  storedLocale === 'ko' || storedLocale === 'en' ? storedLocale : 'system'
+let locale: Locale = resolveLocale()
 const listeners = new Set<() => void>()
-
+function resolveLocale(): Locale {
+  if (preference !== 'system') return preference
+  for (const language of navigator.languages) {
+    const base = language.toLowerCase().split('-')[0]
+    if (base === 'ko' || base === 'en') return base
+  }
+  return 'en'
+}
 export function t(key: string): string {
   return dictionaries[locale][key] ?? dictionaries.en[key] ?? key
 }
 export function getLocale(): Locale {
   return locale
 }
-export function setLocale(next: Locale): void {
-  if (locale === next) return
-  locale = next
+export function getLocalePreference(): LocalePreference {
+  return preference
+}
+export function setLocale(next: LocalePreference): void {
+  preference = next
+  locale = resolveLocale()
+  writeStorage('locale', next)
   listeners.forEach((listener) => listener())
 }
 export function subscribeToLocale(listener: () => void): () => void {

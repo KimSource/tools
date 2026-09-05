@@ -1,6 +1,11 @@
 import type { Messages } from './types'
 export const en: Messages = {
   'app.name': 'Local Tools',
+  'settings.language': 'Language',
+  'settings.theme': 'Theme',
+  'settings.system': 'System',
+  'settings.light': 'Light',
+  'settings.dark': 'Dark',
   'app.aria.home': 'Local Tools home',
   'app.eyebrow': 'ON-DEVICE UTILITIES',
   'home.title': 'Small tools for your work',
