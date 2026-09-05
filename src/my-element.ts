@@ -103,7 +103,7 @@ export class AppShell extends LitElement {
         <div class="actions">
           <wa-select
             label=${t('settings.language')}
-            size="small"
+            size="s"
             .value=${getLocalePreference()}
             @change=${(event: Event) => setLocale((event.target as HTMLElement & { value: string }).value as LocalePreference)}
             ><wa-option value="system">${t('settings.system')}</wa-option
@@ -112,7 +112,7 @@ export class AppShell extends LitElement {
           >
           <wa-select
             label=${t('settings.theme')}
-            size="small"
+            size="s"
             .value=${getTheme()}
             @change=${(event: Event) => setTheme((event.target as HTMLElement & { value: string }).value as Theme)}
             ><wa-option value="system">${t('settings.system')}</wa-option

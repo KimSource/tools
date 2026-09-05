@@ -86,7 +86,7 @@ export class JsonFormatterTool extends LitElement {
           >${t('json.indent')}
           <wa-select
             label=${t('json.indent')}
-            size="small"
+            size="s"
             .value=${String(this.indentation)}
             @change=${(event: Event) => {
               this.indentation = Number(
