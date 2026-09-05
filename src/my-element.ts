@@ -16,7 +16,12 @@ import {
   type LocalePreference,
 } from './i18n/i18n'
 import { getTheme, setTheme, subscribeToTheme, type Theme } from './theme/theme'
-import { applyUpdate, isUpdateAvailable, subscribeToPwa } from './services/pwa'
+import {
+  applyUpdate,
+  areAssetsCached,
+  isUpdateAvailable,
+  subscribeToPwa,
+} from './services/pwa'
 
 @customElement('app-shell')
 export class AppShell extends LitElement {
@@ -29,6 +34,7 @@ export class AppShell extends LitElement {
   private unsubscribePwa?: () => void
   private updateAvailable = isUpdateAvailable()
   private confirmUpdateOpen = false
+  private offlineReady = new Set<string>()
   connectedCallback() {
     super.connectedCallback()
     this.unsubscribe = subscribeToRoute((route) => {
@@ -42,6 +48,20 @@ export class AppShell extends LitElement {
       this.updateAvailable = true
       this.requestUpdate()
     })
+    void this.refreshOfflineStatus()
+  }
+  private async refreshOfflineStatus() {
+    await navigator.serviceWorker?.ready
+    const ready = await Promise.all(
+      toolRegistry.map(
+        async (tool) =>
+          [tool.id, await areAssetsCached(tool.offlineAssetPatterns)] as const,
+      ),
+    )
+    this.offlineReady = new Set(
+      ready.filter(([, isReady]) => isReady).map(([id]) => id),
+    )
+    this.requestUpdate()
   }
   disconnectedCallback() {
     this.unsubscribe?.()
@@ -81,9 +101,7 @@ export class AppShell extends LitElement {
                 <span class="tool-icon">{ }</span>
                 <h3>${t(tool.titleKey)}</h3>
                 <p>${t(tool.descriptionKey)}</p>
-                <p class="tool-availability">
-                  ${tool.offlineSupport === 'precache' ? t('tools.offlineReady') : t('tools.onlineOnly')}
-                </p>
+                ${this.offlineReady.has(tool.id) ? html`<p class="tool-availability">${t('tools.offlineReady')}</p>` : ''}
                 <wa-button variant="brand" @click=${() => navigate(tool.id)}
                   >${t('actions.open')}</wa-button
                 >
@@ -109,10 +127,8 @@ export class AppShell extends LitElement {
         <wa-button @click=${() => void this.loadTool(this.route)}
           >${t('actions.retry')}</wa-button
         >`
-    return html`<p class="tool-availability">
-        ${tool.offlineSupport === 'precache' ? t('tools.offlineReady') : t('tools.onlineOnly')}
-      </p>
-      ${unsafeStatic(`<${tool.elementTag}></${tool.elementTag}>`)}`
+    return html`${this.offlineReady.has(tool.id) ? html`<p class="tool-availability">${t('tools.offlineReady')}</p>` : ''}
+    ${unsafeStatic(`<${tool.elementTag}></${tool.elementTag}>`)}`
   }
   private openUpdateDialog() {
     this.confirmUpdateOpen = true

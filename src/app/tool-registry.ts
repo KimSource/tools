@@ -5,7 +5,7 @@ export interface ToolDefinition {
   titleKey: TranslationKey
   descriptionKey: TranslationKey
   elementTag: string
-  offlineSupport: 'precache' | 'online-only'
+  offlineAssetPatterns: readonly string[]
   load: () => Promise<void>
 }
 
@@ -32,7 +32,7 @@ export const toolRegistry: readonly ToolDefinition[] = [
     titleKey: 'tools.jsonFormatter.title',
     descriptionKey: 'tools.jsonFormatter.description',
     elementTag: 'json-formatter-tool',
-    offlineSupport: 'precache',
+    offlineAssetPatterns: ['json-formatter-'],
     load: loadJsonFormatter,
   },
 ]

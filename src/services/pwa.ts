@@ -22,3 +22,18 @@ export function subscribeToPwa(listener: () => void): () => void {
   listeners.add(listener)
   return () => listeners.delete(listener)
 }
+
+export async function areAssetsCached(
+  patterns: readonly string[],
+): Promise<boolean> {
+  if (!('caches' in window)) return false
+  const cacheNames = await caches.keys()
+  const requests = await Promise.all(
+    cacheNames.flatMap(async (cacheName) => {
+      const cache = await caches.open(cacheName)
+      return cache.keys()
+    }),
+  )
+  const urls = requests.flat().map((request) => request.url)
+  return patterns.every((pattern) => urls.some((url) => url.includes(pattern)))
+}
