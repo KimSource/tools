@@ -1,7 +1,9 @@
+import type { TranslationKey } from '../i18n/en'
+
 export interface ToolDefinition {
   id: string
-  titleKey: string
-  descriptionKey: string
+  titleKey: TranslationKey
+  descriptionKey: TranslationKey
   elementTag: string
   load: () => Promise<void>
 }

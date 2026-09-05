@@ -1,5 +1,4 @@
-import type { Messages } from './types'
-export const en: Messages = {
+export const en = {
   'app.name': 'Local Tools',
   'pwa.confirmTitle': 'Update now?',
   'pwa.confirmMessage': 'Your current input may be lost.',
@@ -47,4 +46,6 @@ export const en: Messages = {
   'status.downloadFailed': 'Could not download.',
   'error.emptyInput': 'Enter JSON.',
   'error.invalidJson': 'The input is not valid JSON.',
-}
+} as const
+
+export type TranslationKey = keyof typeof en

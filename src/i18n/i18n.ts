@@ -1,9 +1,10 @@
 import { en } from './en'
 import { ko } from './ko'
 import { readStorage, writeStorage } from '../services/storage'
-import type { Locale, Messages } from './types'
+import type { Locale } from './types'
+import type { TranslationKey } from './en'
 export type LocalePreference = Locale | 'system'
-const dictionaries: Record<Locale, Messages> = { ko, en }
+const dictionaries: Record<Locale, Record<TranslationKey, string>> = { ko, en }
 const storedLocale = readStorage('locale')
 let preference: LocalePreference =
   storedLocale === 'ko' || storedLocale === 'en' ? storedLocale : 'system'
@@ -17,7 +18,7 @@ function resolveLocale(): Locale {
   }
   return 'en'
 }
-export function t(key: string): string {
+export function t(key: TranslationKey): string {
   return dictionaries[locale][key] ?? dictionaries.en[key] ?? key
 }
 export function getLocale(): Locale {

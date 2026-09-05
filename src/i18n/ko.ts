@@ -1,5 +1,6 @@
-import type { Messages } from './types'
-export const ko: Messages = {
+import type { TranslationKey } from './en'
+
+export const ko = {
   'app.name': 'Local Tools',
   'pwa.confirmTitle': '업데이트할까요?',
   'pwa.confirmMessage': '현재 작업 중인 입력이 사라질 수 있습니다.',
@@ -47,4 +48,4 @@ export const ko: Messages = {
   'status.downloadFailed': '다운로드하지 못했습니다.',
   'error.emptyInput': 'JSON을 입력해주세요.',
   'error.invalidJson': '올바른 JSON 형식이 아닙니다.',
-}
+} satisfies Record<TranslationKey, string>
