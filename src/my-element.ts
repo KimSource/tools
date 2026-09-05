@@ -4,6 +4,7 @@ import { LitElement, css, html } from 'lit'
 import { customElement } from 'lit/decorators.js'
 import { navigate, parseHash, subscribeToRoute, type Route } from './app/router'
 import { getTool, toolRegistry } from './app/tool-registry'
+import { getLocale, setLocale, subscribeToLocale, t } from './i18n/i18n'
 
 @customElement('app-shell')
 export class AppShell extends LitElement {
@@ -11,6 +12,7 @@ export class AppShell extends LitElement {
   private loading = false
   private failed = false
   private unsubscribe?: () => void
+  private unsubscribeLocale?: () => void
   connectedCallback() {
     super.connectedCallback()
     this.unsubscribe = subscribeToRoute((route) => {
@@ -18,9 +20,11 @@ export class AppShell extends LitElement {
       void this.loadTool(route)
       this.requestUpdate()
     })
+    this.unsubscribeLocale = subscribeToLocale(() => this.requestUpdate())
   }
   disconnectedCallback() {
     this.unsubscribe?.()
+    this.unsubscribeLocale?.()
     super.disconnectedCallback()
   }
   private async loadTool(route: Route) {
@@ -43,38 +47,41 @@ export class AppShell extends LitElement {
   private renderMain() {
     if (this.route.kind === 'home')
       return html`<section class="intro">
-        <p class="eyebrow">ON-DEVICE UTILITIES</p>
-        <h1>작업에 필요한 작은 도구들</h1>
-        <p class="description">
-          브라우저 안에서 안전하게 처리하는 개인용 도구 모음입니다.
-        </p>
-        <h2>도구</h2>
+        <p class="eyebrow">${t('app.eyebrow')}</p>
+        <h1>${t('home.title')}</h1>
+        <p class="description">${t('home.description')}</p>
+        <h2>${t('tools.title')}</h2>
         <div class="tool-grid">
           ${toolRegistry.map(
             (tool) =>
               html`<article class="tool-card">
                 <span class="tool-icon">{ }</span>
-                <h3>${tool.id}</h3>
-                <p>${tool.descriptionKey}</p>
+                <h3>${t(tool.titleKey)}</h3>
+                <p>${t(tool.descriptionKey)}</p>
                 <wa-button variant="brand" @click=${() => navigate(tool.id)}
-                  >열기</wa-button
+                  >${t('actions.open')}</wa-button
                 >
               </article>`,
           )}
         </div>
       </section>`
     if (this.route.kind === 'not-found')
-      return html`<h1>페이지를 찾을 수 없습니다</h1>
-        <wa-button @click=${() => navigate('')}>홈으로</wa-button>`
+      return html`<h1>${t('route.notFound')}</h1>
+        <wa-button @click=${() => navigate('')}
+          >${t('actions.home')}</wa-button
+        >`
     const tool = getTool(this.route.id)
     if (!tool)
-      return html`<h1>도구를 찾을 수 없습니다</h1>
-        <wa-button @click=${() => navigate('')}>홈으로</wa-button>`
-    if (this.loading) return html`<h1>불러오는 중…</h1>`
+      return html`<h1>${t('route.toolNotFound')}</h1>
+        <p>${t('route.unknownTool')}</p>
+        <wa-button @click=${() => navigate('')}
+          >${t('actions.home')}</wa-button
+        >`
+    if (this.loading) return html`<h1>${t('route.loading')}</h1>`
     if (this.failed)
-      return html`<h1>도구를 불러오지 못했습니다</h1>
+      return html`<h1>${t('route.loadFailed')}</h1>
         <wa-button @click=${() => void this.loadTool(this.route)}
-          >다시 시도</wa-button
+          >${t('actions.retry')}</wa-button
         >`
     return html`<json-formatter-tool></json-formatter-tool>`
   }
@@ -82,8 +89,14 @@ export class AppShell extends LitElement {
     return html`<header class="header">
         <a class="brand" href="/tools/">Local Tools</a>
         <div class="actions">
-          <wa-button appearance="outlined" size="small">한국어</wa-button
-          ><wa-button appearance="outlined" size="small">테마</wa-button>
+          <wa-button
+            appearance="outlined"
+            size="small"
+            @click=${() => setLocale(getLocale() === 'ko' ? 'en' : 'ko')}
+            >${t('actions.language')}</wa-button
+          ><wa-button appearance="outlined" size="small"
+            >${t('actions.theme')}</wa-button
+          >
         </div>
       </header>
       <main class="main">${this.renderMain()}</main>`

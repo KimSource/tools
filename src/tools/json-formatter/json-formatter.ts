@@ -3,6 +3,7 @@ import { customElement, state } from 'lit/decorators.js'
 import { copyText } from '../../services/clipboard'
 import { downloadText } from '../../services/files'
 import { transformJson, type JsonOperation } from './json-formatter.core'
+import { subscribeToLocale, t } from '../../i18n/i18n'
 
 @customElement('json-formatter-tool')
 export class JsonFormatterTool extends LitElement {
@@ -11,6 +12,16 @@ export class JsonFormatterTool extends LitElement {
   @state() private error = ''
   @state() private indentation: 2 | 4 = 2
   @state() private notice = ''
+  private unsubscribe?: () => void
+
+  connectedCallback() {
+    super.connectedCallback()
+    this.unsubscribe = subscribeToLocale(() => this.requestUpdate())
+  }
+  disconnectedCallback() {
+    this.unsubscribe?.()
+    super.disconnectedCallback()
+  }
 
   private run(operation: JsonOperation) {
     this.error = ''
@@ -21,17 +32,17 @@ export class JsonFormatterTool extends LitElement {
       this.output = ''
       this.error =
         error instanceof Error && error.message === 'empty-input'
-          ? 'JSON을 입력해주세요.'
-          : '올바른 JSON 형식이 아닙니다.'
+          ? t('error.emptyInput')
+          : t('error.invalidJson')
     }
   }
 
   private async copy() {
     try {
       await copyText(this.output)
-      this.notice = '복사했습니다.'
+      this.notice = t('status.copied')
     } catch {
-      this.notice = '복사하지 못했습니다.'
+      this.notice = t('status.copyFailed')
     }
   }
 
@@ -42,17 +53,17 @@ export class JsonFormatterTool extends LitElement {
         this.output,
         'application/json;charset=utf-8',
       )
-      this.notice = '다운로드를 시작했습니다.'
+      this.notice = t('status.downloadStarted')
     } catch {
-      this.notice = '다운로드하지 못했습니다.'
+      this.notice = t('status.downloadFailed')
     }
   }
 
   render() {
     return html`<section class="tool" aria-labelledby="title">
-      <p class="eyebrow">DEVELOPER TOOL</p>
-      <h1 id="title">JSON Formatter</h1>
-      <label for="input">입력 JSON</label
+      <p class="eyebrow">${t('json.eyebrow')}</p>
+      <h1 id="title">${t('tools.jsonFormatter.title')}</h1>
+      <label for="input">${t('json.inputLabel')}</label
       ><textarea
         id="input"
         .value=${this.input}
@@ -61,15 +72,16 @@ export class JsonFormatterTool extends LitElement {
           this.output = ''
           this.error = ''
         }}
-        placeholder="JSON을 입력하세요"
+        placeholder=${t('json.inputPlaceholder')}
         spellcheck="false"
       ></textarea>
       <div class="controls">
         <wa-button variant="brand" @click=${() => this.run('format')}
-          >Format</wa-button
-        ><wa-button @click=${() => this.run('minify')}>Minify</wa-button
+          >${t('actions.format')}</wa-button
+        ><wa-button @click=${() => this.run('minify')}
+          >${t('actions.minify')}</wa-button
         ><label
-          >들여쓰기
+          >${t('json.indent')}
           <select
             .value=${String(this.indentation)}
             @change=${(event: Event) => {
@@ -80,8 +92,8 @@ export class JsonFormatterTool extends LitElement {
               this.notice = ''
             }}
           >
-            <option value="2">2칸</option>
-            <option value="4">4칸</option>
+            <option value="2">${t('json.indent2')}</option>
+            <option value="4">${t('json.indent4')}</option>
           </select></label
         ><wa-button
           appearance="outlined"
@@ -91,12 +103,12 @@ export class JsonFormatterTool extends LitElement {
             this.error = ''
             this.notice = ''
           }}
-          >초기화</wa-button
+          >${t('actions.reset')}</wa-button
         >
       </div>
       ${this.error ? html`<p class="error" role="alert">${this.error}</p>` : ''}<label
         for="output"
-        >출력</label
+        >${t('json.outputLabel')}</label
       ><textarea
         id="output"
         .value=${this.output}
@@ -105,9 +117,9 @@ export class JsonFormatterTool extends LitElement {
       ></textarea>
       <div class="result-actions">
         <wa-button ?disabled=${!this.output} @click=${this.copy}
-          >결과 복사</wa-button
+          >${t('actions.copy')}</wa-button
         ><wa-button ?disabled=${!this.output} @click=${this.download}
-          >다운로드</wa-button
+          >${t('actions.download')}</wa-button
         >${this.notice ? html`<span role="status">${this.notice}</span>` : ''}
       </div>
     </section>`
