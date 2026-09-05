@@ -2,10 +2,28 @@ import '@awesome.me/webawesome/dist/styles/webawesome.css'
 import '@awesome.me/webawesome/dist/components/button/button.js'
 import { LitElement, css, html } from 'lit'
 import { customElement } from 'lit/decorators.js'
+import { navigate, parseHash, subscribeToRoute, type Route } from './app/router'
 
 @customElement('app-shell')
 export class AppShell extends LitElement {
+  private route: Route = parseHash(window.location.hash)
+  private unsubscribeFromRoute?: () => void
+
+  connectedCallback() {
+    super.connectedCallback()
+    this.unsubscribeFromRoute = subscribeToRoute((route) => {
+      this.route = route
+      this.requestUpdate()
+    })
+  }
+
+  disconnectedCallback() {
+    this.unsubscribeFromRoute?.()
+    super.disconnectedCallback()
+  }
+
   render() {
+    const isHome = this.route.kind === 'home'
     return html`
       <header class="header">
         <a class="brand" href="/tools/" aria-label="Local Tools home"
@@ -17,24 +35,43 @@ export class AppShell extends LitElement {
         </div>
       </header>
       <main class="main">
-        <section class="intro">
-          <p class="eyebrow">ON-DEVICE UTILITIES</p>
-          <h1>작업에 필요한 작은 도구들</h1>
-          <p class="description">
-            브라우저 안에서 안전하게 처리하는 개인용 도구 모음입니다.
-          </p>
-        </section>
-        <section aria-labelledby="tools-heading">
-          <h2 id="tools-heading">도구</h2>
-          <div class="tool-grid">
-            <article class="tool-card">
-              <span class="tool-icon" aria-hidden="true">{ }</span>
-              <h3>JSON Formatter</h3>
-              <p>JSON을 보기 좋게 정리하고 압축합니다.</p>
-              <wa-button variant="brand">열기</wa-button>
-            </article>
-          </div>
-        </section>
+        ${
+          isHome
+            ? html`<section class="intro">
+                  <p class="eyebrow">ON-DEVICE UTILITIES</p>
+                  <h1>작업에 필요한 작은 도구들</h1>
+                  <p class="description">
+                    브라우저 안에서 안전하게 처리하는 개인용 도구 모음입니다.
+                  </p>
+                </section>
+                <section aria-labelledby="tools-heading">
+                  <h2 id="tools-heading">도구</h2>
+                  <div class="tool-grid">
+                    <article class="tool-card">
+                      <span class="tool-icon" aria-hidden="true">{ }</span>
+                      <h3>JSON Formatter</h3>
+                      <p>JSON을 보기 좋게 정리하고 압축합니다.</p>
+                      <wa-button
+                        variant="brand"
+                        @click=${() => navigate('json-formatter')}
+                        >열기</wa-button
+                      >
+                    </article>
+                  </div>
+                </section>`
+            : html`<section class="route-state">
+                <p class="eyebrow">TOOL</p>
+                <h1>
+                  ${this.route.kind === 'tool' ? this.route.id : '페이지를 찾을 수 없습니다'}
+                </h1>
+                <p class="description">
+                  ${this.route.kind === 'tool' ? '도구 화면은 다음 단계에서 연결합니다.' : '요청한 경로를 확인해주세요.'}
+                </p>
+                <wa-button variant="brand" @click=${() => navigate('')}
+                  >홈으로</wa-button
+                >
+              </section>`
+        }
       </main>
     `
   }
