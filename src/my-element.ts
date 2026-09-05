@@ -5,6 +5,7 @@ import { customElement } from 'lit/decorators.js'
 import { navigate, parseHash, subscribeToRoute, type Route } from './app/router'
 import { getTool, toolRegistry } from './app/tool-registry'
 import { getLocale, setLocale, subscribeToLocale, t } from './i18n/i18n'
+import { toggleTheme } from './theme/theme'
 
 @customElement('app-shell')
 export class AppShell extends LitElement {
@@ -94,7 +95,7 @@ export class AppShell extends LitElement {
             size="small"
             @click=${() => setLocale(getLocale() === 'ko' ? 'en' : 'ko')}
             >${t('actions.language')}</wa-button
-          ><wa-button appearance="outlined" size="small"
+          ><wa-button appearance="outlined" size="small" @click=${toggleTheme}
             >${t('actions.theme')}</wa-button
           >
         </div>
