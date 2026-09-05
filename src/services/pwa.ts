@@ -32,13 +32,22 @@ export async function areAssetsCached(
     ...Array.from(
       document.querySelectorAll<HTMLScriptElement>('script[src]'),
     ).map((script) => script.src),
-    ...Array.from(document.querySelectorAll<HTMLLinkElement>('link[href]')).map(
-      (link) => link.href,
-    ),
+    ...Array.from(
+      document.querySelectorAll<HTMLLinkElement>(
+        'link[rel="stylesheet"], link[rel="modulepreload"], link[rel="icon"], link[rel="manifest"]',
+      ),
+    ).map((link) => link.href),
   ]
+  if (currentAssetUrls.length === 0 || patterns.length === 0) return false
   for (const cacheName of cacheNames) {
     const cache = await caches.open(cacheName)
-    const urls = (await cache.keys()).map((request) => request.url)
+    const urls = (await cache.keys()).map((request) => {
+      const url = new URL(request.url)
+      // Workbox revisions unversioned assets with this cache-key parameter.
+      // Keep hashed filenames and all other query parameters intact.
+      url.searchParams.delete('__WB_REVISION__')
+      return url.href
+    })
     const hasCurrentShell = currentAssetUrls.every((url) => urls.includes(url))
     if (
       hasCurrentShell &&

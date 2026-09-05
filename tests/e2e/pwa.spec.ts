@@ -22,6 +22,9 @@ test('loads the manifest and works offline after the service worker is ready', a
     if (!registration.active) throw new Error('Service Worker is not active')
   })
   await page.reload()
+  await expect(
+    page.getByText('Available offline', { exact: true }),
+  ).toBeVisible()
   await expect
     .poll(() =>
       page.evaluate(() => Boolean(navigator.serviceWorker.controller)),
@@ -60,6 +63,40 @@ test('loads the manifest and works offline after the service worker is ready', a
   await expect(readFile(downloadPath!, 'utf8')).resolves.toBe(`{
   "offline": true
 }`)
+})
+
+test('does not use an old tool cache when the current tool asset is missing', async ({
+  page,
+}) => {
+  await page.goto('/tools/')
+  await expect(
+    page.getByText('Available offline', { exact: true }),
+  ).toBeVisible()
+  await page.evaluate(async () => {
+    for (const name of await caches.keys()) {
+      const cache = await caches.open(name)
+      for (const request of await cache.keys()) {
+        if (new URL(request.url).pathname.includes('/assets/json-formatter-')) {
+          await cache.delete(request)
+        }
+      }
+    }
+    const stale = await caches.open('old-tool-cache')
+    await stale.put('/tools/assets/json-formatter-old.js', new Response('old'))
+  })
+  await page.reload()
+  // Wait for the asynchronous readiness check instead of asserting before it runs.
+  await page.evaluate(async () => {
+    const shell = document.querySelector('app-shell') as HTMLElement & {
+      refreshOfflineStatus(): Promise<void>
+      updateComplete: Promise<boolean>
+    }
+    await shell.refreshOfflineStatus()
+    await shell.updateComplete
+  })
+  await expect(
+    page.getByText('Available offline', { exact: true }),
+  ).toHaveCount(0)
 })
 
 test('opens the formatter for the first time while offline', async ({
