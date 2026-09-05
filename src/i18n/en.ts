@@ -1,6 +1,8 @@
 import type { Messages } from './types'
 export const en: Messages = {
   'app.name': 'Local Tools',
+  'pwa.updateAvailable': 'A new version is available',
+  'pwa.update': 'Update',
   'settings.language': 'Language',
   'settings.theme': 'Theme',
   'settings.system': 'System',

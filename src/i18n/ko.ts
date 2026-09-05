@@ -1,6 +1,8 @@
 import type { Messages } from './types'
 export const ko: Messages = {
   'app.name': 'Local Tools',
+  'pwa.updateAvailable': '새 버전 사용 가능',
+  'pwa.update': '업데이트',
   'settings.language': '언어',
   'settings.theme': '테마',
   'settings.system': '시스템 설정',

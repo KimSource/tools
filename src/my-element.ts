@@ -14,6 +14,7 @@ import {
   type LocalePreference,
 } from './i18n/i18n'
 import { getTheme, setTheme, subscribeToTheme, type Theme } from './theme/theme'
+import { applyUpdate, isUpdateAvailable, subscribeToPwa } from './services/pwa'
 
 @customElement('app-shell')
 export class AppShell extends LitElement {
@@ -23,6 +24,8 @@ export class AppShell extends LitElement {
   private unsubscribe?: () => void
   private unsubscribeLocale?: () => void
   private unsubscribeTheme?: () => void
+  private unsubscribePwa?: () => void
+  private updateAvailable = isUpdateAvailable()
   connectedCallback() {
     super.connectedCallback()
     this.unsubscribe = subscribeToRoute((route) => {
@@ -32,11 +35,16 @@ export class AppShell extends LitElement {
     })
     this.unsubscribeLocale = subscribeToLocale(() => this.requestUpdate())
     this.unsubscribeTheme = subscribeToTheme(() => this.requestUpdate())
+    this.unsubscribePwa = subscribeToPwa(() => {
+      this.updateAvailable = true
+      this.requestUpdate()
+    })
   }
   disconnectedCallback() {
     this.unsubscribe?.()
     this.unsubscribeLocale?.()
     this.unsubscribeTheme?.()
+    this.unsubscribePwa?.()
     super.disconnectedCallback()
   }
   private async loadTool(route: Route) {
@@ -101,6 +109,7 @@ export class AppShell extends LitElement {
     return html`<header class="header">
         <a class="brand" href="/tools/">Local Tools</a>
         <div class="actions">
+          ${this.updateAvailable ? html`<wa-button variant="brand" size="s" title=${t('pwa.updateAvailable')} @click=${() => void applyUpdate()}>${t('pwa.update')}</wa-button>` : ''}
           <wa-select
             label=${t('settings.language')}
             size="s"
