@@ -4,6 +4,9 @@ test('loads the manifest and works offline after the service worker is ready', a
   page,
   context,
 }) => {
+  await context.grantPermissions(['clipboard-read', 'clipboard-write'], {
+    origin: 'http://127.0.0.1:3001',
+  })
   await page.goto('/tools/')
   await expect(
     page.getByRole('heading', { name: 'Small tools for your work' }),
@@ -35,4 +38,20 @@ test('loads the manifest and works offline after the service worker is ready', a
   await expect(page.getByLabel('Output')).toHaveValue(`{
   "offline": true
 }`)
+
+  await page.getByRole('button', { name: 'Copy result' }).click()
+  await expect.poll(() =>
+    page.evaluate(() =>
+      navigator.clipboard
+        .readText()
+        .then((text) => text.replaceAll('\r\n', '\n')),
+    ),
+  ).toBe(`{
+  "offline": true
+}`)
+
+  const downloadPromise = page.waitForEvent('download')
+  await page.getByRole('button', { name: 'Download' }).click()
+  const download = await downloadPromise
+  expect(download.suggestedFilename()).toBe('formatted.json')
 })
