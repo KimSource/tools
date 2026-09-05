@@ -139,6 +139,11 @@ export class AppShell extends LitElement {
     this.confirmUpdateOpen = false
     void applyUpdate()
   }
+
+  private cancelUpdate() {
+    this.confirmUpdateOpen = false
+    super.requestUpdate()
+  }
   render() {
     return html`<header class="header">
         <a class="brand" href="/tools/">Local Tools</a>
@@ -175,10 +180,7 @@ export class AppShell extends LitElement {
         }}
         ><p>${t('pwa.confirmMessage')}</p>
         <div slot="footer">
-          <wa-button
-            @click=${() => {
-              this.confirmUpdateOpen = false
-            }}
+          <wa-button @click=${this.cancelUpdate}
             >${t('actions.cancel')}</wa-button
           ><wa-button variant="brand" @click=${this.confirmUpdate}
             >${t('pwa.update')}</wa-button

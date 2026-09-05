@@ -23,16 +23,14 @@ test('detects, postpones, and accepts a production update', async ({
   })
   await page.locator('header').getByRole('button', { name: 'Update' }).click()
   await expect(page.getByText('Your current input may be lost.')).toBeVisible()
-  await page
-    .locator('wa-dialog')
-    .getByRole('button', { name: 'Cancel' })
-    .click()
+  const dialog = page.locator('wa-dialog')
+  await dialog.getByRole('button', { name: 'Cancel' }).click()
+  await expect(dialog).not.toHaveAttribute('open', '')
   await expect(page.getByLabel('Input JSON')).toHaveValue('{"before":"update"}')
 
-  await page
-    .locator('wa-dialog')
-    .getByRole('button', { name: 'Update' })
-    .click()
+  await page.locator('header').getByRole('button', { name: 'Update' }).click()
+  await expect(dialog).toHaveAttribute('open', '')
+  await dialog.getByRole('button', { name: 'Update' }).click()
   await page.reload()
   await expect(page.locator('meta[name="build-version"]')).toHaveAttribute(
     'content',
