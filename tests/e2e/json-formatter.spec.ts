@@ -89,6 +89,32 @@ test.describe('JSON Formatter', () => {
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
   })
 
+  test('preserves language and theme preferences after reload', async ({
+    page,
+  }) => {
+    await page.goto('/tools/#/')
+    const language = page.getByRole('combobox', { name: 'Language' })
+    const theme = page.locator('wa-select').nth(1)
+    await language.click()
+    await page.locator('wa-option[value="ko"]').click({ force: true })
+    await theme.click()
+    await page.locator('wa-option[value="dark"]').click({ force: true })
+
+    await page.reload()
+    await expect(
+      page.getByRole('heading', { name: '작업에 필요한 작은 도구들' }),
+    ).toBeVisible()
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
+    await expect(page.locator('wa-select').nth(0)).toHaveJSProperty(
+      'value',
+      'ko',
+    )
+    await expect(page.locator('wa-select').nth(1)).toHaveJSProperty(
+      'value',
+      'dark',
+    )
+  })
+
   test('shows loading state during tool loading and renders after it completes', async ({
     page,
   }) => {
