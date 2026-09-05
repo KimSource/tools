@@ -26,6 +26,10 @@ async function loadJsonFormatter(): Promise<void> {
   await import('../tools/json-formatter')
 }
 
+async function loadBase64(): Promise<void> {
+  await import('../tools/base64')
+}
+
 export const toolRegistry: readonly ToolDefinition[] = [
   {
     id: 'json-formatter',
@@ -34,6 +38,14 @@ export const toolRegistry: readonly ToolDefinition[] = [
     elementTag: 'json-formatter-tool',
     offlineAssetPatterns: ['json-formatter-'],
     load: loadJsonFormatter,
+  },
+  {
+    id: 'base64',
+    titleKey: 'tools.base64.title',
+    descriptionKey: 'tools.base64.description',
+    elementTag: 'base64-tool',
+    offlineAssetPatterns: ['base64-'],
+    load: loadBase64,
   },
 ]
 export function getTool(id: string): ToolDefinition | undefined {
