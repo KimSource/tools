@@ -15,6 +15,7 @@
     "e2e:smoke": "playwright test --config playwright.production.config.ts tests/e2e/smoke.spec.ts",
     "e2e:pwa": "playwright test --config playwright.production.config.ts tests/e2e/pwa.spec.ts",
     "e2e:update": "playwright test --config playwright.update.config.ts",
+    "e2e:pages": "playwright test --config playwright.pages.config.ts",
     "lint": "eslint .",
     "format:check": "prettier --check ."
   },
