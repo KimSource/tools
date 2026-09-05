@@ -9,28 +9,28 @@ import '@awesome.me/webawesome/dist/components/icon/icon.js'
 import { LitElement, css } from 'lit'
 import { html, unsafeStatic } from 'lit/static-html.js'
 import { customElement } from 'lit/decorators.js'
-import { navigate, parseHash, subscribeToRoute, type Route } from './app/router'
-import { getTool, toolRegistry } from './app/tool-registry'
+import { navigate, parseHash, subscribeToRoute, type Route } from './router'
+import { getTool, toolRegistry } from './tool-registry'
 import {
   getLocalePreference,
   setLocale,
   subscribeToLocale,
   t,
   type LocalePreference,
-} from './i18n/i18n'
+} from '../i18n/i18n'
 import {
   getResolvedTheme,
   getTheme,
   setTheme,
   subscribeToTheme,
   type Theme,
-} from './theme/theme'
+} from '../theme/theme'
 import {
   applyUpdate,
   areAssetsCached,
   isUpdateAvailable,
   subscribeToPwa,
-} from './services/pwa'
+} from '../services/pwa'
 
 @customElement('app-shell')
 export class AppShell extends LitElement {
