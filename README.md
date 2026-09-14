@@ -93,6 +93,10 @@ npm run preview
 
 터미널에 표시되는 preview 주소의 `/tools/` 경로를 엽니다. 빌드 산출물은 `dist/`에 생성됩니다.
 
+## 디자인 가이드
+
+새 도구나 UI를 작업할 때는 [디자인 가이드](./docs/design-guide.md)를 참고합니다. JSON Formatter에 적용한 색상·간격·버튼 위계와 Lit 공유 스타일 사용법을 정리했습니다.
+
 ## 기술 구성
 
 - Vite + Lit + TypeScript strict

@@ -1,4 +1,5 @@
 import { LitElement, css, html } from 'lit'
+import { toolStyles } from '../../theme/tool-styles'
 import { customElement, state } from 'lit/decorators.js'
 import { copyText } from '../../services/clipboard'
 import { downloadText } from '../../services/files'
@@ -63,8 +64,8 @@ export class JsonFormatterTool extends LitElement {
 
   render() {
     return html`<section class="tool" aria-labelledby="title">
-      <p class="eyebrow">${t('json.eyebrow')}</p>
       <h1 id="title">${t('tools.jsonFormatter.title')}</h1>
+      <p class="description">${t('tools.jsonFormatter.description')}</p>
       <label for="input">${t('json.inputLabel')}</label
       ><textarea
         id="input"
@@ -96,7 +97,7 @@ export class JsonFormatterTool extends LitElement {
           ><wa-option value="2">${t('json.indent2')}</wa-option
           ><wa-option value="4">${t('json.indent4')}</wa-option></wa-select
         ><wa-button
-          appearance="outlined"
+          appearance="plain"
           @click=${() => {
             this.input = ''
             this.output = ''
@@ -125,107 +126,43 @@ export class JsonFormatterTool extends LitElement {
     </section>`
   }
 
-  static styles = css`
-    :host {
-      display: block;
-      color: var(--app-text);
-    }
-    .tool {
-      padding: 32px;
-      border: 1px solid var(--app-border);
-      border-radius: var(--app-radius-lg);
-      background: var(--app-surface);
-      box-shadow: var(--app-shadow);
-    }
-    .eyebrow {
-      color: var(--app-brand);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-    }
-    h1 {
-      margin: 12px 0 28px;
-    }
-    label {
-      display: block;
-      margin: 16px 0 8px;
-      font-weight: 600;
-    }
-    textarea {
-      display: block;
-      box-sizing: border-box;
-      width: 100%;
-      min-height: 220px;
-      padding: 16px;
-      border: 1px solid var(--app-border);
-      border-radius: var(--app-radius-md);
-      background: var(--app-surface);
-      color: var(--app-text);
-      font:
-        14px/1.5 ui-monospace,
-        monospace;
-      resize: vertical;
-    }
-    textarea:focus-visible,
-    select:focus-visible {
-      outline: 2px solid var(--app-brand);
-      outline-offset: 2px;
-    }
-    .controls,
-    .result-actions {
-      display: flex;
-      align-items: flex-end;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin: 16px 0;
-    }
-    .controls wa-select {
-      width: 240px;
-    }
-    .controls select {
-      padding: 8px;
-      border: 1px solid var(--app-border);
-      border-radius: 8px;
-      background: var(--app-surface);
-      color: var(--app-text);
-    }
-    .error {
-      padding: 12px;
-      border-radius: 8px;
-      background: #fee2e2;
-      color: #991b1b;
-    }
-    .result-actions span {
-      color: var(--app-muted);
-      font-size: 0.9rem;
-    }
-    @media (max-width: 600px) {
-      .tool {
-        padding: 16px;
-      }
-      .controls {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 8px;
-      }
-      .controls > wa-button {
-        width: 100%;
-      }
-      .controls > wa-select {
-        grid-column: 1 / -1;
-        width: 100%;
-        min-width: 0;
-      }
-      .controls > wa-button:last-of-type {
-        grid-column: 1 / -1;
+  static styles = [
+    toolStyles,
+    css`
+      .controls,
+      .result-actions {
+        display: flex;
+        align-items: flex-end;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin: 20px 0 36px;
       }
       .result-actions {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: center;
+        margin-bottom: 0;
       }
-      .result-actions wa-button {
-        width: 100%;
+      .controls wa-select {
+        width: 160px;
       }
-    }
-  `
+      @media (max-width: 600px) {
+        .controls,
+        .result-actions {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 12px;
+        }
+        wa-button {
+          width: 100%;
+          min-width: 0;
+        }
+        .controls wa-select {
+          width: 100%;
+          min-width: 0;
+        }
+        .result-actions span {
+          grid-column: 1 / -1;
+        }
+      }
+    `,
+  ]
 }
