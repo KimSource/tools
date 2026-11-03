@@ -172,3 +172,26 @@ test('opens the URL tool for the first time offline', async ({
   await page.getByRole('button', { name: 'Convert' }).click()
   await expect(page.getByLabel('Result')).toHaveValue('offline%20%26%20ready')
 })
+
+test('opens the timestamp converter for the first time offline', async ({
+  page,
+  context,
+}) => {
+  await page.goto('/tools/')
+  await page.evaluate(async () => {
+    await navigator.serviceWorker.ready
+  })
+  await page.reload()
+  await expect(
+    page
+      .locator('[data-tool-id="unix-timestamp-converter"]')
+      .getByText('Available offline', { exact: true }),
+  ).toBeVisible()
+  await context.setOffline(true)
+  await page.goto('/tools/#/unix-timestamp-converter')
+  await page.getByLabel('Unix timestamp', { exact: true }).fill('1704067200')
+  await page.getByRole('button', { name: 'Convert timestamp' }).click()
+  await expect(page.getByLabel('ISO 8601', { exact: true })).toHaveValue(
+    '2024-01-01T00:00:00.000Z',
+  )
+})

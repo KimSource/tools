@@ -7,6 +7,7 @@ export default defineConfig({
     '**/base64.spec.ts',
     '**/hash-generator.spec.ts',
     '**/url-encoder.spec.ts',
+    '**/unix-timestamp-converter.spec.ts',
     '**/smoke.spec.ts',
   ],
   fullyParallel: true,

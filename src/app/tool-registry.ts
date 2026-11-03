@@ -38,7 +38,19 @@ async function loadUrlEncoder(): Promise<void> {
   await import('../tools/url-encoder')
 }
 
+async function loadUnixTimestampConverter(): Promise<void> {
+  await import('../tools/unix-timestamp-converter')
+}
+
 export const toolRegistry: readonly ToolDefinition[] = [
+  {
+    id: 'unix-timestamp-converter',
+    titleKey: 'tools.timestamp.title',
+    descriptionKey: 'tools.timestamp.description',
+    elementTag: 'unix-timestamp-converter-tool',
+    offlineAssetPatterns: ['unix-timestamp-converter-'],
+    load: loadUnixTimestampConverter,
+  },
   {
     id: 'json-formatter',
     titleKey: 'tools.jsonFormatter.title',
