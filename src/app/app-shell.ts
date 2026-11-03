@@ -6,7 +6,13 @@ import { LitElement, css } from 'lit'
 import { html, unsafeStatic } from 'lit/static-html.js'
 import { customElement } from 'lit/decorators.js'
 import { navigate, parseHash, subscribeToRoute, type Route } from './router'
-import { getTool, toolRegistry } from './tool-registry'
+import {
+  categories,
+  getTool,
+  toolRegistry,
+  type CategoryId,
+} from './tool-registry'
+import { filterTools } from './tool-search'
 import {
   getLocalePreference,
   setLocale,
@@ -31,6 +37,8 @@ import {
 @customElement('app-shell')
 export class AppShell extends LitElement {
   private route: Route = parseHash(window.location.hash)
+  private searchQuery = ''
+  private category: CategoryId | 'all' = 'all'
   private loading = false
   private failed = false
   private unsubscribe?: () => void
@@ -92,6 +100,11 @@ export class AppShell extends LitElement {
       this.requestUpdate()
     }
   }
+  private clearFilters() {
+    this.searchQuery = ''
+    this.category = 'all'
+    this.requestUpdate()
+  }
   private renderMain() {
     if (this.route.kind === 'home')
       return html`<section class="intro">
@@ -99,20 +112,70 @@ export class AppShell extends LitElement {
         <h1>${t('home.title')}</h1>
         <p class="description">${t('home.description')}</p>
         <h2>${t('tools.title')}</h2>
-        <div class="tool-grid">
-          ${toolRegistry.map(
-            (tool) =>
-              html`<article class="tool-card" data-tool-id=${tool.id}>
-                <span class="tool-icon">{ }</span>
-                <h3>${t(tool.titleKey)}</h3>
-                <p>${t(tool.descriptionKey)}</p>
-                ${this.offlineReady.has(tool.id) ? html`<p class="tool-availability">${t('tools.offlineReady')}</p>` : ''}
-                <wa-button variant="brand" @click=${() => navigate(tool.id)}
-                  >${t('actions.open')}</wa-button
-                >
-              </article>`,
-          )}
+        <div class="filters">
+          <label for="tool-search">${t('tools.search')}</label>
+          <input
+            id="tool-search"
+            type="search"
+            .value=${this.searchQuery}
+            @input=${(event: Event) => {
+              this.searchQuery = (event.target as HTMLInputElement).value
+              this.requestUpdate()
+            }}
+          />
+          <fieldset>
+            <legend>${t('tools.category')}</legend>
+            ${[
+              { id: 'all' as const, labelKey: 'tools.all' as const },
+              ...categories,
+            ].map(
+              (category) =>
+                html`<label class="category-option">
+                  <input
+                    type="radio"
+                    name="category"
+                    .value=${category.id}
+                    .checked=${this.category === category.id}
+                    @change=${() => {
+                      this.category = category.id
+                      this.requestUpdate()
+                    }}
+                  />
+                  <span>${t(category.labelKey)}</span>
+                </label>`,
+            )}
+          </fieldset>
         </div>
+        ${
+          filterTools(toolRegistry, this.searchQuery, this.category).length ===
+          0
+            ? html`<div class="empty" role="status">
+                <p>${t('tools.noResults')}</p>
+                <wa-button @click=${this.clearFilters}
+                  >${t('tools.clearFilters')}</wa-button
+                >
+              </div>`
+            : html`<div class="tool-grid">
+                ${filterTools(
+                  toolRegistry,
+                  this.searchQuery,
+                  this.category,
+                ).map(
+                  (tool) =>
+                    html`<article class="tool-card" data-tool-id=${tool.id}>
+                      <span class="tool-icon">{ }</span>
+                      <h3>${t(tool.titleKey)}</h3>
+                      <p>${t(tool.descriptionKey)}</p>
+                      ${this.offlineReady.has(tool.id) ? html`<p class="tool-availability">${t('tools.offlineReady')}</p>` : ''}
+                      <wa-button
+                        variant="brand"
+                        @click=${() => navigate(tool.id)}
+                        >${t('actions.open')}</wa-button
+                      >
+                    </article>`,
+                )}
+              </div>`
+        }
       </section>`
     if (this.route.kind === 'not-found')
       return html`<h1>${t('route.notFound')}</h1>
@@ -209,6 +272,59 @@ export class AppShell extends LitElement {
       color: var(--app-brand) !important;
       font-size: 0.875rem;
       font-weight: 600;
+    }
+    .filters {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    input[type='search'] {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--app-border);
+      border-radius: var(--app-radius-md);
+      background: var(--app-surface);
+      color: var(--app-text);
+      font: inherit;
+    }
+    fieldset {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      border: 0;
+      padding: 0;
+      margin: 12px 0 0;
+    }
+    legend {
+      margin-bottom: 8px;
+    }
+    .category-option {
+      position: relative;
+    }
+    .category-option input {
+      position: absolute;
+      opacity: 0;
+    }
+    .category-option span {
+      display: block;
+      padding: 8px 12px;
+      border: 1px solid var(--app-border);
+      border-radius: var(--app-radius-md);
+      cursor: pointer;
+    }
+    .category-option input:checked + span {
+      background: var(--app-brand-soft);
+      color: var(--app-brand);
+      border-color: var(--app-brand);
+    }
+    .category-option input:focus-visible + span,
+    input[type='search']:focus-visible {
+      outline: 2px solid var(--app-brand);
+      outline-offset: 2px;
+    }
+    .empty {
+      color: var(--app-muted);
     }
     .tool-grid {
       display: grid;

@@ -195,3 +195,25 @@ test('opens the timestamp converter for the first time offline', async ({
     '2024-01-01T00:00:00.000Z',
   )
 })
+
+test('searches and opens a tool offline after cache preparation', async ({
+  page,
+  context,
+}) => {
+  await page.goto('/tools/')
+  await expect(
+    page
+      .locator('[data-tool-id="unix-timestamp-converter"]')
+      .getByText('Available offline'),
+  ).toBeVisible()
+  await context.setOffline(true)
+  await page.reload()
+  await page.getByRole('searchbox', { name: 'Search tools' }).fill('타임스탬프')
+  await page.getByRole('radio', { name: 'Date & Time' }).check()
+  await expect(page.locator('[data-tool-id]')).toHaveCount(1)
+  await page
+    .locator('[data-tool-id="unix-timestamp-converter"]')
+    .getByRole('button', { name: 'Open' })
+    .click()
+  await expect(page.getByLabel('Unix timestamp', { exact: true })).toBeVisible()
+})

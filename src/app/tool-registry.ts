@@ -1,9 +1,33 @@
 import type { TranslationKey } from '../i18n/en'
 
+export const categories = [
+  { id: 'text-data', labelKey: 'category.textData' },
+  { id: 'date-time', labelKey: 'category.dateTime' },
+  { id: 'image-design', labelKey: 'category.imageDesign' },
+] as const satisfies readonly { id: string; labelKey: TranslationKey }[]
+
+export type CategoryId = (typeof categories)[number]['id']
+
+export const tags = {
+  formatting: 'tag.formatting',
+  encoding: 'tag.encoding',
+  decoding: 'tag.decoding',
+  'utf-8': 'tag.utf8',
+  hash: 'tag.hash',
+  checksum: 'tag.checksum',
+  query: 'tag.query',
+  timestamp: 'tag.timestamp',
+  date: 'tag.date',
+} as const satisfies Record<string, TranslationKey>
+export type TagId = keyof typeof tags
+
 export interface ToolDefinition {
   id: string
   titleKey: TranslationKey
   descriptionKey: TranslationKey
+  category: CategoryId
+  tags: readonly TagId[]
+  keywords: readonly string[]
   elementTag: string
   offlineAssetPatterns: readonly string[]
   load: () => Promise<void>
@@ -45,6 +69,9 @@ async function loadUnixTimestampConverter(): Promise<void> {
 export const toolRegistry: readonly ToolDefinition[] = [
   {
     id: 'unix-timestamp-converter',
+    category: 'date-time',
+    tags: ['timestamp', 'date'],
+    keywords: ['unix', 'epoch', '에포크', '시간', 'time'],
     titleKey: 'tools.timestamp.title',
     descriptionKey: 'tools.timestamp.description',
     elementTag: 'unix-timestamp-converter-tool',
@@ -53,6 +80,9 @@ export const toolRegistry: readonly ToolDefinition[] = [
   },
   {
     id: 'json-formatter',
+    category: 'text-data',
+    tags: ['formatting'],
+    keywords: ['json', '제이슨', 'minify', '압축', '정렬'],
     titleKey: 'tools.jsonFormatter.title',
     descriptionKey: 'tools.jsonFormatter.description',
     elementTag: 'json-formatter-tool',
@@ -61,6 +91,9 @@ export const toolRegistry: readonly ToolDefinition[] = [
   },
   {
     id: 'base64',
+    category: 'text-data',
+    tags: ['encoding', 'decoding', 'utf-8'],
+    keywords: ['base64', '베이스64', '변환'],
     titleKey: 'tools.base64.title',
     descriptionKey: 'tools.base64.description',
     elementTag: 'base64-tool',
@@ -69,6 +102,9 @@ export const toolRegistry: readonly ToolDefinition[] = [
   },
   {
     id: 'url-encoder',
+    category: 'text-data',
+    tags: ['encoding', 'decoding', 'query'],
+    keywords: ['url', '퍼센트', 'percent', '파라미터', 'parameter'],
     titleKey: 'tools.urlEncoder.title',
     descriptionKey: 'tools.urlEncoder.description',
     elementTag: 'url-encoder-tool',
@@ -77,6 +113,9 @@ export const toolRegistry: readonly ToolDefinition[] = [
   },
   {
     id: 'hash-generator',
+    category: 'text-data',
+    tags: ['hash', 'checksum', 'utf-8'],
+    keywords: ['sha-256', 'sha-384', 'sha-512', '해시 생성'],
     titleKey: 'tools.hashGenerator.title',
     descriptionKey: 'tools.hashGenerator.description',
     elementTag: 'hash-generator-tool',

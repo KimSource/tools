@@ -9,6 +9,7 @@ export default defineConfig({
     '**/url-encoder.spec.ts',
     '**/unix-timestamp-converter.spec.ts',
     '**/smoke.spec.ts',
+    '**/tool-search.spec.ts',
   ],
   fullyParallel: true,
   reporter: 'list',
