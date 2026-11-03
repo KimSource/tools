@@ -17,17 +17,10 @@
 초기 카테고리 구성은 현재 도구와 추가 예정 도구를 함께 포함합니다.
 
 - 텍스트·데이터 (`text-data`): JSON Formatter, Base64, Markdown Preview, URL Encoder / Decoder (구현됨), Hash Generator, Random String Generator
-- 날짜·시간 (`date-time`): Unix Timestamp Converter, Date Calculator, Time Zone Converter
+- 날짜·시간 (`date-time`): Unix Timestamp Converter (구현됨), Date Calculator, Time Zone Converter
 - 이미지·디자인 (`image-design`): Color Converter, QR Code, Image Editor / Converter
 
 태그 예시: Base64는 인코딩·디코딩·UTF-8, Hash Generator는 해시·SHA-256·체크섬, Image Editor / Converter는 크기 변경·압축·포맷 변환·자르기.
-
-## Unix Timestamp Converter
-
-- Unix Timestamp ↔ 날짜 양방향 변환
-- 초·밀리초 자동 감지 및 수동 선택
-- UTC·로컬 시간·ISO 8601 표시 및 복사
-- 현재 시간 넣기
 
 ## Color Converter
 
