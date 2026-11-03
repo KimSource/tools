@@ -7,12 +7,6 @@
 - 태그를 직접 선택하는 필터 UI는 도구가 더 늘어났을 때 검토
 - 새 도구를 추가할 때 Registry의 대표 카테고리·태그·한영 검색 키워드를 함께 정의
 
-## Color Converter
-
-- HEX ↔ RGB ↔ HSL 변환
-- 컬러 피커와 색상 미리보기
-- 형식별 색상 값 복사
-
 ## Markdown Preview
 
 - Markdown 입력과 렌더링 결과를 나란히 표시
