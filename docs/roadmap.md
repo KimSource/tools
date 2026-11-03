@@ -2,25 +2,10 @@
 
 아래는 아직 구현되지 않은 도구와 탐색 기능의 계획이며, 구현 순서는 정하지 않았습니다. 입력과 결과는 기존 도구와 동일하게 기기 안에서 처리하고 자동으로 영구 저장하지 않습니다.
 
-## 도구 검색과 분류
+## 도구 검색과 분류 후속 검토
 
-- 도구 목록 상단에 검색창과 전체 / 텍스트·데이터 / 날짜·시간 / 이미지·디자인 카테고리 필터 제공
-- 도구마다 대표 카테고리 하나와 기능을 나타내는 태그 여러 개 부여
-- 검색은 도구 이름·설명·태그·한영 동의어를 대상으로 하며, 표시 언어에 관계없이 검색 가능
-- 예: `이미지 압축`·`resize`로 이미지 도구 검색, `타임스탬프`·`timestamp`로 Timestamp 도구 검색
-- 검색어와 선택한 카테고리를 함께 적용하고, 결과가 없을 때 안내와 조건 초기화 제공
-- 태그는 우선 검색에 활용하고, 태그를 직접 선택하는 필터 UI는 도구가 더 늘어났을 때 후속 검토
-- 카테고리·태그·검색 키워드는 Registry의 metadata로 정의하고 목록·검색·필터를 여기서 파생
-- 카테고리·태그 ID는 `date-time`·`encoding`처럼 언어와 무관하게 유지하고 표시 이름은 타입이 지정된 ko/en 번역 키로 관리
-- 검색은 도구의 UI·계산 모듈을 로드하지 않고 metadata만 사용하며, 오프라인에서도 동작
-
-초기 카테고리 구성은 현재 도구와 추가 예정 도구를 함께 포함합니다.
-
-- 텍스트·데이터 (`text-data`): JSON Formatter, Base64, Markdown Preview, URL Encoder / Decoder (구현됨), Hash Generator, Random String Generator
-- 날짜·시간 (`date-time`): Unix Timestamp Converter (구현됨), Date Calculator, Time Zone Converter
-- 이미지·디자인 (`image-design`): Color Converter, QR Code, Image Editor / Converter
-
-태그 예시: Base64는 인코딩·디코딩·UTF-8, Hash Generator는 해시·SHA-256·체크섬, Image Editor / Converter는 크기 변경·압축·포맷 변환·자르기.
+- 태그를 직접 선택하는 필터 UI는 도구가 더 늘어났을 때 검토
+- 새 도구를 추가할 때 Registry의 대표 카테고리·태그·한영 검색 키워드를 함께 정의
 
 ## Color Converter
 
