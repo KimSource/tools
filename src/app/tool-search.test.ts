@@ -26,7 +26,10 @@ describe('tool search', () => {
   })
   it('handles empty queries and categories', () => {
     expect(ids('   ')).toHaveLength(toolRegistry.length)
-    expect(ids('', 'date-time')).toEqual(['unix-timestamp-converter'])
+    expect(ids('', 'date-time')).toEqual([
+      'date-calculator',
+      'unix-timestamp-converter',
+    ])
     expect(ids('', 'image-design')).toEqual(['color-converter'])
   })
 })

@@ -1,6 +1,41 @@
 import type { TranslationKey } from './en'
 
 export const ko = {
+  'tools.dateCalculator.title': '날짜 계산기',
+  'tools.dateCalculator.description':
+    '날짜 차이를 구하고 날짜에 단위를 더하거나 뺍니다.',
+  'date.mode': '계산 모드',
+  'date.difference': '날짜 차이',
+  'date.adjust': '날짜 더하기·빼기',
+  'date.start': '시작일',
+  'date.end': '종료일',
+  'date.base': '기준 날짜',
+  'date.include': '시작일 포함',
+  'date.operation': '연산',
+  'date.add': '더하기',
+  'date.subtract': '빼기',
+  'date.years': '년',
+  'date.months': '월',
+  'date.weeks': '주',
+  'date.days': '일',
+  'date.calculate': '계산',
+  'date.copy': '결과 복사',
+  'date.result': '결과',
+  'date.included': '시작일 포함',
+  'date.excluded': '시작일 미포함',
+  'date.before': '이전',
+  'date.after': '이후',
+  'date.same': '같은 날짜',
+  'date.hint':
+    '날짜만 계산합니다 (0001-01-01–9999-12-31). 영업일과 공휴일은 고려하지 않습니다.',
+  'date.rule':
+    '년과 월을 함께 적용한 뒤 주와 일을 계산합니다. 대상 월에 같은 날짜가 없으면 그 달의 마지막 날을 사용합니다. 반대 연산으로 원래 날짜가 복원되지 않을 수 있습니다.',
+  'date.amountHint': '각 단위에 0–9999의 정수를 입력하세요.',
+  'date.empty': '필수 날짜를 모두 입력하세요.',
+  'date.invalid': '올바른 날짜를 YYYY-MM-DD 형식으로 입력하세요.',
+  'date.range': '날짜 또는 결과가 지원 범위를 벗어났습니다.',
+  'date.amount': '각 단위에 0–9999의 정수를 입력하세요.',
+
   'app.name': 'Local Tools',
   'pwa.confirmTitle': '업데이트할까요?',
   'pwa.confirmMessage': '현재 작업 중인 입력이 사라질 수 있습니다.',

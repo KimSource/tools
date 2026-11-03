@@ -6,6 +6,7 @@ export default defineConfig({
     '**/json-formatter.spec.ts',
     '**/base64.spec.ts',
     '**/color-converter.spec.ts',
+    '**/date-calculator.spec.ts',
     '**/hash-generator.spec.ts',
     '**/random-string-generator.spec.ts',
     '**/url-encoder.spec.ts',

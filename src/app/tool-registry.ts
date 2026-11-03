@@ -76,7 +76,30 @@ async function loadRandomStringGenerator(): Promise<void> {
   await import('../tools/random-string-generator')
 }
 
+async function loadDateCalculator(): Promise<void> {
+  await import('../tools/date-calculator')
+}
+
 export const toolRegistry: readonly ToolDefinition[] = [
+  {
+    id: 'date-calculator',
+    category: 'date-time',
+    tags: ['date'],
+    keywords: [
+      'date calculator',
+      'date difference',
+      'days',
+      '날짜 계산기',
+      '날짜 차이',
+      '일수',
+      '디데이',
+    ],
+    titleKey: 'tools.dateCalculator.title',
+    descriptionKey: 'tools.dateCalculator.description',
+    elementTag: 'date-calculator-tool',
+    offlineAssetPatterns: ['date-calculator-'],
+    load: loadDateCalculator,
+  },
   {
     id: 'random-string-generator',
     category: 'text-data',

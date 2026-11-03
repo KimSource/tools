@@ -260,3 +260,25 @@ test('opens the random string generator for the first time offline', async ({
     /^[a-zA-Z0-9]{16}$/,
   )
 })
+
+test('opens the date calculator for the first time offline', async ({
+  page,
+  context,
+}) => {
+  await page.goto('/tools/')
+  await page.evaluate(async () => {
+    await navigator.serviceWorker.ready
+  })
+  await page.reload()
+  await expect(
+    page
+      .locator('[data-tool-id="date-calculator"]')
+      .getByText('Available offline', { exact: true }),
+  ).toBeVisible()
+  await context.setOffline(true)
+  await page.goto('/tools/#/date-calculator')
+  await page.getByLabel('Start date', { exact: true }).fill('2024-03-09')
+  await page.getByLabel('End date', { exact: true }).fill('2024-03-11')
+  await page.getByRole('button', { name: 'Calculate' }).click()
+  await expect(page.getByLabel('Result', { exact: true })).toHaveValue(/2 Days/)
+})
