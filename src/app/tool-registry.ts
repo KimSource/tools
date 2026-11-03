@@ -34,6 +34,10 @@ async function loadHashGenerator(): Promise<void> {
   await import('../tools/hash-generator')
 }
 
+async function loadUrlEncoder(): Promise<void> {
+  await import('../tools/url-encoder')
+}
+
 export const toolRegistry: readonly ToolDefinition[] = [
   {
     id: 'json-formatter',
@@ -50,6 +54,14 @@ export const toolRegistry: readonly ToolDefinition[] = [
     elementTag: 'base64-tool',
     offlineAssetPatterns: ['base64-'],
     load: loadBase64,
+  },
+  {
+    id: 'url-encoder',
+    titleKey: 'tools.urlEncoder.title',
+    descriptionKey: 'tools.urlEncoder.description',
+    elementTag: 'url-encoder-tool',
+    offlineAssetPatterns: ['url-encoder-'],
+    load: loadUrlEncoder,
   },
   {
     id: 'hash-generator',

@@ -36,6 +36,23 @@ export const ko = {
   'tools.base64.description': 'UTF-8 텍스트를 Base64로 변환하거나 되돌립니다.',
   'tools.hashGenerator.title': 'Hash Generator',
   'tools.hashGenerator.description': 'UTF-8 텍스트의 SHA 해시를 생성합니다.',
+  'tools.urlEncoder.title': 'URL 인코더 / 디코더',
+  'tools.urlEncoder.description':
+    'URL 구성 요소를 변환하고 쿼리 파라미터를 분해합니다.',
+  'url.eyebrow': '개발자 도구',
+  'url.mode': '변환 모드',
+  'url.encode': '구성 요소 인코딩',
+  'url.decode': '구성 요소 디코딩',
+  'url.query': '쿼리 파라미터 분해',
+  'url.componentHint':
+    '전체 URL이 아닌 구성 요소를 변환합니다. 디코딩 시 +는 그대로 유지됩니다.',
+  'url.queryHint':
+    '전체 URL 또는 쿼리 문자열을 입력하세요. +는 공백으로 해석하며 순서와 중복 키를 유지한 JSON 배열로 표시합니다.',
+  'url.input': '입력',
+  'url.output': '결과',
+  'url.transform': '변환',
+  'url.errorEmpty': '값을 입력해주세요.',
+  'url.errorInvalid': '올바른 URL, 퍼센트 인코딩 또는 UTF-8 텍스트가 아닙니다.',
   'hash.eyebrow': '개발자 도구',
   'hash.algorithm': '알고리즘',
   'hash.input': '텍스트 입력',

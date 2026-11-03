@@ -34,6 +34,23 @@ export const en = {
   'tools.base64.description': 'Encode UTF-8 text to Base64 or decode it back.',
   'tools.hashGenerator.title': 'Hash Generator',
   'tools.hashGenerator.description': 'Generate a SHA hash of UTF-8 text.',
+  'tools.urlEncoder.title': 'URL Encoder / Decoder',
+  'tools.urlEncoder.description':
+    'Encode URL components and inspect query parameters.',
+  'url.eyebrow': 'DEVELOPER TOOL',
+  'url.mode': 'Conversion mode',
+  'url.encode': 'Encode component',
+  'url.decode': 'Decode component',
+  'url.query': 'Parse query parameters',
+  'url.componentHint':
+    'Convert a URL component, not a complete URL. Decoding leaves + unchanged.',
+  'url.queryHint':
+    'Enter a complete URL or query string. + means a space; results are a JSON array preserving order and duplicate keys.',
+  'url.input': 'Input',
+  'url.output': 'Result',
+  'url.transform': 'Convert',
+  'url.errorEmpty': 'Enter a value.',
+  'url.errorInvalid': 'Invalid URL, percent encoding, or UTF-8 text.',
   'hash.eyebrow': 'DEVELOPER TOOL',
   'hash.algorithm': 'Algorithm',
   'hash.input': 'Text input',

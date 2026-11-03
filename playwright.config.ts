@@ -6,6 +6,7 @@ export default defineConfig({
     '**/json-formatter.spec.ts',
     '**/base64.spec.ts',
     '**/hash-generator.spec.ts',
+    '**/url-encoder.spec.ts',
     '**/smoke.spec.ts',
   ],
   fullyParallel: true,

@@ -151,3 +151,24 @@ test('opens the hash generator for the first time offline', async ({
     'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad',
   )
 })
+
+test('opens the URL tool for the first time offline', async ({
+  page,
+  context,
+}) => {
+  await page.goto('/tools/')
+  await page.evaluate(async () => {
+    await navigator.serviceWorker.ready
+  })
+  await page.reload()
+  await expect(
+    page
+      .locator('[data-tool-id="url-encoder"]')
+      .getByText('Available offline', { exact: true }),
+  ).toBeVisible()
+  await context.setOffline(true)
+  await page.goto('/tools/#/url-encoder')
+  await page.getByLabel('Input', { exact: true }).fill('offline & ready')
+  await page.getByRole('button', { name: 'Convert' }).click()
+  await expect(page.getByLabel('Result')).toHaveValue('offline%20%26%20ready')
+})
