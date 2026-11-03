@@ -57,6 +57,21 @@
 - 도구를 추가할 때마다 이 문서의 도구 목록·기능·제한·검증 범위를 함께 갱신합니다.
 - 모바일 레이아웃·키보드 접근성·다른 브라우저에 대한 추가 검증은 후속 작업으로 미룹니다.
 
+## 추가 예정 도구
+
+구현 순서는 미정이며, 세부 요구사항과 구현 방침은 [로드맵](./docs/roadmap.md)에 정리합니다.
+
+- Unix Timestamp Converter: 초·밀리초 감지와 날짜 변환
+- Color Converter: HEX·RGB·HSL 변환과 컬러 피커
+- Markdown Preview: 표·코드 하이라이팅을 지원하는 미리보기
+- URL Encoder / Decoder: URL 인코딩·디코딩과 쿼리 파라미터 분해
+- Hash Generator: 텍스트의 SHA-256·384·512 해시 생성
+- Random String Generator: 문자 종류·길이·개수를 지정하는 랜덤 문자열 생성
+- Date Calculator: 날짜 차이와 년·월·주·일 더하기·빼기
+- Time Zone Converter: 시간대 검색과 서머타임을 반영한 여러 지역 시간 변환
+- QR Code: 텍스트·URL로 생성하고 이미지에서 읽기
+- Image Editor / Converter: 크기 변경·압축·포맷 변환·자르기·회전·정보 확인
+
 ## 로컬 개발
 
 Node.js 24와 npm을 사용합니다. Node 버전은 [.nvmrc](./.nvmrc)에 지정되어 있습니다.
