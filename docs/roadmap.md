@@ -16,7 +16,7 @@
 
 초기 카테고리 구성은 현재 도구와 추가 예정 도구를 함께 포함합니다.
 
-- 텍스트·데이터 (`text-data`): JSON Formatter, Base64, Markdown Preview, URL Encoder / Decoder, Hash Generator, Random String Generator
+- 텍스트·데이터 (`text-data`): JSON Formatter, Base64, Markdown Preview, URL Encoder / Decoder (구현됨), Hash Generator, Random String Generator
 - 날짜·시간 (`date-time`): Unix Timestamp Converter, Date Calculator, Time Zone Converter
 - 이미지·디자인 (`image-design`): Color Converter, QR Code, Image Editor / Converter
 
@@ -42,12 +42,6 @@
 - Markdown 원문 파일 다운로드
 - 원시 HTML 허용 범위와 렌더링 결과 정제 정책은 구현 시 결정
 - 파서·하이라이터는 도구 진입 시 lazy-load하고 초기 bundle·precache 영향을 확인
-
-## URL Encoder / Decoder
-
-- URL 구성 요소 인코딩·디코딩
-- 쿼리 파라미터 분해 및 결과 복사
-- 잘못된 인코딩 입력 안내
 
 ## Hash Generator 후속 검토
 
