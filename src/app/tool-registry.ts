@@ -19,6 +19,7 @@ export const tags = {
   timestamp: 'tag.timestamp',
   date: 'tag.date',
   color: 'tag.color',
+  random: 'tag.random',
 } as const satisfies Record<string, TranslationKey>
 export type TagId = keyof typeof tags
 
@@ -71,7 +72,30 @@ async function loadColorConverter(): Promise<void> {
   await import('../tools/color-converter')
 }
 
+async function loadRandomStringGenerator(): Promise<void> {
+  await import('../tools/random-string-generator')
+}
+
 export const toolRegistry: readonly ToolDefinition[] = [
+  {
+    id: 'random-string-generator',
+    category: 'text-data',
+    tags: ['random'],
+    keywords: [
+      'random',
+      'string',
+      'password',
+      '랜덤',
+      '무작위',
+      '문자열',
+      '비밀번호',
+    ],
+    titleKey: 'tools.random.title',
+    descriptionKey: 'tools.random.description',
+    elementTag: 'random-string-generator-tool',
+    offlineAssetPatterns: ['random-string-generator-'],
+    load: loadRandomStringGenerator,
+  },
   {
     id: 'color-converter',
     category: 'image-design',

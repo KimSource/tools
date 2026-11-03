@@ -238,3 +238,25 @@ test('opens the color converter for the first time offline', async ({
   await page.getByRole('button', { name: 'Convert HEX' }).click()
   await expect(page.getByLabel('RGB result')).toHaveValue('rgb(255, 0, 0)')
 })
+
+test('opens the random string generator for the first time offline', async ({
+  page,
+  context,
+}) => {
+  await page.goto('/tools/')
+  await page.evaluate(async () => {
+    await navigator.serviceWorker.ready
+  })
+  await page.reload()
+  await expect(
+    page
+      .locator('[data-tool-id="random-string-generator"]')
+      .getByText('Available offline', { exact: true }),
+  ).toBeVisible()
+  await context.setOffline(true)
+  await page.goto('/tools/#/random-string-generator')
+  await page.getByRole('button', { name: 'Generate strings' }).click()
+  await expect(page.getByLabel('Generated strings')).toHaveValue(
+    /^[a-zA-Z0-9]{16}$/,
+  )
+})
