@@ -2,13 +2,13 @@
 
 **입력 데이터는 사용자의 기기 안에서만 처리합니다. 서버로 전송하지 않습니다.**
 
-브라우저에서 사용하는 작은 유틸리티 모음입니다. 현재 JSON Formatter, Base64 인코더·디코더, Hash Generator, URL 인코더·디코더, Unix Timestamp Converter와 Color Converter를 제공하며, 필요한 도구를 하나씩 추가하고 있습니다.
+브라우저에서 사용하는 작은 유틸리티 모음입니다. 현재 JSON Formatter, Base64 인코더·디코더, Hash Generator, URL 인코더·디코더, Unix Timestamp Converter, Color Converter와 Random String Generator를 제공하며, 필요한 도구를 하나씩 추가하고 있습니다.
 
-**[Local Tools 사용하기](https://kimsource.github.io/tools/)** · [JSON Formatter 바로 열기](https://kimsource.github.io/tools/#/json-formatter) · [Base64 바로 열기](https://kimsource.github.io/tools/#/base64) · [Hash Generator 바로 열기](https://kimsource.github.io/tools/#/hash-generator) · [URL 인코더 / 디코더 바로 열기](https://kimsource.github.io/tools/#/url-encoder) · [Unix Timestamp Converter 바로 열기](https://kimsource.github.io/tools/#/unix-timestamp-converter) · [Color Converter 바로 열기](https://kimsource.github.io/tools/#/color-converter)
+**[Local Tools 사용하기](https://kimsource.github.io/tools/)** · [JSON Formatter 바로 열기](https://kimsource.github.io/tools/#/json-formatter) · [Base64 바로 열기](https://kimsource.github.io/tools/#/base64) · [Hash Generator 바로 열기](https://kimsource.github.io/tools/#/hash-generator) · [URL 인코더 / 디코더 바로 열기](https://kimsource.github.io/tools/#/url-encoder) · [Unix Timestamp Converter 바로 열기](https://kimsource.github.io/tools/#/unix-timestamp-converter) · [Color Converter 바로 열기](https://kimsource.github.io/tools/#/color-converter) · [Random String Generator 바로 열기](https://kimsource.github.io/tools/#/random-string-generator)
 
 ## 데이터 처리
 
-- JSON 파싱·변환, Base64 인코딩·디코딩, 해시 생성, URL 변환, 시간 변환과 색상 변환은 브라우저 안에서 실행됩니다. 입력과 결과를 서버에 업로드하지 않습니다.
+- JSON 파싱·변환, Base64 인코딩·디코딩, 해시 생성, URL 변환, 시간 변환, 색상 변환과 문자열 생성은 브라우저 안에서 실행됩니다. 입력과 결과를 서버에 업로드하지 않습니다.
 - 입력과 결과는 자동으로 영구 저장하지 않습니다. 새로고침하거나 도구 화면을 떠나면 사라질 수 있습니다.
 - 복사와 다운로드는 사용자가 버튼을 눌렀을 때만 실행됩니다.
 - 언어와 테마 설정만 브라우저의 `localStorage`에 저장합니다.
@@ -57,6 +57,13 @@
 - 형식별 결과 복사, 잘못된 입력과 범위 초과 안내
 - HSL은 8비트 RGB로 반올림한 색상을 기준으로 표시
 
+### Random String Generator
+
+- 길이 1–256 (기본 16), 개수 1–100 (기본 1)의 문자열 생성 및 전체 복사
+- 소문자·대문자·숫자·특수문자를 독립 선택하고 혼동 문자 제외 및 종류별 최소 하나 포함 가능
+- 특수문자는 `!@#$%^&*()-_=+[]{};:,.?`, 혼동 문자 제외 목록은 `0`, `1`, `I`, `O`, `l`, `o`
+- 브라우저의 암호학적 난수와 기각 표본 추출을 사용해 선택 가능한 결과의 편향을 방지
+
 ### 도구 검색과 분류
 
 - 도구 이름·설명·태그와 한영 동의어를 표시 언어와 관계없이 검색
@@ -67,7 +74,7 @@
 
 - 한국어 / 영어 / 시스템 언어 설정
 - 라이트 / 다크 / 시스템 테마 설정
-- 캐시 준비 후 JSON Formatter, Base64, Hash Generator, URL 인코더·디코더, Unix Timestamp Converter와 Color Converter 오프라인 사용 및 도구별 준비 상태 표시
+- 캐시 준비 후 JSON Formatter, Base64, Hash Generator, URL 인코더·디코더, Unix Timestamp Converter, Color Converter와 Random String Generator 오프라인 사용 및 도구별 준비 상태 표시
 - 새 버전 알림과 업데이트 전 입력 유실 안내
 
 ### 오프라인 사용과 업데이트
@@ -84,6 +91,7 @@
 - URL 구성 요소 변환은 전체 URL이 아닌 개별 구성 요소를 대상으로 합니다. 쿼리 분해에서는 값이 없는 키와 빈 값을 같은 빈 문자열로 표시합니다.
 - Unix 타임스탬프 자동 감지는 부호를 제외한 10자리 정수는 초, 13자리 정수는 밀리초로 해석하며 그 외에는 수동 선택이 필요합니다. 초는 밀리초 정밀도까지, 밀리초는 정수만 지원합니다. 날짜 입력은 네 자리 연도와 `Z` 또는 명시적 오프셋이 있는 ISO 8601 형식만 지원하며, JavaScript Date의 범위로 제한됩니다.
 - Color Converter는 `#RGB`, `#RRGGBB`, 정수 `rgb(r, g, b)` (각 0–255), `hsl(h, s%, l%)` (색조 0–360, 채도·명도 0–100)을 지원합니다. HSL은 소수점 둘째 자리까지 입력할 수 있습니다. 알파 채널·색상 이름·다른 CSS 표기는 지원하지 않습니다. HSL에서 RGB로 변환할 때 8비트 채널을 가장 가까운 정수로 반올림하며, HSL 결과는 그 RGB에서 다시 계산해 소수점 둘째 자리까지 표시하므로 입력과 조금 달라질 수 있습니다.
+- Random String Generator의 보안 강도는 선택한 길이와 문자 집합에 따라 달라지며 결과는 중복될 수 있습니다. 필수 포함 옵션은 길이가 선택한 종류 수 이상이어야 합니다. 복사에는 클립보드를 지원하는 보안 환경이 필요합니다.
 - 변환은 메인 스레드에서 실행합니다. 매우 큰 입력은 화면 반응을 느리게 할 수 있습니다.
 - 자동화된 브라우저 검증은 데스크톱 Chromium을 기준으로 합니다. 모바일 레이아웃·키보드 접근성 및 다른 브라우저의 동작은 추가 검증이 필요합니다.
 
@@ -98,7 +106,6 @@
 구현 순서는 미정이며, 세부 요구사항과 구현 방침은 [로드맵](./docs/roadmap.md)에 정리합니다.
 
 - Markdown Preview: 표·코드 하이라이팅을 지원하는 미리보기
-- Random String Generator: 문자 종류·길이·개수를 지정하는 랜덤 문자열 생성
 - Date Calculator: 날짜 차이와 년·월·주·일 더하기·빼기
 - Time Zone Converter: 시간대 검색과 서머타임을 반영한 여러 지역 시간 변환
 - QR Code: 텍스트·URL로 생성하고 이미지에서 읽기
@@ -131,14 +138,14 @@ npm run e2e:pwa
 
 Linux에서 브라우저 시스템 의존성도 설치하려면 `npx playwright install --with-deps chromium`을 사용합니다.
 
-| 명령                 | 검증 범위                                                                                                                                                                                                                                                  |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `npm test`           | JSON core의 값 종류·오류·Unicode 처리, Base64 core의 UTF-8 왕복 변환·공백·오류 처리, Hash Generator의 알고리즘·UTF-8 처리, URL 변환·쿼리 분해·오류 처리, Unix 타임스탬프 단위 감지·변환·날짜 유효성, 색상 변환·경계·오류·왕복, 도구 검색·분류, Hash Router |
-| `npm run e2e`        | 개발 서버에서 JSON 변환·상태 초기화·오류 복구·로딩·설정 유지 및 Base64 UTF-8 인코딩·디코딩 및 Hash Generator 생성·복사 및 URL 변환·쿼리 분해·복사 및 Unix 타임스탬프 양방향 변환·오류·복사·현재 시간 및 색상 변환·피커·복사·오류 및 도구 검색·필터·초기화  |
-| `npm run e2e:smoke`  | production build의 앱 진입과 JSON 변환                                                                                                                                                                                                                     |
-| `npm run e2e:pwa`    | JSON Formatter의 캐시 준비 표시·현재 자산 누락 시 이전 캐시 제외·오프라인 첫 진입·새로고침·복사·다운로드 내용 및 Hash Generator, URL 도구와 Unix Timestamp Converter와 Color Converter 오프라인 첫 진입 및 오프라인 검색·필터                              |
-| `npm run e2e:update` | A/B 빌드 간 업데이트 취소·재열기·수락, 자동 갱신 및 B 버전 오프라인 변환                                                                                                                                                                                   |
-| `npm run e2e:pages`  | 실제 Pages 배포의 manifest scope와 오프라인 JSON 변환                                                                                                                                                                                                      |
+| 명령                 | 검증 범위                                                                                                                                                                                                                                                                                             |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm test`           | JSON core의 값 종류·오류·Unicode 처리, Base64 core의 UTF-8 왕복 변환·공백·오류 처리, Hash Generator의 알고리즘·UTF-8 처리, URL 변환·쿼리 분해·오류 처리, Unix 타임스탬프 단위 감지·변환·날짜 유효성, 색상 변환·경계·오류·왕복, 랜덤 문자열 집합·경계·필수 포함·난수 선택, 도구 검색·분류, Hash Router |
+| `npm run e2e`        | 개발 서버에서 JSON 변환·상태 초기화·오류 복구·로딩·설정 유지 및 Base64 UTF-8 인코딩·디코딩 및 Hash Generator 생성·복사 및 URL 변환·쿼리 분해·복사 및 Unix 타임스탬프 양방향 변환·오류·복사·현재 시간 및 색상 변환·피커·복사·오류 및 랜덤 문자열 생성·옵션·오류·복사 및 도구 검색·필터·초기화          |
+| `npm run e2e:smoke`  | production build의 앱 진입과 JSON 변환                                                                                                                                                                                                                                                                |
+| `npm run e2e:pwa`    | JSON Formatter의 캐시 준비 표시·현재 자산 누락 시 이전 캐시 제외·오프라인 첫 진입·새로고침·복사·다운로드 내용 및 Hash Generator, URL 도구와 Unix Timestamp Converter와 Color Converter와 Random String Generator 오프라인 첫 진입 및 오프라인 검색·필터                                               |
+| `npm run e2e:update` | A/B 빌드 간 업데이트 취소·재열기·수락, 자동 갱신 및 B 버전 오프라인 변환                                                                                                                                                                                                                              |
+| `npm run e2e:pages`  | 실제 Pages 배포의 manifest scope와 오프라인 JSON 변환                                                                                                                                                                                                                                                 |
 
 `e2e:smoke`와 `e2e:pwa`는 먼저 `npm run build`를 실행해야 합니다. 개발 서버 테스트는 3000, production 테스트는 3001, A/B 업데이트 테스트는 3002 포트를 사용합니다.
 
