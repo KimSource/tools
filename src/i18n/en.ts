@@ -32,6 +32,17 @@ export const en = {
   'tools.jsonFormatter.description': 'Format and minify JSON.',
   'tools.base64.title': 'Base64 Encoder / Decoder',
   'tools.base64.description': 'Encode UTF-8 text to Base64 or decode it back.',
+  'tools.hashGenerator.title': 'Hash Generator',
+  'tools.hashGenerator.description': 'Generate a SHA hash of UTF-8 text.',
+  'hash.eyebrow': 'DEVELOPER TOOL',
+  'hash.algorithm': 'Algorithm',
+  'hash.input': 'Text input',
+  'hash.inputHint':
+    'Whitespace and line breaks are included. Empty text is allowed.',
+  'hash.output': 'HEX result',
+  'hash.generate': 'Generate hash',
+  'hash.error':
+    'Could not generate the hash. Web Crypto requires HTTPS or localhost.',
   'json.eyebrow': 'DEVELOPER TOOL',
   'json.inputLabel': 'Input JSON',
   'json.inputPlaceholder': 'Enter JSON',

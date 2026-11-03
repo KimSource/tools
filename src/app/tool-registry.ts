@@ -30,6 +30,10 @@ async function loadBase64(): Promise<void> {
   await import('../tools/base64')
 }
 
+async function loadHashGenerator(): Promise<void> {
+  await import('../tools/hash-generator')
+}
+
 export const toolRegistry: readonly ToolDefinition[] = [
   {
     id: 'json-formatter',
@@ -46,6 +50,14 @@ export const toolRegistry: readonly ToolDefinition[] = [
     elementTag: 'base64-tool',
     offlineAssetPatterns: ['base64-'],
     load: loadBase64,
+  },
+  {
+    id: 'hash-generator',
+    titleKey: 'tools.hashGenerator.title',
+    descriptionKey: 'tools.hashGenerator.description',
+    elementTag: 'hash-generator-tool',
+    offlineAssetPatterns: ['hash-generator-'],
+    load: loadHashGenerator,
   },
 ]
 export function getTool(id: string): ToolDefinition | undefined {

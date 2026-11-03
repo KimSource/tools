@@ -5,6 +5,7 @@ export default defineConfig({
   testMatch: [
     '**/json-formatter.spec.ts',
     '**/base64.spec.ts',
+    '**/hash-generator.spec.ts',
     '**/smoke.spec.ts',
   ],
   fullyParallel: true,

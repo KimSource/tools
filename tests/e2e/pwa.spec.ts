@@ -128,3 +128,26 @@ test('opens the formatter for the first time while offline', async ({
   "firstOffline": true
 }`)
 })
+
+test('opens the hash generator for the first time offline', async ({
+  page,
+  context,
+}) => {
+  await page.goto('/tools/')
+  await page.evaluate(async () => {
+    await navigator.serviceWorker.ready
+  })
+  await page.reload()
+  await expect(
+    page
+      .locator('[data-tool-id="hash-generator"]')
+      .getByText('Available offline', { exact: true }),
+  ).toBeVisible()
+  await context.setOffline(true)
+  await page.goto('/tools/#/hash-generator')
+  await page.getByLabel('Text input').fill('abc')
+  await page.getByRole('button', { name: 'Generate hash' }).click()
+  await expect(page.getByLabel('HEX result')).toHaveValue(
+    'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad',
+  )
+})

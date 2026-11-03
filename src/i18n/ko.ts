@@ -34,6 +34,17 @@ export const ko = {
   'tools.jsonFormatter.description': 'JSON을 보기 좋게 정리하고 압축합니다.',
   'tools.base64.title': 'Base64 인코더 / 디코더',
   'tools.base64.description': 'UTF-8 텍스트를 Base64로 변환하거나 되돌립니다.',
+  'tools.hashGenerator.title': 'Hash Generator',
+  'tools.hashGenerator.description': 'UTF-8 텍스트의 SHA 해시를 생성합니다.',
+  'hash.eyebrow': '개발자 도구',
+  'hash.algorithm': '알고리즘',
+  'hash.input': '텍스트 입력',
+  'hash.inputHint':
+    '공백과 줄바꿈을 그대로 반영합니다. 빈 텍스트도 사용할 수 있습니다.',
+  'hash.output': 'HEX 결과',
+  'hash.generate': '해시 생성',
+  'hash.error':
+    '해시를 생성하지 못했습니다. Web Crypto는 HTTPS 또는 localhost에서 사용할 수 있습니다.',
   'json.eyebrow': '개발자 도구',
   'json.inputLabel': '입력 JSON',
   'json.inputPlaceholder': 'JSON을 입력하세요',
