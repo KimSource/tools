@@ -5,6 +5,7 @@ export default defineConfig({
   testMatch: [
     '**/json-formatter.spec.ts',
     '**/base64.spec.ts',
+    '**/color-converter.spec.ts',
     '**/hash-generator.spec.ts',
     '**/url-encoder.spec.ts',
     '**/unix-timestamp-converter.spec.ts',

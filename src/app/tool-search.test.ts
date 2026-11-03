@@ -14,15 +14,17 @@ describe('tool search', () => {
     expect(ids('체크섬')).toContain('hash-generator')
     expect(ids('SHA-256')).toContain('hash-generator')
     expect(ids('쿼리 parameter')).toContain('url-encoder')
+    expect(ids('색상')).toContain('color-converter')
+    expect(ids('HSL', 'image-design')).toContain('color-converter')
   })
   it('combines all query terms with the category', () => {
     expect(ids('  UTF-8   decode ', 'text-data')).toContain('base64')
     expect(ids('timestamp', 'text-data')).toEqual([])
     expect(ids('timestamp unknown')).toEqual([])
   })
-  it('handles empty queries and categories with no tools', () => {
+  it('handles empty queries and categories', () => {
     expect(ids('   ')).toHaveLength(toolRegistry.length)
     expect(ids('', 'date-time')).toEqual(['unix-timestamp-converter'])
-    expect(ids('', 'image-design')).toEqual([])
+    expect(ids('', 'image-design')).toEqual(['color-converter'])
   })
 })

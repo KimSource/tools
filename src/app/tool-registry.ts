@@ -18,6 +18,7 @@ export const tags = {
   query: 'tag.query',
   timestamp: 'tag.timestamp',
   date: 'tag.date',
+  color: 'tag.color',
 } as const satisfies Record<string, TranslationKey>
 export type TagId = keyof typeof tags
 
@@ -66,7 +67,22 @@ async function loadUnixTimestampConverter(): Promise<void> {
   await import('../tools/unix-timestamp-converter')
 }
 
+async function loadColorConverter(): Promise<void> {
+  await import('../tools/color-converter')
+}
+
 export const toolRegistry: readonly ToolDefinition[] = [
+  {
+    id: 'color-converter',
+    category: 'image-design',
+    tags: ['color'],
+    keywords: ['color', 'colour', '색상', '색깔', '컬러', 'hex', 'rgb', 'hsl'],
+    titleKey: 'tools.color.title',
+    descriptionKey: 'tools.color.description',
+    elementTag: 'color-converter-tool',
+    offlineAssetPatterns: ['color-converter-'],
+    load: loadColorConverter,
+  },
   {
     id: 'unix-timestamp-converter',
     category: 'date-time',

@@ -21,9 +21,11 @@ test('searches both languages, combines filters and clears empty results without
   await expect(
     page.getByRole('radio', { name: 'All', exact: true }),
   ).toBeChecked()
-  await expect(page.locator('[data-tool-id]')).toHaveCount(5)
+  await expect(page.locator('[data-tool-id]')).toHaveCount(6)
   await page.getByRole('radio', { name: 'Image & Design' }).check()
-  await expect(page.getByRole('status')).toBeVisible()
+  await expect(page.locator('[data-tool-id="color-converter"]')).toBeVisible()
+  await search.fill('색상')
+  await expect(page.locator('[data-tool-id]')).toHaveCount(1)
   expect(toolRequests).toEqual([])
 })
 

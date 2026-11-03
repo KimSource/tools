@@ -217,3 +217,24 @@ test('searches and opens a tool offline after cache preparation', async ({
     .click()
   await expect(page.getByLabel('Unix timestamp', { exact: true })).toBeVisible()
 })
+
+test('opens the color converter for the first time offline', async ({
+  page,
+  context,
+}) => {
+  await page.goto('/tools/')
+  await page.evaluate(async () => {
+    await navigator.serviceWorker.ready
+  })
+  await page.reload()
+  await expect(
+    page
+      .locator('[data-tool-id="color-converter"]')
+      .getByText('Available offline', { exact: true }),
+  ).toBeVisible()
+  await context.setOffline(true)
+  await page.goto('/tools/#/color-converter')
+  await page.getByLabel('HEX input').fill('#f00')
+  await page.getByRole('button', { name: 'Convert HEX' }).click()
+  await expect(page.getByLabel('RGB result')).toHaveValue('rgb(255, 0, 0)')
+})
