@@ -40,6 +40,12 @@ export class UpdateConfirmDialog extends LitElement {
     :host {
       display: contents;
     }
+
+    [slot='footer'] {
+      display: flex;
+      justify-content: flex-end;
+      gap: var(--app-space-2);
+    }
   `
 }
 
