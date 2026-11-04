@@ -2,15 +2,15 @@
 
 **입력 데이터는 사용자의 기기 안에서만 처리합니다. 서버로 전송하지 않습니다.**
 
-브라우저에서 사용하는 작은 유틸리티 모음입니다. 현재 JSON Formatter, Base64 인코더·디코더, Hash Generator, URL 인코더·디코더, Unix Timestamp Converter, Color Converter, Random String Generator, Date Calculator, Time Zone Converter, QR Code와 Markdown Preview를 제공하며, 필요한 도구를 하나씩 추가하고 있습니다.
+브라우저에서 사용하는 작은 유틸리티 모음입니다. 현재 JSON Formatter, Base64 인코더·디코더, Hash Generator, URL 인코더·디코더, Unix Timestamp Converter, Color Converter, Random String Generator, Date Calculator, Time Zone Converter, QR Code, Markdown Preview와 Image Editor / Converter를 제공하며, 필요한 도구를 하나씩 추가하고 있습니다.
 
 **[Local Tools 사용하기](https://kimsource.github.io/tools/)** · [JSON Formatter 바로 열기](https://kimsource.github.io/tools/#/json-formatter) · [Base64 바로 열기](https://kimsource.github.io/tools/#/base64) · [Hash Generator 바로 열기](https://kimsource.github.io/tools/#/hash-generator) · [URL 인코더 / 디코더 바로 열기](https://kimsource.github.io/tools/#/url-encoder) · [Unix Timestamp Converter 바로 열기](https://kimsource.github.io/tools/#/unix-timestamp-converter) · [Color Converter 바로 열기](https://kimsource.github.io/tools/#/color-converter) · [Random String Generator 바로 열기](https://kimsource.github.io/tools/#/random-string-generator)
 
-[Date Calculator 바로 열기](https://kimsource.github.io/tools/#/date-calculator)
+[Date Calculator 바로 열기](https://kimsource.github.io/tools/#/date-calculator) · [Image Editor / Converter 바로 열기](https://kimsource.github.io/tools/#/image-editor-converter)
 
 ## 데이터 처리
 
-- JSON 파싱·변환, Base64 인코딩·디코딩, 해시 생성, URL 변환, 시간 변환, 색상 변환, 문자열 생성과 날짜 계산은 브라우저 안에서 실행됩니다. 입력과 결과를 서버에 업로드하지 않습니다.
+- JSON 파싱·변환, Base64 인코딩·디코딩, 해시 생성, URL 변환, 시간 변환, 색상 변환, 문자열 생성, 날짜 계산과 이미지 편집·변환은 브라우저 안에서 실행됩니다. 입력과 결과를 서버에 업로드하지 않습니다.
 - 입력과 결과는 자동으로 영구 저장하지 않습니다. 새로고침하거나 도구 화면을 떠나면 사라질 수 있습니다.
 - 복사와 다운로드는 사용자가 버튼을 눌렀을 때만 실행됩니다.
 - 언어와 테마 설정만 브라우저의 `localStorage`에 저장합니다.
@@ -87,6 +87,18 @@
 - 읽은 절대 HTTP·HTTPS URL은 사용자가 선택해 새 탭에서 열기
 - 모든 생성과 읽기는 기기에서 수행하며 입력과 결과를 저장하지 않음
 
+### Image Editor / Converter
+
+- PNG·JPG·WebP 정지 이미지 한 장을 파일 선택 또는 드래그 앤 드롭으로 입력
+- 파일명·실제 포맷·바이트 용량·방향이 반영된 가로×세로·가로세로 비율 표시
+- 픽셀 또는 백분율로 크기 변경, 가로세로 비율 유지·확대 허용 선택
+- PNG·JPG·WebP 출력, JPG·WebP 품질 0–100 조절, JPG의 투명 영역을 채울 배경색 선택
+- **결과 생성** 후 실제 인코딩 결과의 미리보기·용량·원본 대비 증감률 확인 및 다운로드
+- 설정을 바꾸면 이전 결과를 지우고 다시 생성하며, 다운로드는 미리보기와 같은 결과 파일을 사용
+- 원본 파일을 유지한 채 **원본으로 초기화**로 설정과 결과 초기화; 새 파일은 검증 성공 후 교체
+- 기본값: 원본 크기·포맷, 비율 유지 켜짐, 확대 허용 꺼짐, 품질 90%, JPG 배경 흰색
+- 입력·설정·결과는 현재 도구 화면의 메모리에만 유지하고 자동 저장·서버 전송하지 않음
+
 ### Markdown Preview
 
 - Markdown을 입력하며 표와 코드 하이라이팅을 실시간 미리보기하고 원문을 `.md` 파일로 다운로드
@@ -104,7 +116,7 @@
 
 - 한국어 / 영어 / 시스템 언어 설정
 - 라이트 / 다크 / 시스템 테마 설정
-- 캐시 준비 후 Time Zone Converter, JSON Formatter, Base64, Hash Generator, URL 인코더·디코더, Unix Timestamp Converter, Color Converter, Random String Generator, Date Calculator, QR Code와 Markdown Preview 오프라인 사용 및 도구별 준비 상태 표시
+- 캐시 준비 후 Time Zone Converter, JSON Formatter, Base64, Hash Generator, URL 인코더·디코더, Unix Timestamp Converter, Color Converter, Random String Generator, Date Calculator, QR Code, Markdown Preview와 Image Editor / Converter 오프라인 사용 및 도구별 준비 상태 표시
 - 새 버전 알림과 업데이트 전 입력 유실 안내
 
 ### 오프라인 사용과 업데이트
@@ -114,6 +126,10 @@
 새 버전이 준비되면 업데이트 버튼이 표시됩니다. 버튼을 누르면 현재 입력이 사라질 수 있다는 안내를 보여주며, 취소하면 작업을 계속할 수 있습니다. 업데이트를 수락하면 새 버전으로 자동 갱신합니다. 보관할 입력이나 결과는 갱신 전에 복사하거나 다운로드해 두세요.
 
 ### 현재 제한
+
+- Image Editor / Converter는 파일당 최대 **10 MiB (10 × 1024 × 1024 바이트)**, **1,600만 픽셀**, **가로·세로 각각 1–8,192px**의 정지 이미지를 지원하며 출력에도 같은 픽셀 제한을 적용합니다. 크기·애니메이션 여부를 파일 내용에서 먼저 검사하고 브라우저 디코딩 후 크기를 재확인합니다. APNG(단일 프레임 컨테이너 포함)·애니메이션 WebP·GIF는 거부하며 첫 프레임 추출도 제공하지 않습니다.
+- 이미지 방향은 브라우저의 `createImageBitmap` 디코딩을 따릅니다. EXIF·ICC 등 원본 메타데이터 보존, 정확한 색상 재현, 동일 품질 값의 브라우저 간 동일 결과는 보장하지 않습니다. 브라우저에서 지원하지 않는 출력은 선택할 수 없으며 실제 MIME·시그니처가 요청 포맷과 다르면 다운로드를 제공하지 않습니다. PNG는 품질 조절이나 전용 무손실 최적화를 제공하지 않습니다. 결과 용량이 원본보다 커질 수도 있습니다.
+- 이미지 처리는 메인 스레드에서 수행합니다. 1,600만 픽셀 RGBA 버퍼 하나가 약 64 MB이며 원본·Canvas·결과 미리보기·인코더가 함께 메모리를 사용하므로 제한 안에서도 기기 메모리와 브라우저 Canvas 한계에 따라 실패할 수 있습니다. 원본 미리보기는 최대 1,024px 축소본을 사용하고 작업 종료·교체·화면 이탈 시 임시 자원을 정리합니다. 자르기·회전·애니메이션 보존·EXIF 상세 정보·일괄 처리는 후속 단계입니다.
 
 - Time Zone Converter의 시간대 규칙은 브라우저의 Intl 데이터에 따르므로 브라우저 버전마다 결과가 다를 수 있습니다. 목록의 연간 오프셋은 매일 표본 조사하므로 하루보다 짧은 과거 구간은 누락될 수 있습니다. 변환 결과는 실제 시점의 오프셋을 표시합니다. 브라우저가 지원하지 않는 시간대는 제외합니다. 일부 대표 지역명은 도시가 아닌 국가·지역 이름입니다.
 
@@ -130,7 +146,7 @@
 - Color Converter는 `#RGB`, `#RRGGBB`, 정수 `rgb(r, g, b)` (각 0–255), `hsl(h, s%, l%)` (색조 0–360, 채도·명도 0–100)을 지원합니다. HSL은 소수점 둘째 자리까지 입력할 수 있습니다. 알파 채널·색상 이름·다른 CSS 표기는 지원하지 않습니다. HSL에서 RGB로 변환할 때 8비트 채널을 가장 가까운 정수로 반올림하며, HSL 결과는 그 RGB에서 다시 계산해 소수점 둘째 자리까지 표시하므로 입력과 조금 달라질 수 있습니다.
 - Random String Generator의 보안 강도는 선택한 길이와 문자 집합에 따라 달라지며 결과는 중복될 수 있습니다. 필수 포함 옵션은 길이가 선택한 종류 수 이상이어야 합니다. 복사에는 클립보드를 지원하는 보안 환경이 필요합니다.
 - 변환은 메인 스레드에서 실행합니다. 매우 큰 입력은 화면 반응을 느리게 할 수 있습니다.
-- 자동화된 브라우저 검증은 데스크톱 Chromium을 기준으로 합니다. 모바일 레이아웃·키보드 접근성 및 다른 브라우저의 동작은 추가 검증이 필요합니다.
+- 자동화된 브라우저 검증은 데스크톱 Chromium을 기준으로 합니다. 이미지 편집기를 포함한 일부 도구는 모바일 뷰포트·키보드 흐름을 자동 검증하지만, 실제 모바일 기기와 다른 브라우저의 동작은 추가 검증이 필요합니다.
 
 ## 개발 우선순위
 
@@ -138,11 +154,11 @@
 - 도구를 추가할 때마다 이 문서의 도구 목록·기능·제한·검증 범위를 함께 갱신합니다.
 - 모바일 레이아웃·키보드 접근성·다른 브라우저에 대한 추가 검증은 후속 작업으로 미룹니다.
 
-## 추가 예정 도구
+## 추가 개발 계획
 
 구현 순서는 미정이며, 세부 요구사항과 구현 방침은 [로드맵](./docs/roadmap.md)에 정리합니다.
 
-- Image Editor / Converter: 크기 변경·압축·포맷 변환·자르기·회전·정보 확인
+- Image Editor / Converter 후속 단계: 자르기·회전, 애니메이션 보존·편집·변환과 PNG 무손실 최적화·EXIF 상세 정보·일괄 처리 검토
 
 ## 로컬 개발
 
@@ -171,14 +187,14 @@ npm run e2e:pwa
 
 Linux에서 브라우저 시스템 의존성도 설치하려면 `npx playwright install --with-deps chromium`을 사용합니다.
 
-| 명령                 | 검증 범위                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `npm test`           | Markdown 렌더링·코드 강조·HTML 및 URL 처리, QR Unicode 디코딩·URL 판별·빈 입력, Time Zone Converter의 누락·중복 시각, 변환 및 연간 오프셋, Date Calculator의 차이·포함·역순·월말·윤년·복합 단위·경계·오류·시간대 독립성, JSON core의 값 종류·오류·Unicode 처리, Base64 core의 UTF-8 왕복 변환·공백·오류 처리, Hash Generator의 알고리즘·UTF-8 처리, URL 변환·쿼리 분해·오류 처리, Unix 타임스탬프 단위 감지·변환·날짜 유효성, 색상 변환·경계·오류·왕복, 랜덤 문자열 집합·경계·필수 포함·난수 선택, 도구 검색·분류, Hash Router |
-| `npm run e2e`        | Markdown 입력·미리보기·보안·다운로드·모바일, QR 생성·다운로드·이미지 읽기·복사·드롭·검색, Time Zone Converter의 검색·서머타임·복사·키보드·모바일, Date Calculator의 두 모드·오류·복사·검색, 개발 서버에서 JSON 변환·상태 초기화·오류 복구·로딩·설정 유지 및 Base64 UTF-8 인코딩·디코딩 및 Hash Generator 생성·복사 및 URL 변환·쿼리 분해·복사 및 Unix 타임스탬프 양방향 변환·오류·복사·현재 시간 및 색상 변환·피커·복사·오류 및 랜덤 문자열 생성·옵션·오류·복사 및 도구 검색·필터·초기화                                       |
-| `npm run e2e:smoke`  | production build의 앱 진입과 JSON 변환                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| `npm run e2e:pwa`    | Markdown 오프라인 첫 진입·미리보기·다운로드, QR 오프라인 첫 진입·생성·읽기, JSON Formatter의 캐시 준비 표시·현재 자산 누락 시 이전 캐시 제외·오프라인 첫 진입·새로고침·복사·다운로드 내용 및 Hash Generator, URL 도구와 Unix Timestamp Converter와 Color Converter와 Random String Generator와 Date Calculator와 Time Zone Converter 오프라인 첫 진입 및 오프라인 검색·필터                                                                                                                                                    |
-| `npm run e2e:update` | A/B 빌드 간 업데이트 취소·재열기·수락, 자동 갱신 및 B 버전 오프라인 변환                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| `npm run e2e:pages`  | 실제 Pages 배포의 manifest scope와 오프라인 JSON 변환                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| 명령                 | 검증 범위                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm test`           | 이미지 파일 헤더·애니메이션 판별·크기·비율·반올림·확대 제한·출력 MIME 및 시그니처·품질·배경색·용량 증감 계산, Markdown 렌더링·코드 강조·HTML 및 URL 처리, QR Unicode 디코딩·URL 판별·빈 입력, Time Zone Converter의 누락·중복 시각, 변환 및 연간 오프셋, Date Calculator의 차이·포함·역순·월말·윤년·복합 단위·경계·오류·시간대 독립성, JSON core의 값 종류·오류·Unicode 처리, Base64 core의 UTF-8 왕복 변환·공백·오류 처리, Hash Generator의 알고리즘·UTF-8 처리, URL 변환·쿼리 분해·오류 처리, Unix 타임스탬프 단위 감지·변환·날짜 유효성, 색상 변환·경계·오류·왕복, 랜덤 문자열 집합·경계·필수 포함·난수 선택, 도구 검색·분류, Hash Router |
+| `npm run e2e`        | 이미지 파일 선택·드롭·세 포맷 변환·다운로드 내용·투명도·JPG 배경색·EXIF 방향·오류·초기화·미지원 출력·모바일·키보드·언어·테마·URL 정리, Markdown 입력·미리보기·보안·다운로드·모바일, QR 생성·다운로드·이미지 읽기·복사·드롭·검색, Time Zone Converter의 검색·서머타임·복사·키보드·모바일, Date Calculator의 두 모드·오류·복사·검색, 개발 서버에서 JSON 변환·상태 초기화·오류 복구·로딩·설정 유지 및 Base64 UTF-8 인코딩·디코딩 및 Hash Generator 생성·복사 및 URL 변환·쿼리 분해·복사 및 Unix 타임스탬프 양방향 변환·오류·복사·현재 시간 및 색상 변환·피커·복사·오류 및 랜덤 문자열 생성·옵션·오류·복사 및 도구 검색·필터·초기화              |
+| `npm run e2e:smoke`  | production build의 앱 진입과 JSON 변환                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `npm run e2e:pwa`    | 이미지 편집기 오프라인 첫 진입·새로고침·파일 입력·크기 및 포맷 변환·다운로드, Markdown 오프라인 첫 진입·미리보기·다운로드, QR 오프라인 첫 진입·생성·읽기, JSON Formatter의 캐시 준비 표시·현재 자산 누락 시 이전 캐시 제외·오프라인 첫 진입·새로고침·복사·다운로드 내용 및 Hash Generator, URL 도구와 Unix Timestamp Converter와 Color Converter와 Random String Generator와 Date Calculator와 Time Zone Converter 오프라인 첫 진입 및 오프라인 검색·필터                                                                                                                                                                                    |
+| `npm run e2e:update` | A/B 빌드 간 업데이트 취소·재열기·수락, 자동 갱신 및 B 버전 오프라인 변환                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `npm run e2e:pages`  | 실제 Pages 배포의 manifest scope와 오프라인 JSON 변환                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 
 `e2e:smoke`와 `e2e:pwa`는 먼저 `npm run build`를 실행해야 합니다. 개발 서버 테스트는 3000, production 테스트는 3001, A/B 업데이트 테스트는 3002 포트를 사용합니다.
 
