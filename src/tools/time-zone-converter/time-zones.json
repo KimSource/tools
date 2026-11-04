@@ -1,0 +1,3389 @@
+[
+  {
+    "id": "Africa/Abidjan",
+    "aliases": ["Africa/Abidjan"],
+    "ko": "아비장",
+    "en": "Abidjan",
+    "countryKo": "코트디부아르",
+    "countryEn": "Côte d’Ivoire"
+  },
+  {
+    "id": "Africa/Accra",
+    "aliases": ["Africa/Accra"],
+    "ko": "아크라",
+    "en": "Accra",
+    "countryKo": "가나",
+    "countryEn": "Ghana"
+  },
+  {
+    "id": "Africa/Addis_Ababa",
+    "aliases": ["Africa/Addis_Ababa"],
+    "ko": "아디스아바바",
+    "en": "Addis Ababa",
+    "countryKo": "에티오피아",
+    "countryEn": "Ethiopia"
+  },
+  {
+    "id": "Africa/Algiers",
+    "aliases": ["Africa/Algiers"],
+    "ko": "알제",
+    "en": "Algiers",
+    "countryKo": "알제리",
+    "countryEn": "Algeria"
+  },
+  {
+    "id": "Africa/Asmara",
+    "aliases": ["Africa/Asmera", "Africa/Asmara"],
+    "ko": "아스메라",
+    "en": "Asmara",
+    "countryKo": "에리트리아",
+    "countryEn": "Eritrea"
+  },
+  {
+    "id": "Africa/Bamako",
+    "aliases": ["Africa/Bamako", "Africa/Timbuktu"],
+    "ko": "바마코",
+    "en": "Bamako",
+    "countryKo": "말리",
+    "countryEn": "Mali"
+  },
+  {
+    "id": "Africa/Bangui",
+    "aliases": ["Africa/Bangui"],
+    "ko": "방기",
+    "en": "Bangui",
+    "countryKo": "중앙 아프리카 공화국",
+    "countryEn": "Central African Republic"
+  },
+  {
+    "id": "Africa/Banjul",
+    "aliases": ["Africa/Banjul"],
+    "ko": "반줄",
+    "en": "Banjul",
+    "countryKo": "감비아",
+    "countryEn": "Gambia"
+  },
+  {
+    "id": "Africa/Bissau",
+    "aliases": ["Africa/Bissau"],
+    "ko": "비사우",
+    "en": "Bissau",
+    "countryKo": "기니비사우",
+    "countryEn": "Guinea-Bissau"
+  },
+  {
+    "id": "Africa/Blantyre",
+    "aliases": ["Africa/Blantyre"],
+    "ko": "블랜타이어",
+    "en": "Blantyre",
+    "countryKo": "말라위",
+    "countryEn": "Malawi"
+  },
+  {
+    "id": "Africa/Brazzaville",
+    "aliases": ["Africa/Brazzaville"],
+    "ko": "브라자빌",
+    "en": "Brazzaville",
+    "countryKo": "콩고-브라자빌",
+    "countryEn": "Congo - Brazzaville"
+  },
+  {
+    "id": "Africa/Bujumbura",
+    "aliases": ["Africa/Bujumbura"],
+    "ko": "부줌부라",
+    "en": "Bujumbura",
+    "countryKo": "부룬디",
+    "countryEn": "Burundi"
+  },
+  {
+    "id": "Africa/Cairo",
+    "aliases": ["Africa/Cairo"],
+    "ko": "카이로",
+    "en": "Cairo",
+    "countryKo": "이집트",
+    "countryEn": "Egypt"
+  },
+  {
+    "id": "Africa/Casablanca",
+    "aliases": ["Africa/Casablanca"],
+    "ko": "카사블랑카",
+    "en": "Casablanca",
+    "countryKo": "모로코",
+    "countryEn": "Morocco"
+  },
+  {
+    "id": "Africa/Ceuta",
+    "aliases": ["Africa/Ceuta"],
+    "ko": "세우타",
+    "en": "Ceuta",
+    "countryKo": "스페인",
+    "countryEn": "Spain"
+  },
+  {
+    "id": "Africa/Conakry",
+    "aliases": ["Africa/Conakry"],
+    "ko": "코나크리",
+    "en": "Conakry",
+    "countryKo": "기니",
+    "countryEn": "Guinea"
+  },
+  {
+    "id": "Africa/Dakar",
+    "aliases": ["Africa/Dakar"],
+    "ko": "다카르",
+    "en": "Dakar",
+    "countryKo": "세네갈",
+    "countryEn": "Senegal"
+  },
+  {
+    "id": "Africa/Dar_es_Salaam",
+    "aliases": ["Africa/Dar_es_Salaam"],
+    "ko": "다르에스살람",
+    "en": "Dar es Salaam",
+    "countryKo": "탄자니아",
+    "countryEn": "Tanzania"
+  },
+  {
+    "id": "Africa/Djibouti",
+    "aliases": ["Africa/Djibouti"],
+    "ko": "지부티",
+    "en": "Djibouti",
+    "countryKo": "지부티",
+    "countryEn": "Djibouti"
+  },
+  {
+    "id": "Africa/Douala",
+    "aliases": ["Africa/Douala"],
+    "ko": "두알라",
+    "en": "Douala",
+    "countryKo": "카메룬",
+    "countryEn": "Cameroon"
+  },
+  {
+    "id": "Africa/El_Aaiun",
+    "aliases": ["Africa/El_Aaiun"],
+    "ko": "엘아이운",
+    "en": "El Aaiún",
+    "countryKo": "서사하라",
+    "countryEn": "Western Sahara"
+  },
+  {
+    "id": "Africa/Freetown",
+    "aliases": ["Africa/Freetown"],
+    "ko": "프리타운",
+    "en": "Freetown",
+    "countryKo": "시에라리온",
+    "countryEn": "Sierra Leone"
+  },
+  {
+    "id": "Africa/Gaborone",
+    "aliases": ["Africa/Gaborone"],
+    "ko": "가보로네",
+    "en": "Gaborone",
+    "countryKo": "보츠와나",
+    "countryEn": "Botswana"
+  },
+  {
+    "id": "Africa/Harare",
+    "aliases": ["Africa/Harare"],
+    "ko": "하라레",
+    "en": "Harare",
+    "countryKo": "짐바브웨",
+    "countryEn": "Zimbabwe"
+  },
+  {
+    "id": "Africa/Johannesburg",
+    "aliases": ["Africa/Johannesburg"],
+    "ko": "요하네스버그",
+    "en": "Johannesburg",
+    "countryKo": "남아프리카",
+    "countryEn": "South Africa"
+  },
+  {
+    "id": "Africa/Juba",
+    "aliases": ["Africa/Juba"],
+    "ko": "주바",
+    "en": "Juba",
+    "countryKo": "남수단",
+    "countryEn": "South Sudan"
+  },
+  {
+    "id": "Africa/Kampala",
+    "aliases": ["Africa/Kampala"],
+    "ko": "캄팔라",
+    "en": "Kampala",
+    "countryKo": "우간다",
+    "countryEn": "Uganda"
+  },
+  {
+    "id": "Africa/Khartoum",
+    "aliases": ["Africa/Khartoum"],
+    "ko": "카르툼",
+    "en": "Khartoum",
+    "countryKo": "수단",
+    "countryEn": "Sudan"
+  },
+  {
+    "id": "Africa/Kigali",
+    "aliases": ["Africa/Kigali"],
+    "ko": "키갈리",
+    "en": "Kigali",
+    "countryKo": "르완다",
+    "countryEn": "Rwanda"
+  },
+  {
+    "id": "Africa/Kinshasa",
+    "aliases": ["Africa/Kinshasa"],
+    "ko": "킨샤사",
+    "en": "Kinshasa",
+    "countryKo": "콩고-킨샤사",
+    "countryEn": "Congo - Kinshasa"
+  },
+  {
+    "id": "Africa/Lagos",
+    "aliases": ["Africa/Lagos"],
+    "ko": "라고스",
+    "en": "Lagos",
+    "countryKo": "나이지리아",
+    "countryEn": "Nigeria"
+  },
+  {
+    "id": "Africa/Libreville",
+    "aliases": ["Africa/Libreville"],
+    "ko": "리브르빌",
+    "en": "Libreville",
+    "countryKo": "가봉",
+    "countryEn": "Gabon"
+  },
+  {
+    "id": "Africa/Lome",
+    "aliases": ["Africa/Lome"],
+    "ko": "로메",
+    "en": "Lomé",
+    "countryKo": "토고",
+    "countryEn": "Togo"
+  },
+  {
+    "id": "Africa/Luanda",
+    "aliases": ["Africa/Luanda"],
+    "ko": "루안다",
+    "en": "Luanda",
+    "countryKo": "앙골라",
+    "countryEn": "Angola"
+  },
+  {
+    "id": "Africa/Lubumbashi",
+    "aliases": ["Africa/Lubumbashi"],
+    "ko": "루붐바시",
+    "en": "Lubumbashi",
+    "countryKo": "콩고-킨샤사",
+    "countryEn": "Congo - Kinshasa"
+  },
+  {
+    "id": "Africa/Lusaka",
+    "aliases": ["Africa/Lusaka"],
+    "ko": "루사카",
+    "en": "Lusaka",
+    "countryKo": "잠비아",
+    "countryEn": "Zambia"
+  },
+  {
+    "id": "Africa/Malabo",
+    "aliases": ["Africa/Malabo"],
+    "ko": "말라보",
+    "en": "Malabo",
+    "countryKo": "적도 기니",
+    "countryEn": "Equatorial Guinea"
+  },
+  {
+    "id": "Africa/Maputo",
+    "aliases": ["Africa/Maputo"],
+    "ko": "마푸토",
+    "en": "Maputo",
+    "countryKo": "모잠비크",
+    "countryEn": "Mozambique"
+  },
+  {
+    "id": "Africa/Maseru",
+    "aliases": ["Africa/Maseru"],
+    "ko": "마세루",
+    "en": "Maseru",
+    "countryKo": "레소토",
+    "countryEn": "Lesotho"
+  },
+  {
+    "id": "Africa/Mbabane",
+    "aliases": ["Africa/Mbabane"],
+    "ko": "음바바네",
+    "en": "Mbabane",
+    "countryKo": "에스와티니",
+    "countryEn": "Eswatini"
+  },
+  {
+    "id": "Africa/Mogadishu",
+    "aliases": ["Africa/Mogadishu"],
+    "ko": "모가디슈",
+    "en": "Mogadishu",
+    "countryKo": "소말리아",
+    "countryEn": "Somalia"
+  },
+  {
+    "id": "Africa/Monrovia",
+    "aliases": ["Africa/Monrovia"],
+    "ko": "몬로비아",
+    "en": "Monrovia",
+    "countryKo": "라이베리아",
+    "countryEn": "Liberia"
+  },
+  {
+    "id": "Africa/Nairobi",
+    "aliases": ["Africa/Nairobi"],
+    "ko": "나이로비",
+    "en": "Nairobi",
+    "countryKo": "케냐",
+    "countryEn": "Kenya"
+  },
+  {
+    "id": "Africa/Ndjamena",
+    "aliases": ["Africa/Ndjamena"],
+    "ko": "엔자메나",
+    "en": "N’Djamena",
+    "countryKo": "차드",
+    "countryEn": "Chad"
+  },
+  {
+    "id": "Africa/Niamey",
+    "aliases": ["Africa/Niamey"],
+    "ko": "니아메",
+    "en": "Niamey",
+    "countryKo": "니제르",
+    "countryEn": "Niger"
+  },
+  {
+    "id": "Africa/Nouakchott",
+    "aliases": ["Africa/Nouakchott"],
+    "ko": "누악쇼트",
+    "en": "Nouakchott",
+    "countryKo": "모리타니",
+    "countryEn": "Mauritania"
+  },
+  {
+    "id": "Africa/Ouagadougou",
+    "aliases": ["Africa/Ouagadougou"],
+    "ko": "와가두구",
+    "en": "Ouagadougou",
+    "countryKo": "부르키나파소",
+    "countryEn": "Burkina Faso"
+  },
+  {
+    "id": "Africa/Porto-Novo",
+    "aliases": ["Africa/Porto-Novo"],
+    "ko": "포르토노보",
+    "en": "Porto-Novo",
+    "countryKo": "베냉",
+    "countryEn": "Benin"
+  },
+  {
+    "id": "Africa/Sao_Tome",
+    "aliases": ["Africa/Sao_Tome"],
+    "ko": "상투메",
+    "en": "São Tomé",
+    "countryKo": "상투메 프린시페",
+    "countryEn": "São Tomé & Príncipe"
+  },
+  {
+    "id": "Africa/Tripoli",
+    "aliases": ["Africa/Tripoli"],
+    "ko": "트리폴리",
+    "en": "Tripoli",
+    "countryKo": "리비아",
+    "countryEn": "Libya"
+  },
+  {
+    "id": "Africa/Tunis",
+    "aliases": ["Africa/Tunis"],
+    "ko": "튀니스",
+    "en": "Tunis",
+    "countryKo": "튀니지",
+    "countryEn": "Tunisia"
+  },
+  {
+    "id": "Africa/Windhoek",
+    "aliases": ["Africa/Windhoek"],
+    "ko": "빈트후크",
+    "en": "Windhoek",
+    "countryKo": "나미비아",
+    "countryEn": "Namibia"
+  },
+  {
+    "id": "America/Adak",
+    "aliases": ["America/Adak", "America/Atka", "US/Aleutian"],
+    "ko": "에이닥",
+    "en": "Adak",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/Anchorage",
+    "aliases": ["America/Anchorage", "US/Alaska"],
+    "ko": "앵커리지",
+    "en": "Anchorage",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/Anguilla",
+    "aliases": ["America/Anguilla"],
+    "ko": "앙귈라",
+    "en": "Anguilla",
+    "countryKo": "앵귈라",
+    "countryEn": "Anguilla"
+  },
+  {
+    "id": "America/Antigua",
+    "aliases": ["America/Antigua"],
+    "ko": "안티과",
+    "en": "Antigua",
+    "countryKo": "앤티가 바부다",
+    "countryEn": "Antigua & Barbuda"
+  },
+  {
+    "id": "America/Araguaina",
+    "aliases": ["America/Araguaina"],
+    "ko": "아라과이나",
+    "en": "Araguaína",
+    "countryKo": "브라질",
+    "countryEn": "Brazil"
+  },
+  {
+    "id": "America/Argentina/Buenos_Aires",
+    "aliases": ["America/Buenos_Aires", "America/Argentina/Buenos_Aires"],
+    "ko": "부에노스 아이레스",
+    "en": "Buenos Aires",
+    "countryKo": "아르헨티나",
+    "countryEn": "Argentina"
+  },
+  {
+    "id": "America/Argentina/Catamarca",
+    "aliases": [
+      "America/Catamarca",
+      "America/Argentina/Catamarca",
+      "America/Argentina/ComodRivadavia"
+    ],
+    "ko": "카타마르카",
+    "en": "Catamarca",
+    "countryKo": "아르헨티나",
+    "countryEn": "Argentina"
+  },
+  {
+    "id": "America/Argentina/Cordoba",
+    "aliases": [
+      "America/Cordoba",
+      "America/Argentina/Cordoba",
+      "America/Rosario"
+    ],
+    "ko": "코르도바",
+    "en": "Córdoba",
+    "countryKo": "아르헨티나",
+    "countryEn": "Argentina"
+  },
+  {
+    "id": "America/Argentina/Jujuy",
+    "aliases": ["America/Jujuy", "America/Argentina/Jujuy"],
+    "ko": "후후이",
+    "en": "Jujuy",
+    "countryKo": "아르헨티나",
+    "countryEn": "Argentina"
+  },
+  {
+    "id": "America/Argentina/La_Rioja",
+    "aliases": ["America/Argentina/La_Rioja"],
+    "ko": "라 리오하",
+    "en": "La Rioja",
+    "countryKo": "아르헨티나",
+    "countryEn": "Argentina"
+  },
+  {
+    "id": "America/Argentina/Mendoza",
+    "aliases": ["America/Mendoza", "America/Argentina/Mendoza"],
+    "ko": "멘도사",
+    "en": "Mendoza",
+    "countryKo": "아르헨티나",
+    "countryEn": "Argentina"
+  },
+  {
+    "id": "America/Argentina/Rio_Gallegos",
+    "aliases": ["America/Argentina/Rio_Gallegos"],
+    "ko": "리오 가예고스",
+    "en": "Río Gallegos",
+    "countryKo": "아르헨티나",
+    "countryEn": "Argentina"
+  },
+  {
+    "id": "America/Argentina/Salta",
+    "aliases": ["America/Argentina/Salta"],
+    "ko": "살타",
+    "en": "Salta",
+    "countryKo": "아르헨티나",
+    "countryEn": "Argentina"
+  },
+  {
+    "id": "America/Argentina/San_Juan",
+    "aliases": ["America/Argentina/San_Juan"],
+    "ko": "산후안",
+    "en": "San Juan",
+    "countryKo": "아르헨티나",
+    "countryEn": "Argentina"
+  },
+  {
+    "id": "America/Argentina/San_Luis",
+    "aliases": ["America/Argentina/San_Luis"],
+    "ko": "산루이스",
+    "en": "San Luis",
+    "countryKo": "아르헨티나",
+    "countryEn": "Argentina"
+  },
+  {
+    "id": "America/Argentina/Tucuman",
+    "aliases": ["America/Argentina/Tucuman"],
+    "ko": "투쿠만",
+    "en": "Tucumán",
+    "countryKo": "아르헨티나",
+    "countryEn": "Argentina"
+  },
+  {
+    "id": "America/Argentina/Ushuaia",
+    "aliases": ["America/Argentina/Ushuaia"],
+    "ko": "우수아이아",
+    "en": "Ushuaia",
+    "countryKo": "아르헨티나",
+    "countryEn": "Argentina"
+  },
+  {
+    "id": "America/Aruba",
+    "aliases": ["America/Aruba"],
+    "ko": "아루바",
+    "en": "Aruba",
+    "countryKo": "아루바",
+    "countryEn": "Aruba"
+  },
+  {
+    "id": "America/Asuncion",
+    "aliases": ["America/Asuncion"],
+    "ko": "아순시온",
+    "en": "Asunción",
+    "countryKo": "파라과이",
+    "countryEn": "Paraguay"
+  },
+  {
+    "id": "America/Atikokan",
+    "aliases": ["America/Coral_Harbour", "America/Atikokan"],
+    "ko": "코랄하버",
+    "en": "Atikokan",
+    "countryKo": "캐나다",
+    "countryEn": "Canada"
+  },
+  {
+    "id": "America/Bahia",
+    "aliases": ["America/Bahia"],
+    "ko": "바히아",
+    "en": "Bahia",
+    "countryKo": "브라질",
+    "countryEn": "Brazil"
+  },
+  {
+    "id": "America/Bahia_Banderas",
+    "aliases": ["America/Bahia_Banderas"],
+    "ko": "바이아 반데라스",
+    "en": "Bahía de Banderas",
+    "countryKo": "멕시코",
+    "countryEn": "Mexico"
+  },
+  {
+    "id": "America/Barbados",
+    "aliases": ["America/Barbados"],
+    "ko": "바베이도스",
+    "en": "Barbados",
+    "countryKo": "바베이도스",
+    "countryEn": "Barbados"
+  },
+  {
+    "id": "America/Belem",
+    "aliases": ["America/Belem"],
+    "ko": "벨렘",
+    "en": "Belém",
+    "countryKo": "브라질",
+    "countryEn": "Brazil"
+  },
+  {
+    "id": "America/Belize",
+    "aliases": ["America/Belize"],
+    "ko": "벨리즈",
+    "en": "Belize",
+    "countryKo": "벨리즈",
+    "countryEn": "Belize"
+  },
+  {
+    "id": "America/Blanc-Sablon",
+    "aliases": ["America/Blanc-Sablon"],
+    "ko": "블랑 사블롱",
+    "en": "Blanc-Sablon",
+    "countryKo": "캐나다",
+    "countryEn": "Canada"
+  },
+  {
+    "id": "America/Boa_Vista",
+    "aliases": ["America/Boa_Vista"],
+    "ko": "보아 비스타",
+    "en": "Boa Vista",
+    "countryKo": "브라질",
+    "countryEn": "Brazil"
+  },
+  {
+    "id": "America/Bogota",
+    "aliases": ["America/Bogota"],
+    "ko": "보고타",
+    "en": "Bogotá",
+    "countryKo": "콜롬비아",
+    "countryEn": "Colombia"
+  },
+  {
+    "id": "America/Boise",
+    "aliases": ["America/Boise"],
+    "ko": "보이시",
+    "en": "Boise",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/Cambridge_Bay",
+    "aliases": ["America/Cambridge_Bay"],
+    "ko": "케임브리지 베이",
+    "en": "Cambridge Bay",
+    "countryKo": "캐나다",
+    "countryEn": "Canada"
+  },
+  {
+    "id": "America/Campo_Grande",
+    "aliases": ["America/Campo_Grande"],
+    "ko": "캄포 그란데",
+    "en": "Campo Grande",
+    "countryKo": "브라질",
+    "countryEn": "Brazil"
+  },
+  {
+    "id": "America/Cancun",
+    "aliases": ["America/Cancun"],
+    "ko": "칸쿤",
+    "en": "Cancún",
+    "countryKo": "멕시코",
+    "countryEn": "Mexico"
+  },
+  {
+    "id": "America/Caracas",
+    "aliases": ["America/Caracas"],
+    "ko": "카라카스",
+    "en": "Caracas",
+    "countryKo": "베네수엘라",
+    "countryEn": "Venezuela"
+  },
+  {
+    "id": "America/Cayenne",
+    "aliases": ["America/Cayenne"],
+    "ko": "카옌",
+    "en": "Cayenne",
+    "countryKo": "프랑스령 기아나",
+    "countryEn": "French Guiana"
+  },
+  {
+    "id": "America/Cayman",
+    "aliases": ["America/Cayman"],
+    "ko": "케이맨",
+    "en": "Cayman",
+    "countryKo": "케이맨 제도",
+    "countryEn": "Cayman Islands"
+  },
+  {
+    "id": "America/Chicago",
+    "aliases": ["America/Chicago", "US/Central"],
+    "ko": "시카고",
+    "en": "Chicago",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/Chihuahua",
+    "aliases": ["America/Chihuahua"],
+    "ko": "치와와",
+    "en": "Chihuahua",
+    "countryKo": "멕시코",
+    "countryEn": "Mexico"
+  },
+  {
+    "id": "America/Ciudad_Juarez",
+    "aliases": ["America/Ciudad_Juarez"],
+    "ko": "시우다드후아레스",
+    "en": "Ciudad Juárez",
+    "countryKo": "멕시코",
+    "countryEn": "Mexico"
+  },
+  {
+    "id": "America/Costa_Rica",
+    "aliases": ["America/Costa_Rica"],
+    "ko": "코스타리카",
+    "en": "Costa Rica",
+    "countryKo": "코스타리카",
+    "countryEn": "Costa Rica"
+  },
+  {
+    "id": "America/Coyhaique",
+    "aliases": ["America/Coyhaique"],
+    "ko": "코이아이케",
+    "en": "Coyhaique",
+    "countryKo": "칠레",
+    "countryEn": "Chile"
+  },
+  {
+    "id": "America/Creston",
+    "aliases": ["America/Creston"],
+    "ko": "크레스톤",
+    "en": "Creston",
+    "countryKo": "캐나다",
+    "countryEn": "Canada"
+  },
+  {
+    "id": "America/Cuiaba",
+    "aliases": ["America/Cuiaba"],
+    "ko": "쿠이아바",
+    "en": "Cuiabá",
+    "countryKo": "브라질",
+    "countryEn": "Brazil"
+  },
+  {
+    "id": "America/Curacao",
+    "aliases": ["America/Curacao"],
+    "ko": "퀴라소",
+    "en": "Curaçao",
+    "countryKo": "퀴라소",
+    "countryEn": "Curaçao"
+  },
+  {
+    "id": "America/Danmarkshavn",
+    "aliases": ["America/Danmarkshavn"],
+    "ko": "덴마크샤븐",
+    "en": "Danmarkshavn",
+    "countryKo": "그린란드",
+    "countryEn": "Greenland"
+  },
+  {
+    "id": "America/Dawson",
+    "aliases": ["America/Dawson"],
+    "ko": "도슨",
+    "en": "Dawson",
+    "countryKo": "캐나다",
+    "countryEn": "Canada"
+  },
+  {
+    "id": "America/Dawson_Creek",
+    "aliases": ["America/Dawson_Creek"],
+    "ko": "도슨크릭",
+    "en": "Dawson Creek",
+    "countryKo": "캐나다",
+    "countryEn": "Canada"
+  },
+  {
+    "id": "America/Denver",
+    "aliases": ["America/Denver", "America/Shiprock", "US/Mountain"],
+    "ko": "덴버",
+    "en": "Denver",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/Detroit",
+    "aliases": ["America/Detroit", "US/Michigan"],
+    "ko": "디트로이트",
+    "en": "Detroit",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/Dominica",
+    "aliases": ["America/Dominica"],
+    "ko": "도미니카",
+    "en": "Dominica",
+    "countryKo": "도미니카",
+    "countryEn": "Dominica"
+  },
+  {
+    "id": "America/Edmonton",
+    "aliases": ["America/Edmonton", "Canada/Mountain", "America/Yellowknife"],
+    "ko": "에드먼턴",
+    "en": "Edmonton",
+    "countryKo": "캐나다",
+    "countryEn": "Canada"
+  },
+  {
+    "id": "America/Eirunepe",
+    "aliases": ["America/Eirunepe"],
+    "ko": "아이루네페",
+    "en": "Eirunepé",
+    "countryKo": "브라질",
+    "countryEn": "Brazil"
+  },
+  {
+    "id": "America/El_Salvador",
+    "aliases": ["America/El_Salvador"],
+    "ko": "엘살바도르",
+    "en": "El Salvador",
+    "countryKo": "엘살바도르",
+    "countryEn": "El Salvador"
+  },
+  {
+    "id": "America/Fort_Nelson",
+    "aliases": ["America/Fort_Nelson"],
+    "ko": "포트 넬슨",
+    "en": "Fort Nelson",
+    "countryKo": "캐나다",
+    "countryEn": "Canada"
+  },
+  {
+    "id": "America/Fortaleza",
+    "aliases": ["America/Fortaleza"],
+    "ko": "포르탈레자",
+    "en": "Fortaleza",
+    "countryKo": "브라질",
+    "countryEn": "Brazil"
+  },
+  {
+    "id": "America/Glace_Bay",
+    "aliases": ["America/Glace_Bay"],
+    "ko": "글라스베이",
+    "en": "Glace Bay",
+    "countryKo": "캐나다",
+    "countryEn": "Canada"
+  },
+  {
+    "id": "America/Goose_Bay",
+    "aliases": ["America/Goose_Bay"],
+    "ko": "구즈베이",
+    "en": "Goose Bay",
+    "countryKo": "캐나다",
+    "countryEn": "Canada"
+  },
+  {
+    "id": "America/Grand_Turk",
+    "aliases": ["America/Grand_Turk"],
+    "ko": "그랜드 터크",
+    "en": "Grand Turk",
+    "countryKo": "터크스 케이커스 제도",
+    "countryEn": "Turks & Caicos Islands"
+  },
+  {
+    "id": "America/Grenada",
+    "aliases": ["America/Grenada"],
+    "ko": "그레나다",
+    "en": "Grenada",
+    "countryKo": "그레나다",
+    "countryEn": "Grenada"
+  },
+  {
+    "id": "America/Guadeloupe",
+    "aliases": ["America/Guadeloupe"],
+    "ko": "과들루프",
+    "en": "Guadeloupe",
+    "countryKo": "과들루프",
+    "countryEn": "Guadeloupe"
+  },
+  {
+    "id": "America/Guatemala",
+    "aliases": ["America/Guatemala"],
+    "ko": "과테말라",
+    "en": "Guatemala",
+    "countryKo": "과테말라",
+    "countryEn": "Guatemala"
+  },
+  {
+    "id": "America/Guayaquil",
+    "aliases": ["America/Guayaquil"],
+    "ko": "과야킬",
+    "en": "Guayaquil",
+    "countryKo": "에콰도르",
+    "countryEn": "Ecuador"
+  },
+  {
+    "id": "America/Guyana",
+    "aliases": ["America/Guyana"],
+    "ko": "가이아나",
+    "en": "Guyana",
+    "countryKo": "가이아나",
+    "countryEn": "Guyana"
+  },
+  {
+    "id": "America/Halifax",
+    "aliases": ["America/Halifax", "Canada/Atlantic"],
+    "ko": "핼리팩스",
+    "en": "Halifax",
+    "countryKo": "캐나다",
+    "countryEn": "Canada"
+  },
+  {
+    "id": "America/Havana",
+    "aliases": ["America/Havana"],
+    "ko": "하바나",
+    "en": "Havana",
+    "countryKo": "쿠바",
+    "countryEn": "Cuba"
+  },
+  {
+    "id": "America/Hermosillo",
+    "aliases": ["America/Hermosillo"],
+    "ko": "에르모시요",
+    "en": "Hermosillo",
+    "countryKo": "멕시코",
+    "countryEn": "Mexico"
+  },
+  {
+    "id": "America/Indiana/Indianapolis",
+    "aliases": [
+      "America/Indianapolis",
+      "America/Fort_Wayne",
+      "America/Indiana/Indianapolis",
+      "US/East-Indiana"
+    ],
+    "ko": "인디애나폴리스",
+    "en": "Indianapolis",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/Indiana/Knox",
+    "aliases": ["America/Indiana/Knox", "America/Knox_IN", "US/Indiana-Starke"],
+    "ko": "인디애나주, 녹스",
+    "en": "Knox, Indiana",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/Indiana/Marengo",
+    "aliases": ["America/Indiana/Marengo"],
+    "ko": "인디애나주, 머렝고",
+    "en": "Marengo, Indiana",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/Indiana/Petersburg",
+    "aliases": ["America/Indiana/Petersburg"],
+    "ko": "인디애나주, 피츠버그",
+    "en": "Petersburg, Indiana",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/Indiana/Tell_City",
+    "aliases": ["America/Indiana/Tell_City"],
+    "ko": "인디애나주, 텔시티",
+    "en": "Tell City, Indiana",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/Indiana/Vevay",
+    "aliases": ["America/Indiana/Vevay"],
+    "ko": "인디애나주, 비비",
+    "en": "Vevay, Indiana",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/Indiana/Vincennes",
+    "aliases": ["America/Indiana/Vincennes"],
+    "ko": "인디애나주, 빈센스",
+    "en": "Vincennes, Indiana",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/Indiana/Winamac",
+    "aliases": ["America/Indiana/Winamac"],
+    "ko": "인디애나주, 위너맥",
+    "en": "Winamac, Indiana",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/Inuvik",
+    "aliases": ["America/Inuvik"],
+    "ko": "이누빅",
+    "en": "Inuvik",
+    "countryKo": "캐나다",
+    "countryEn": "Canada"
+  },
+  {
+    "id": "America/Iqaluit",
+    "aliases": ["America/Iqaluit", "America/Pangnirtung"],
+    "ko": "이칼루이트",
+    "en": "Iqaluit",
+    "countryKo": "캐나다",
+    "countryEn": "Canada"
+  },
+  {
+    "id": "America/Jamaica",
+    "aliases": ["America/Jamaica"],
+    "ko": "자메이카",
+    "en": "Jamaica",
+    "countryKo": "자메이카",
+    "countryEn": "Jamaica"
+  },
+  {
+    "id": "America/Juneau",
+    "aliases": ["America/Juneau"],
+    "ko": "주노",
+    "en": "Juneau",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/Kentucky/Louisville",
+    "aliases": ["America/Louisville", "America/Kentucky/Louisville"],
+    "ko": "루이빌",
+    "en": "Louisville",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/Kentucky/Monticello",
+    "aliases": ["America/Kentucky/Monticello"],
+    "ko": "켄터키주, 몬티첼로",
+    "en": "Monticello, Kentucky",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/Kralendijk",
+    "aliases": ["America/Kralendijk"],
+    "ko": "크라렌디즈크",
+    "en": "Kralendijk",
+    "countryKo": "네덜란드령 카리브",
+    "countryEn": "Caribbean Netherlands"
+  },
+  {
+    "id": "America/La_Paz",
+    "aliases": ["America/La_Paz"],
+    "ko": "라파스",
+    "en": "La Paz",
+    "countryKo": "볼리비아",
+    "countryEn": "Bolivia"
+  },
+  {
+    "id": "America/Lima",
+    "aliases": ["America/Lima"],
+    "ko": "리마",
+    "en": "Lima",
+    "countryKo": "페루",
+    "countryEn": "Peru"
+  },
+  {
+    "id": "America/Los_Angeles",
+    "aliases": ["America/Los_Angeles", "US/Pacific", "US/Pacific-New"],
+    "ko": "로스앤젤레스",
+    "en": "Los Angeles",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/Lower_Princes",
+    "aliases": ["America/Lower_Princes"],
+    "ko": "로워 프린스 쿼터",
+    "en": "Lower Prince’s Quarter",
+    "countryKo": "신트마르턴",
+    "countryEn": "Sint Maarten"
+  },
+  {
+    "id": "America/Maceio",
+    "aliases": ["America/Maceio"],
+    "ko": "마세이오",
+    "en": "Maceió",
+    "countryKo": "브라질",
+    "countryEn": "Brazil"
+  },
+  {
+    "id": "America/Managua",
+    "aliases": ["America/Managua"],
+    "ko": "마나과",
+    "en": "Managua",
+    "countryKo": "니카라과",
+    "countryEn": "Nicaragua"
+  },
+  {
+    "id": "America/Manaus",
+    "aliases": ["America/Manaus", "Brazil/West"],
+    "ko": "마나우스",
+    "en": "Manaus",
+    "countryKo": "브라질",
+    "countryEn": "Brazil"
+  },
+  {
+    "id": "America/Marigot",
+    "aliases": ["America/Marigot"],
+    "ko": "마리곳",
+    "en": "Marigot",
+    "countryKo": "생마르탱",
+    "countryEn": "St. Martin"
+  },
+  {
+    "id": "America/Martinique",
+    "aliases": ["America/Martinique"],
+    "ko": "마티니크",
+    "en": "Martinique",
+    "countryKo": "마르티니크",
+    "countryEn": "Martinique"
+  },
+  {
+    "id": "America/Matamoros",
+    "aliases": ["America/Matamoros"],
+    "ko": "마타모로스",
+    "en": "Matamoros",
+    "countryKo": "멕시코",
+    "countryEn": "Mexico"
+  },
+  {
+    "id": "America/Mazatlan",
+    "aliases": ["America/Mazatlan", "Mexico/BajaSur"],
+    "ko": "마사틀란",
+    "en": "Mazatlán",
+    "countryKo": "멕시코",
+    "countryEn": "Mexico"
+  },
+  {
+    "id": "America/Menominee",
+    "aliases": ["America/Menominee"],
+    "ko": "메노미니",
+    "en": "Menominee",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/Merida",
+    "aliases": ["America/Merida"],
+    "ko": "메리다",
+    "en": "Mérida",
+    "countryKo": "멕시코",
+    "countryEn": "Mexico"
+  },
+  {
+    "id": "America/Metlakatla",
+    "aliases": ["America/Metlakatla"],
+    "ko": "메틀라카틀라",
+    "en": "Metlakatla",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/Mexico_City",
+    "aliases": ["America/Mexico_City", "Mexico/General"],
+    "ko": "멕시코 시티",
+    "en": "Mexico City",
+    "countryKo": "멕시코",
+    "countryEn": "Mexico"
+  },
+  {
+    "id": "America/Miquelon",
+    "aliases": ["America/Miquelon"],
+    "ko": "미클롱",
+    "en": "Saint-Pierre",
+    "countryKo": "생피에르 미클롱",
+    "countryEn": "St. Pierre & Miquelon"
+  },
+  {
+    "id": "America/Moncton",
+    "aliases": ["America/Moncton"],
+    "ko": "몽턴",
+    "en": "Moncton",
+    "countryKo": "캐나다",
+    "countryEn": "Canada"
+  },
+  {
+    "id": "America/Monterrey",
+    "aliases": ["America/Monterrey"],
+    "ko": "몬테레이",
+    "en": "Monterrey",
+    "countryKo": "멕시코",
+    "countryEn": "Mexico"
+  },
+  {
+    "id": "America/Montevideo",
+    "aliases": ["America/Montevideo"],
+    "ko": "몬테비데오",
+    "en": "Montevideo",
+    "countryKo": "우루과이",
+    "countryEn": "Uruguay"
+  },
+  {
+    "id": "America/Montserrat",
+    "aliases": ["America/Montserrat"],
+    "ko": "몬세라트",
+    "en": "Montserrat",
+    "countryKo": "몬트세라트",
+    "countryEn": "Montserrat"
+  },
+  {
+    "id": "America/Nassau",
+    "aliases": ["America/Nassau"],
+    "ko": "나소",
+    "en": "Nassau",
+    "countryKo": "바하마",
+    "countryEn": "Bahamas"
+  },
+  {
+    "id": "America/New_York",
+    "aliases": ["America/New_York", "US/Eastern"],
+    "ko": "뉴욕",
+    "en": "New York",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/Nome",
+    "aliases": ["America/Nome"],
+    "ko": "놈",
+    "en": "Nome",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/Noronha",
+    "aliases": ["America/Noronha", "Brazil/DeNoronha"],
+    "ko": "노롱야",
+    "en": "Fernando de Noronha",
+    "countryKo": "브라질",
+    "countryEn": "Brazil"
+  },
+  {
+    "id": "America/North_Dakota/Beulah",
+    "aliases": ["America/North_Dakota/Beulah"],
+    "ko": "노스다코타주, 베라",
+    "en": "Beulah, North Dakota",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/North_Dakota/Center",
+    "aliases": ["America/North_Dakota/Center"],
+    "ko": "중부, 노스다코타",
+    "en": "Center, North Dakota",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/North_Dakota/New_Salem",
+    "aliases": ["America/North_Dakota/New_Salem"],
+    "ko": "노스다코타주, 뉴살렘",
+    "en": "New Salem, North Dakota",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/Nuuk",
+    "aliases": ["America/Godthab", "America/Nuuk"],
+    "ko": "고드호프",
+    "en": "Nuuk",
+    "countryKo": "그린란드",
+    "countryEn": "Greenland"
+  },
+  {
+    "id": "America/Ojinaga",
+    "aliases": ["America/Ojinaga"],
+    "ko": "오히나가",
+    "en": "Ojinaga",
+    "countryKo": "멕시코",
+    "countryEn": "Mexico"
+  },
+  {
+    "id": "America/Panama",
+    "aliases": ["America/Panama"],
+    "ko": "파나마",
+    "en": "Panama",
+    "countryKo": "파나마",
+    "countryEn": "Panama"
+  },
+  {
+    "id": "America/Paramaribo",
+    "aliases": ["America/Paramaribo"],
+    "ko": "파라마리보",
+    "en": "Paramaribo",
+    "countryKo": "수리남",
+    "countryEn": "Suriname"
+  },
+  {
+    "id": "America/Phoenix",
+    "aliases": ["America/Phoenix", "US/Arizona"],
+    "ko": "피닉스",
+    "en": "Phoenix",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/Port_of_Spain",
+    "aliases": ["America/Port_of_Spain"],
+    "ko": "포트오브스페인",
+    "en": "Port of Spain",
+    "countryKo": "트리니다드 토바고",
+    "countryEn": "Trinidad & Tobago"
+  },
+  {
+    "id": "America/Port-au-Prince",
+    "aliases": ["America/Port-au-Prince"],
+    "ko": "포르토프랭스",
+    "en": "Port-au-Prince",
+    "countryKo": "아이티",
+    "countryEn": "Haiti"
+  },
+  {
+    "id": "America/Porto_Velho",
+    "aliases": ["America/Porto_Velho"],
+    "ko": "포르토벨료",
+    "en": "Porto Velho",
+    "countryKo": "브라질",
+    "countryEn": "Brazil"
+  },
+  {
+    "id": "America/Puerto_Rico",
+    "aliases": ["America/Puerto_Rico"],
+    "ko": "푸에르토리코",
+    "en": "Puerto Rico",
+    "countryKo": "푸에르토리코",
+    "countryEn": "Puerto Rico"
+  },
+  {
+    "id": "America/Punta_Arenas",
+    "aliases": ["America/Punta_Arenas"],
+    "ko": "푼타아레나스",
+    "en": "Punta Arenas",
+    "countryKo": "칠레",
+    "countryEn": "Chile"
+  },
+  {
+    "id": "America/Rankin_Inlet",
+    "aliases": ["America/Rankin_Inlet"],
+    "ko": "랭킹 인렛",
+    "en": "Rankin Inlet",
+    "countryKo": "캐나다",
+    "countryEn": "Canada"
+  },
+  {
+    "id": "America/Recife",
+    "aliases": ["America/Recife"],
+    "ko": "레시페",
+    "en": "Recife",
+    "countryKo": "브라질",
+    "countryEn": "Brazil"
+  },
+  {
+    "id": "America/Regina",
+    "aliases": [
+      "America/Regina",
+      "Canada/East-Saskatchewan",
+      "Canada/Saskatchewan"
+    ],
+    "ko": "리자이나",
+    "en": "Regina",
+    "countryKo": "캐나다",
+    "countryEn": "Canada"
+  },
+  {
+    "id": "America/Resolute",
+    "aliases": ["America/Resolute"],
+    "ko": "리졸루트",
+    "en": "Resolute",
+    "countryKo": "캐나다",
+    "countryEn": "Canada"
+  },
+  {
+    "id": "America/Rio_Branco",
+    "aliases": ["America/Rio_Branco", "America/Porto_Acre", "Brazil/Acre"],
+    "ko": "히우 브랑쿠",
+    "en": "Rio Branco",
+    "countryKo": "브라질",
+    "countryEn": "Brazil"
+  },
+  {
+    "id": "America/Santarem",
+    "aliases": ["America/Santarem"],
+    "ko": "산타렘",
+    "en": "Santarém",
+    "countryKo": "브라질",
+    "countryEn": "Brazil"
+  },
+  {
+    "id": "America/Santiago",
+    "aliases": ["America/Santiago", "Chile/Continental"],
+    "ko": "산티아고",
+    "en": "Santiago",
+    "countryKo": "칠레",
+    "countryEn": "Chile"
+  },
+  {
+    "id": "America/Santo_Domingo",
+    "aliases": ["America/Santo_Domingo"],
+    "ko": "산토도밍고",
+    "en": "Santo Domingo",
+    "countryKo": "도미니카 공화국",
+    "countryEn": "Dominican Republic"
+  },
+  {
+    "id": "America/Sao_Paulo",
+    "aliases": ["America/Sao_Paulo", "Brazil/East"],
+    "ko": "상파울루",
+    "en": "São Paulo",
+    "countryKo": "브라질",
+    "countryEn": "Brazil"
+  },
+  {
+    "id": "America/Scoresbysund",
+    "aliases": ["America/Scoresbysund"],
+    "ko": "스코레스바이선드",
+    "en": "Ittoqqortoormiit",
+    "countryKo": "그린란드",
+    "countryEn": "Greenland"
+  },
+  {
+    "id": "America/Sitka",
+    "aliases": ["America/Sitka"],
+    "ko": "싯카",
+    "en": "Sitka",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "America/St_Barthelemy",
+    "aliases": ["America/St_Barthelemy"],
+    "ko": "생바르텔레미",
+    "en": "St. Barthélemy",
+    "countryKo": "생바르텔레미",
+    "countryEn": "St. Barthélemy"
+  },
+  {
+    "id": "America/St_Johns",
+    "aliases": ["America/St_Johns", "Canada/Newfoundland"],
+    "ko": "세인트존스",
+    "en": "St. John’s",
+    "countryKo": "캐나다",
+    "countryEn": "Canada"
+  },
+  {
+    "id": "America/St_Kitts",
+    "aliases": ["America/St_Kitts"],
+    "ko": "세인트키츠",
+    "en": "St. Kitts",
+    "countryKo": "세인트키츠 네비스",
+    "countryEn": "St. Kitts & Nevis"
+  },
+  {
+    "id": "America/St_Lucia",
+    "aliases": ["America/St_Lucia"],
+    "ko": "세인트루시아",
+    "en": "St. Lucia",
+    "countryKo": "세인트루시아",
+    "countryEn": "St. Lucia"
+  },
+  {
+    "id": "America/St_Thomas",
+    "aliases": ["America/St_Thomas", "America/Virgin"],
+    "ko": "세인트토마스",
+    "en": "St. Thomas",
+    "countryKo": "미국령 버진아일랜드",
+    "countryEn": "U.S. Virgin Islands"
+  },
+  {
+    "id": "America/St_Vincent",
+    "aliases": ["America/St_Vincent"],
+    "ko": "세인트빈센트",
+    "en": "St. Vincent",
+    "countryKo": "세인트빈센트그레나딘",
+    "countryEn": "St. Vincent & Grenadines"
+  },
+  {
+    "id": "America/Swift_Current",
+    "aliases": ["America/Swift_Current"],
+    "ko": "스위프트커런트",
+    "en": "Swift Current",
+    "countryKo": "캐나다",
+    "countryEn": "Canada"
+  },
+  {
+    "id": "America/Tegucigalpa",
+    "aliases": ["America/Tegucigalpa"],
+    "ko": "테구시갈파",
+    "en": "Tegucigalpa",
+    "countryKo": "온두라스",
+    "countryEn": "Honduras"
+  },
+  {
+    "id": "America/Thule",
+    "aliases": ["America/Thule"],
+    "ko": "툴레",
+    "en": "Thule",
+    "countryKo": "그린란드",
+    "countryEn": "Greenland"
+  },
+  {
+    "id": "America/Tijuana",
+    "aliases": [
+      "America/Tijuana",
+      "America/Ensenada",
+      "Mexico/BajaNorte",
+      "America/Santa_Isabel"
+    ],
+    "ko": "티후아나",
+    "en": "Tijuana",
+    "countryKo": "멕시코",
+    "countryEn": "Mexico"
+  },
+  {
+    "id": "America/Toronto",
+    "aliases": [
+      "America/Toronto",
+      "America/Montreal",
+      "Canada/Eastern",
+      "America/Nipigon",
+      "America/Thunder_Bay"
+    ],
+    "ko": "토론토",
+    "en": "Toronto",
+    "countryKo": "캐나다",
+    "countryEn": "Canada"
+  },
+  {
+    "id": "America/Tortola",
+    "aliases": ["America/Tortola"],
+    "ko": "토르톨라",
+    "en": "Tortola",
+    "countryKo": "영국령 버진아일랜드",
+    "countryEn": "British Virgin Islands"
+  },
+  {
+    "id": "America/Vancouver",
+    "aliases": ["America/Vancouver", "Canada/Pacific"],
+    "ko": "벤쿠버",
+    "en": "Vancouver",
+    "countryKo": "캐나다",
+    "countryEn": "Canada"
+  },
+  {
+    "id": "America/Whitehorse",
+    "aliases": ["America/Whitehorse", "Canada/Yukon"],
+    "ko": "화이트호스",
+    "en": "Whitehorse",
+    "countryKo": "캐나다",
+    "countryEn": "Canada"
+  },
+  {
+    "id": "America/Winnipeg",
+    "aliases": ["America/Winnipeg", "Canada/Central", "America/Rainy_River"],
+    "ko": "위니펙",
+    "en": "Winnipeg",
+    "countryKo": "캐나다",
+    "countryEn": "Canada"
+  },
+  {
+    "id": "America/Yakutat",
+    "aliases": ["America/Yakutat"],
+    "ko": "야쿠타트",
+    "en": "Yakutat",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "Antarctica/Casey",
+    "aliases": ["Antarctica/Casey"],
+    "ko": "케이시",
+    "en": "Casey Station",
+    "countryKo": "남극 대륙",
+    "countryEn": "Antarctica"
+  },
+  {
+    "id": "Antarctica/Davis",
+    "aliases": ["Antarctica/Davis"],
+    "ko": "데이비스",
+    "en": "Davis",
+    "countryKo": "남극 대륙",
+    "countryEn": "Antarctica"
+  },
+  {
+    "id": "Antarctica/DumontDUrville",
+    "aliases": ["Antarctica/DumontDUrville"],
+    "ko": "뒤몽 뒤르빌",
+    "en": "Dumont d’Urville Station",
+    "countryKo": "남극 대륙",
+    "countryEn": "Antarctica"
+  },
+  {
+    "id": "Antarctica/Macquarie",
+    "aliases": ["Antarctica/Macquarie"],
+    "ko": "맥쿼리",
+    "en": "Macquarie Island",
+    "countryKo": "오스트레일리아",
+    "countryEn": "Australia"
+  },
+  {
+    "id": "Antarctica/Mawson",
+    "aliases": ["Antarctica/Mawson"],
+    "ko": "모슨",
+    "en": "Mawson Station",
+    "countryKo": "남극 대륙",
+    "countryEn": "Antarctica"
+  },
+  {
+    "id": "Antarctica/McMurdo",
+    "aliases": ["Antarctica/McMurdo", "Antarctica/South_Pole"],
+    "ko": "맥머도",
+    "en": "McMurdo Station",
+    "countryKo": "남극 대륙",
+    "countryEn": "Antarctica"
+  },
+  {
+    "id": "Antarctica/Palmer",
+    "aliases": ["Antarctica/Palmer"],
+    "ko": "파머",
+    "en": "Palmer Land",
+    "countryKo": "남극 대륙",
+    "countryEn": "Antarctica"
+  },
+  {
+    "id": "Antarctica/Rothera",
+    "aliases": ["Antarctica/Rothera"],
+    "ko": "로데라",
+    "en": "Rothera Station",
+    "countryKo": "남극 대륙",
+    "countryEn": "Antarctica"
+  },
+  {
+    "id": "Antarctica/Syowa",
+    "aliases": ["Antarctica/Syowa"],
+    "ko": "쇼와",
+    "en": "Showa Station",
+    "countryKo": "남극 대륙",
+    "countryEn": "Antarctica"
+  },
+  {
+    "id": "Antarctica/Troll",
+    "aliases": ["Antarctica/Troll"],
+    "ko": "트롤",
+    "en": "Troll Station",
+    "countryKo": "남극 대륙",
+    "countryEn": "Antarctica"
+  },
+  {
+    "id": "Antarctica/Vostok",
+    "aliases": ["Antarctica/Vostok"],
+    "ko": "보스토크",
+    "en": "Vostok Station",
+    "countryKo": "남극 대륙",
+    "countryEn": "Antarctica"
+  },
+  {
+    "id": "Arctic/Longyearbyen",
+    "aliases": ["Arctic/Longyearbyen", "Atlantic/Jan_Mayen"],
+    "ko": "롱이어비엔",
+    "en": "Longyearbyen",
+    "countryKo": "스발바르제도-얀마웬섬",
+    "countryEn": "Svalbard & Jan Mayen"
+  },
+  {
+    "id": "Asia/Aden",
+    "aliases": ["Asia/Aden"],
+    "ko": "아덴",
+    "en": "Aden",
+    "countryKo": "예멘",
+    "countryEn": "Yemen"
+  },
+  {
+    "id": "Asia/Almaty",
+    "aliases": ["Asia/Almaty"],
+    "ko": "알마티",
+    "en": "Almaty",
+    "countryKo": "카자흐스탄",
+    "countryEn": "Kazakhstan"
+  },
+  {
+    "id": "Asia/Amman",
+    "aliases": ["Asia/Amman"],
+    "ko": "암만",
+    "en": "Amman",
+    "countryKo": "요르단",
+    "countryEn": "Jordan"
+  },
+  {
+    "id": "Asia/Anadyr",
+    "aliases": ["Asia/Anadyr"],
+    "ko": "아나디리",
+    "en": "Anadyr",
+    "countryKo": "러시아",
+    "countryEn": "Russia"
+  },
+  {
+    "id": "Asia/Aqtau",
+    "aliases": ["Asia/Aqtau"],
+    "ko": "아크타우",
+    "en": "Aktau",
+    "countryKo": "카자흐스탄",
+    "countryEn": "Kazakhstan"
+  },
+  {
+    "id": "Asia/Aqtobe",
+    "aliases": ["Asia/Aqtobe"],
+    "ko": "악토브",
+    "en": "Aqtobe",
+    "countryKo": "카자흐스탄",
+    "countryEn": "Kazakhstan"
+  },
+  {
+    "id": "Asia/Ashgabat",
+    "aliases": ["Asia/Ashgabat", "Asia/Ashkhabad"],
+    "ko": "아슈하바트",
+    "en": "Ashgabat",
+    "countryKo": "투르크메니스탄",
+    "countryEn": "Turkmenistan"
+  },
+  {
+    "id": "Asia/Atyrau",
+    "aliases": ["Asia/Atyrau"],
+    "ko": "아티라우",
+    "en": "Atyrau",
+    "countryKo": "카자흐스탄",
+    "countryEn": "Kazakhstan"
+  },
+  {
+    "id": "Asia/Baghdad",
+    "aliases": ["Asia/Baghdad"],
+    "ko": "바그다드",
+    "en": "Baghdad",
+    "countryKo": "이라크",
+    "countryEn": "Iraq"
+  },
+  {
+    "id": "Asia/Bahrain",
+    "aliases": ["Asia/Bahrain"],
+    "ko": "바레인",
+    "en": "Bahrain",
+    "countryKo": "바레인",
+    "countryEn": "Bahrain"
+  },
+  {
+    "id": "Asia/Baku",
+    "aliases": ["Asia/Baku"],
+    "ko": "바쿠",
+    "en": "Baku",
+    "countryKo": "아제르바이잔",
+    "countryEn": "Azerbaijan"
+  },
+  {
+    "id": "Asia/Bangkok",
+    "aliases": ["Asia/Bangkok"],
+    "ko": "방콕",
+    "en": "Bangkok",
+    "countryKo": "태국",
+    "countryEn": "Thailand"
+  },
+  {
+    "id": "Asia/Barnaul",
+    "aliases": ["Asia/Barnaul"],
+    "ko": "바르나울",
+    "en": "Barnaul",
+    "countryKo": "러시아",
+    "countryEn": "Russia"
+  },
+  {
+    "id": "Asia/Beirut",
+    "aliases": ["Asia/Beirut"],
+    "ko": "베이루트",
+    "en": "Beirut",
+    "countryKo": "레바논",
+    "countryEn": "Lebanon"
+  },
+  {
+    "id": "Asia/Bishkek",
+    "aliases": ["Asia/Bishkek"],
+    "ko": "비슈케크",
+    "en": "Bishkek",
+    "countryKo": "키르기스스탄",
+    "countryEn": "Kyrgyzstan"
+  },
+  {
+    "id": "Asia/Brunei",
+    "aliases": ["Asia/Brunei"],
+    "ko": "브루나이",
+    "en": "Brunei",
+    "countryKo": "브루나이",
+    "countryEn": "Brunei"
+  },
+  {
+    "id": "Asia/Chita",
+    "aliases": ["Asia/Chita"],
+    "ko": "치타",
+    "en": "Chita",
+    "countryKo": "러시아",
+    "countryEn": "Russia"
+  },
+  {
+    "id": "Asia/Colombo",
+    "aliases": ["Asia/Colombo"],
+    "ko": "콜롬보",
+    "en": "Colombo",
+    "countryKo": "스리랑카",
+    "countryEn": "Sri Lanka"
+  },
+  {
+    "id": "Asia/Damascus",
+    "aliases": ["Asia/Damascus"],
+    "ko": "다마스쿠스",
+    "en": "Damascus",
+    "countryKo": "시리아",
+    "countryEn": "Syria"
+  },
+  {
+    "id": "Asia/Dhaka",
+    "aliases": ["Asia/Dhaka", "Asia/Dacca"],
+    "ko": "다카",
+    "en": "Dhaka",
+    "countryKo": "방글라데시",
+    "countryEn": "Bangladesh"
+  },
+  {
+    "id": "Asia/Dili",
+    "aliases": ["Asia/Dili"],
+    "ko": "딜리",
+    "en": "Dili",
+    "countryKo": "동티모르",
+    "countryEn": "Timor-Leste"
+  },
+  {
+    "id": "Asia/Dubai",
+    "aliases": ["Asia/Dubai"],
+    "ko": "두바이",
+    "en": "Dubai",
+    "countryKo": "아랍에미리트",
+    "countryEn": "United Arab Emirates"
+  },
+  {
+    "id": "Asia/Dushanbe",
+    "aliases": ["Asia/Dushanbe"],
+    "ko": "두샨베",
+    "en": "Dushanbe",
+    "countryKo": "타지키스탄",
+    "countryEn": "Tajikistan"
+  },
+  {
+    "id": "Asia/Famagusta",
+    "aliases": ["Asia/Famagusta"],
+    "ko": "파마구스타",
+    "en": "Famagusta",
+    "countryKo": "키프로스",
+    "countryEn": "Cyprus"
+  },
+  {
+    "id": "Asia/Gaza",
+    "aliases": ["Asia/Gaza"],
+    "ko": "가자",
+    "en": "Gaza",
+    "countryKo": "팔레스타인 지구",
+    "countryEn": "Palestinian Territories"
+  },
+  {
+    "id": "Asia/Hebron",
+    "aliases": ["Asia/Hebron"],
+    "ko": "헤브론",
+    "en": "Hebron",
+    "countryKo": "팔레스타인 지구",
+    "countryEn": "Palestinian Territories"
+  },
+  {
+    "id": "Asia/Ho_Chi_Minh",
+    "aliases": ["Asia/Saigon", "Asia/Ho_Chi_Minh"],
+    "ko": "사이공",
+    "en": "Ho Chi Minh City",
+    "countryKo": "베트남",
+    "countryEn": "Vietnam"
+  },
+  {
+    "id": "Asia/Hong_Kong",
+    "aliases": ["Asia/Hong_Kong"],
+    "ko": "홍콩",
+    "en": "Hong Kong",
+    "countryKo": "홍콩(중국 특별행정구)",
+    "countryEn": "Hong Kong SAR China"
+  },
+  {
+    "id": "Asia/Hovd",
+    "aliases": ["Asia/Hovd"],
+    "ko": "호브드",
+    "en": "Khovd",
+    "countryKo": "몽골",
+    "countryEn": "Mongolia"
+  },
+  {
+    "id": "Asia/Irkutsk",
+    "aliases": ["Asia/Irkutsk"],
+    "ko": "이르쿠츠크",
+    "en": "Irkutsk",
+    "countryKo": "러시아",
+    "countryEn": "Russia"
+  },
+  {
+    "id": "Asia/Jakarta",
+    "aliases": ["Asia/Jakarta"],
+    "ko": "자카르타",
+    "en": "Jakarta",
+    "countryKo": "인도네시아",
+    "countryEn": "Indonesia"
+  },
+  {
+    "id": "Asia/Jayapura",
+    "aliases": ["Asia/Jayapura"],
+    "ko": "자야푸라",
+    "en": "Jayapura",
+    "countryKo": "인도네시아",
+    "countryEn": "Indonesia"
+  },
+  {
+    "id": "Asia/Jerusalem",
+    "aliases": ["Asia/Jerusalem", "Asia/Tel_Aviv"],
+    "ko": "예루살렘",
+    "en": "Jerusalem",
+    "countryKo": "이스라엘",
+    "countryEn": "Israel"
+  },
+  {
+    "id": "Asia/Kabul",
+    "aliases": ["Asia/Kabul"],
+    "ko": "카불",
+    "en": "Kabul",
+    "countryKo": "아프가니스탄",
+    "countryEn": "Afghanistan"
+  },
+  {
+    "id": "Asia/Kamchatka",
+    "aliases": ["Asia/Kamchatka"],
+    "ko": "캄차카",
+    "en": "Kamchatka",
+    "countryKo": "러시아",
+    "countryEn": "Russia"
+  },
+  {
+    "id": "Asia/Karachi",
+    "aliases": ["Asia/Karachi"],
+    "ko": "카라치",
+    "en": "Karachi",
+    "countryKo": "파키스탄",
+    "countryEn": "Pakistan"
+  },
+  {
+    "id": "Asia/Kathmandu",
+    "aliases": ["Asia/Katmandu", "Asia/Kathmandu"],
+    "ko": "카트만두",
+    "en": "Kathmandu",
+    "countryKo": "네팔",
+    "countryEn": "Nepal"
+  },
+  {
+    "id": "Asia/Khandyga",
+    "aliases": ["Asia/Khandyga"],
+    "ko": "한디가",
+    "en": "Khandyga",
+    "countryKo": "러시아",
+    "countryEn": "Russia"
+  },
+  {
+    "id": "Asia/Kolkata",
+    "aliases": ["Asia/Calcutta", "Asia/Kolkata"],
+    "ko": "콜카타",
+    "en": "Kolkata",
+    "countryKo": "인도",
+    "countryEn": "India"
+  },
+  {
+    "id": "Asia/Krasnoyarsk",
+    "aliases": ["Asia/Krasnoyarsk"],
+    "ko": "크라스노야르스크",
+    "en": "Krasnoyarsk",
+    "countryKo": "러시아",
+    "countryEn": "Russia"
+  },
+  {
+    "id": "Asia/Kuala_Lumpur",
+    "aliases": ["Asia/Kuala_Lumpur"],
+    "ko": "쿠알라룸푸르",
+    "en": "Kuala Lumpur",
+    "countryKo": "말레이시아",
+    "countryEn": "Malaysia"
+  },
+  {
+    "id": "Asia/Kuching",
+    "aliases": ["Asia/Kuching"],
+    "ko": "쿠칭",
+    "en": "Kuching",
+    "countryKo": "말레이시아",
+    "countryEn": "Malaysia"
+  },
+  {
+    "id": "Asia/Kuwait",
+    "aliases": ["Asia/Kuwait"],
+    "ko": "쿠웨이트",
+    "en": "Kuwait",
+    "countryKo": "쿠웨이트",
+    "countryEn": "Kuwait"
+  },
+  {
+    "id": "Asia/Macau",
+    "aliases": ["Asia/Macau", "Asia/Macao"],
+    "ko": "마카오",
+    "en": "Macao",
+    "countryKo": "마카오(중국 특별행정구)",
+    "countryEn": "Macao SAR China"
+  },
+  {
+    "id": "Asia/Magadan",
+    "aliases": ["Asia/Magadan"],
+    "ko": "마가단",
+    "en": "Magadan",
+    "countryKo": "러시아",
+    "countryEn": "Russia"
+  },
+  {
+    "id": "Asia/Makassar",
+    "aliases": ["Asia/Makassar", "Asia/Ujung_Pandang"],
+    "ko": "마카사르",
+    "en": "Makassar",
+    "countryKo": "인도네시아",
+    "countryEn": "Indonesia"
+  },
+  {
+    "id": "Asia/Manila",
+    "aliases": ["Asia/Manila"],
+    "ko": "마닐라",
+    "en": "Manila",
+    "countryKo": "필리핀",
+    "countryEn": "Philippines"
+  },
+  {
+    "id": "Asia/Muscat",
+    "aliases": ["Asia/Muscat"],
+    "ko": "무스카트",
+    "en": "Muscat",
+    "countryKo": "오만",
+    "countryEn": "Oman"
+  },
+  {
+    "id": "Asia/Nicosia",
+    "aliases": ["Asia/Nicosia", "Europe/Nicosia"],
+    "ko": "니코시아",
+    "en": "Nicosia",
+    "countryKo": "키프로스",
+    "countryEn": "Cyprus"
+  },
+  {
+    "id": "Asia/Novokuznetsk",
+    "aliases": ["Asia/Novokuznetsk"],
+    "ko": "노보쿠즈네츠크",
+    "en": "Novokuznetsk",
+    "countryKo": "러시아",
+    "countryEn": "Russia"
+  },
+  {
+    "id": "Asia/Novosibirsk",
+    "aliases": ["Asia/Novosibirsk"],
+    "ko": "노보시비르스크",
+    "en": "Novosibirsk",
+    "countryKo": "러시아",
+    "countryEn": "Russia"
+  },
+  {
+    "id": "Asia/Omsk",
+    "aliases": ["Asia/Omsk"],
+    "ko": "옴스크",
+    "en": "Omsk",
+    "countryKo": "러시아",
+    "countryEn": "Russia"
+  },
+  {
+    "id": "Asia/Oral",
+    "aliases": ["Asia/Oral"],
+    "ko": "오랄",
+    "en": "Oral",
+    "countryKo": "카자흐스탄",
+    "countryEn": "Kazakhstan"
+  },
+  {
+    "id": "Asia/Phnom_Penh",
+    "aliases": ["Asia/Phnom_Penh"],
+    "ko": "프놈펜",
+    "en": "Phnom Penh",
+    "countryKo": "캄보디아",
+    "countryEn": "Cambodia"
+  },
+  {
+    "id": "Asia/Pontianak",
+    "aliases": ["Asia/Pontianak"],
+    "ko": "폰티아나크",
+    "en": "Pontianak",
+    "countryKo": "인도네시아",
+    "countryEn": "Indonesia"
+  },
+  {
+    "id": "Asia/Pyongyang",
+    "aliases": ["Asia/Pyongyang"],
+    "ko": "평양",
+    "en": "Pyongyang",
+    "countryKo": "북한",
+    "countryEn": "North Korea"
+  },
+  {
+    "id": "Asia/Qatar",
+    "aliases": ["Asia/Qatar"],
+    "ko": "카타르",
+    "en": "Qatar",
+    "countryKo": "카타르",
+    "countryEn": "Qatar"
+  },
+  {
+    "id": "Asia/Qostanay",
+    "aliases": ["Asia/Qostanay"],
+    "ko": "코스타나이",
+    "en": "Kostanay",
+    "countryKo": "카자흐스탄",
+    "countryEn": "Kazakhstan"
+  },
+  {
+    "id": "Asia/Qyzylorda",
+    "aliases": ["Asia/Qyzylorda"],
+    "ko": "키질로르다",
+    "en": "Kyzylorda",
+    "countryKo": "카자흐스탄",
+    "countryEn": "Kazakhstan"
+  },
+  {
+    "id": "Asia/Riyadh",
+    "aliases": ["Asia/Riyadh"],
+    "ko": "리야드",
+    "en": "Riyadh",
+    "countryKo": "사우디아라비아",
+    "countryEn": "Saudi Arabia"
+  },
+  {
+    "id": "Asia/Sakhalin",
+    "aliases": ["Asia/Sakhalin"],
+    "ko": "사할린",
+    "en": "Sakhalin",
+    "countryKo": "러시아",
+    "countryEn": "Russia"
+  },
+  {
+    "id": "Asia/Samarkand",
+    "aliases": ["Asia/Samarkand"],
+    "ko": "사마르칸트",
+    "en": "Samarkand",
+    "countryKo": "우즈베키스탄",
+    "countryEn": "Uzbekistan"
+  },
+  {
+    "id": "Asia/Seoul",
+    "aliases": ["Asia/Seoul"],
+    "ko": "서울",
+    "en": "Seoul",
+    "countryKo": "대한민국",
+    "countryEn": "South Korea"
+  },
+  {
+    "id": "Asia/Shanghai",
+    "aliases": [
+      "Asia/Shanghai",
+      "Asia/Chongqing",
+      "Asia/Chungking",
+      "Asia/Harbin"
+    ],
+    "ko": "상하이",
+    "en": "Shanghai",
+    "countryKo": "중국",
+    "countryEn": "China"
+  },
+  {
+    "id": "Asia/Singapore",
+    "aliases": ["Asia/Singapore"],
+    "ko": "싱가포르",
+    "en": "Singapore",
+    "countryKo": "싱가포르",
+    "countryEn": "Singapore"
+  },
+  {
+    "id": "Asia/Srednekolymsk",
+    "aliases": ["Asia/Srednekolymsk"],
+    "ko": "스레드네콜림스크",
+    "en": "Srednekolymsk",
+    "countryKo": "러시아",
+    "countryEn": "Russia"
+  },
+  {
+    "id": "Asia/Taipei",
+    "aliases": ["Asia/Taipei"],
+    "ko": "타이베이",
+    "en": "Taipei",
+    "countryKo": "대만",
+    "countryEn": "Taiwan"
+  },
+  {
+    "id": "Asia/Tashkent",
+    "aliases": ["Asia/Tashkent"],
+    "ko": "타슈켄트",
+    "en": "Tashkent",
+    "countryKo": "우즈베키스탄",
+    "countryEn": "Uzbekistan"
+  },
+  {
+    "id": "Asia/Tbilisi",
+    "aliases": ["Asia/Tbilisi"],
+    "ko": "트빌리시",
+    "en": "Tbilisi",
+    "countryKo": "조지아",
+    "countryEn": "Georgia"
+  },
+  {
+    "id": "Asia/Tehran",
+    "aliases": ["Asia/Tehran"],
+    "ko": "테헤란",
+    "en": "Tehran",
+    "countryKo": "이란",
+    "countryEn": "Iran"
+  },
+  {
+    "id": "Asia/Thimphu",
+    "aliases": ["Asia/Thimphu", "Asia/Thimbu"],
+    "ko": "팀부",
+    "en": "Thimphu",
+    "countryKo": "부탄",
+    "countryEn": "Bhutan"
+  },
+  {
+    "id": "Asia/Tokyo",
+    "aliases": ["Asia/Tokyo"],
+    "ko": "도쿄",
+    "en": "Tokyo",
+    "countryKo": "일본",
+    "countryEn": "Japan"
+  },
+  {
+    "id": "Asia/Tomsk",
+    "aliases": ["Asia/Tomsk"],
+    "ko": "톰스크",
+    "en": "Tomsk",
+    "countryKo": "러시아",
+    "countryEn": "Russia"
+  },
+  {
+    "id": "Asia/Ulaanbaatar",
+    "aliases": ["Asia/Ulaanbaatar", "Asia/Ulan_Bator", "Asia/Choibalsan"],
+    "ko": "울란바토르",
+    "en": "Ulaanbaatar",
+    "countryKo": "몽골",
+    "countryEn": "Mongolia"
+  },
+  {
+    "id": "Asia/Urumqi",
+    "aliases": ["Asia/Urumqi", "Asia/Kashgar"],
+    "ko": "우루무치",
+    "en": "Ürümqi",
+    "countryKo": "중국",
+    "countryEn": "China"
+  },
+  {
+    "id": "Asia/Ust-Nera",
+    "aliases": ["Asia/Ust-Nera"],
+    "ko": "우스티네라",
+    "en": "Ust-Nera",
+    "countryKo": "러시아",
+    "countryEn": "Russia"
+  },
+  {
+    "id": "Asia/Vientiane",
+    "aliases": ["Asia/Vientiane"],
+    "ko": "비엔티안",
+    "en": "Vientiane",
+    "countryKo": "라오스",
+    "countryEn": "Laos"
+  },
+  {
+    "id": "Asia/Vladivostok",
+    "aliases": ["Asia/Vladivostok"],
+    "ko": "블라디보스토크",
+    "en": "Vladivostok",
+    "countryKo": "러시아",
+    "countryEn": "Russia"
+  },
+  {
+    "id": "Asia/Yakutsk",
+    "aliases": ["Asia/Yakutsk"],
+    "ko": "야쿠츠크",
+    "en": "Yakutsk",
+    "countryKo": "러시아",
+    "countryEn": "Russia"
+  },
+  {
+    "id": "Asia/Yangon",
+    "aliases": ["Asia/Rangoon", "Asia/Yangon"],
+    "ko": "랑군",
+    "en": "Yangon",
+    "countryKo": "미얀마",
+    "countryEn": "Myanmar (Burma)"
+  },
+  {
+    "id": "Asia/Yekaterinburg",
+    "aliases": ["Asia/Yekaterinburg"],
+    "ko": "예카테린부르크",
+    "en": "Yekaterinburg",
+    "countryKo": "러시아",
+    "countryEn": "Russia"
+  },
+  {
+    "id": "Asia/Yerevan",
+    "aliases": ["Asia/Yerevan"],
+    "ko": "예레반",
+    "en": "Yerevan",
+    "countryKo": "아르메니아",
+    "countryEn": "Armenia"
+  },
+  {
+    "id": "Atlantic/Azores",
+    "aliases": ["Atlantic/Azores"],
+    "ko": "아조레스",
+    "en": "Azores",
+    "countryKo": "포르투갈",
+    "countryEn": "Portugal"
+  },
+  {
+    "id": "Atlantic/Bermuda",
+    "aliases": ["Atlantic/Bermuda"],
+    "ko": "버뮤다",
+    "en": "Bermuda",
+    "countryKo": "버뮤다",
+    "countryEn": "Bermuda"
+  },
+  {
+    "id": "Atlantic/Canary",
+    "aliases": ["Atlantic/Canary"],
+    "ko": "카나리아 제도",
+    "en": "Canaries",
+    "countryKo": "스페인",
+    "countryEn": "Spain"
+  },
+  {
+    "id": "Atlantic/Cape_Verde",
+    "aliases": ["Atlantic/Cape_Verde"],
+    "ko": "카보 베르데",
+    "en": "Cape Verde",
+    "countryKo": "카보베르데",
+    "countryEn": "Cape Verde"
+  },
+  {
+    "id": "Atlantic/Faroe",
+    "aliases": ["Atlantic/Faeroe", "Atlantic/Faroe"],
+    "ko": "페로 제도",
+    "en": "Faroes",
+    "countryKo": "페로 제도",
+    "countryEn": "Faroe Islands"
+  },
+  {
+    "id": "Atlantic/Madeira",
+    "aliases": ["Atlantic/Madeira"],
+    "ko": "마데이라",
+    "en": "Madeira",
+    "countryKo": "포르투갈",
+    "countryEn": "Portugal"
+  },
+  {
+    "id": "Atlantic/Reykjavik",
+    "aliases": ["Atlantic/Reykjavik"],
+    "ko": "레이캬비크",
+    "en": "Reykjavik",
+    "countryKo": "아이슬란드",
+    "countryEn": "Iceland"
+  },
+  {
+    "id": "Atlantic/South_Georgia",
+    "aliases": ["Atlantic/South_Georgia"],
+    "ko": "사우스조지아",
+    "en": "South Georgia",
+    "countryKo": "사우스조지아 사우스샌드위치 제도",
+    "countryEn": "South Georgia & South Sandwich Islands"
+  },
+  {
+    "id": "Atlantic/St_Helena",
+    "aliases": ["Atlantic/St_Helena"],
+    "ko": "세인트 헬레나",
+    "en": "St. Helena",
+    "countryKo": "세인트헬레나",
+    "countryEn": "St. Helena"
+  },
+  {
+    "id": "Atlantic/Stanley",
+    "aliases": ["Atlantic/Stanley"],
+    "ko": "스탠리",
+    "en": "Stanley",
+    "countryKo": "포클랜드 제도",
+    "countryEn": "Falkland Islands"
+  },
+  {
+    "id": "Australia/Adelaide",
+    "aliases": ["Australia/Adelaide", "Australia/South"],
+    "ko": "애들레이드",
+    "en": "Adelaide",
+    "countryKo": "오스트레일리아",
+    "countryEn": "Australia"
+  },
+  {
+    "id": "Australia/Brisbane",
+    "aliases": ["Australia/Brisbane", "Australia/Queensland"],
+    "ko": "브리스베인",
+    "en": "Brisbane",
+    "countryKo": "오스트레일리아",
+    "countryEn": "Australia"
+  },
+  {
+    "id": "Australia/Broken_Hill",
+    "aliases": ["Australia/Broken_Hill", "Australia/Yancowinna"],
+    "ko": "브로컨힐",
+    "en": "Broken Hill",
+    "countryKo": "오스트레일리아",
+    "countryEn": "Australia"
+  },
+  {
+    "id": "Australia/Darwin",
+    "aliases": ["Australia/Darwin", "Australia/North"],
+    "ko": "다윈",
+    "en": "Darwin",
+    "countryKo": "오스트레일리아",
+    "countryEn": "Australia"
+  },
+  {
+    "id": "Australia/Eucla",
+    "aliases": ["Australia/Eucla"],
+    "ko": "유클라",
+    "en": "Eucla",
+    "countryKo": "오스트레일리아",
+    "countryEn": "Australia"
+  },
+  {
+    "id": "Australia/Hobart",
+    "aliases": ["Australia/Hobart", "Australia/Tasmania", "Australia/Currie"],
+    "ko": "호바트",
+    "en": "Hobart",
+    "countryKo": "오스트레일리아",
+    "countryEn": "Australia"
+  },
+  {
+    "id": "Australia/Lindeman",
+    "aliases": ["Australia/Lindeman"],
+    "ko": "린데만",
+    "en": "Lindeman",
+    "countryKo": "오스트레일리아",
+    "countryEn": "Australia"
+  },
+  {
+    "id": "Australia/Lord_Howe",
+    "aliases": ["Australia/Lord_Howe", "Australia/LHI"],
+    "ko": "로드 하우",
+    "en": "Lord Howe Island",
+    "countryKo": "오스트레일리아",
+    "countryEn": "Australia"
+  },
+  {
+    "id": "Australia/Melbourne",
+    "aliases": ["Australia/Melbourne", "Australia/Victoria"],
+    "ko": "멜버른",
+    "en": "Melbourne",
+    "countryKo": "오스트레일리아",
+    "countryEn": "Australia"
+  },
+  {
+    "id": "Australia/Perth",
+    "aliases": ["Australia/Perth", "Australia/West"],
+    "ko": "퍼스",
+    "en": "Perth",
+    "countryKo": "오스트레일리아",
+    "countryEn": "Australia"
+  },
+  {
+    "id": "Australia/Sydney",
+    "aliases": [
+      "Australia/Sydney",
+      "Australia/ACT",
+      "Australia/Canberra",
+      "Australia/NSW"
+    ],
+    "ko": "시드니",
+    "en": "Sydney",
+    "countryKo": "오스트레일리아",
+    "countryEn": "Australia"
+  },
+  {
+    "id": "Europe/Amsterdam",
+    "aliases": ["Europe/Amsterdam"],
+    "ko": "암스테르담",
+    "en": "Amsterdam",
+    "countryKo": "네덜란드",
+    "countryEn": "Netherlands"
+  },
+  {
+    "id": "Europe/Andorra",
+    "aliases": ["Europe/Andorra"],
+    "ko": "안도라",
+    "en": "Andorra",
+    "countryKo": "안도라",
+    "countryEn": "Andorra"
+  },
+  {
+    "id": "Europe/Astrakhan",
+    "aliases": ["Europe/Astrakhan"],
+    "ko": "아스트라한",
+    "en": "Astrakhan",
+    "countryKo": "러시아",
+    "countryEn": "Russia"
+  },
+  {
+    "id": "Europe/Athens",
+    "aliases": ["Europe/Athens"],
+    "ko": "아테네",
+    "en": "Athens",
+    "countryKo": "그리스",
+    "countryEn": "Greece"
+  },
+  {
+    "id": "Europe/Belgrade",
+    "aliases": ["Europe/Belgrade"],
+    "ko": "베오그라드",
+    "en": "Belgrade",
+    "countryKo": "세르비아",
+    "countryEn": "Serbia"
+  },
+  {
+    "id": "Europe/Berlin",
+    "aliases": ["Europe/Berlin"],
+    "ko": "베를린",
+    "en": "Berlin",
+    "countryKo": "독일",
+    "countryEn": "Germany"
+  },
+  {
+    "id": "Europe/Bratislava",
+    "aliases": ["Europe/Bratislava"],
+    "ko": "브라티슬라바",
+    "en": "Bratislava",
+    "countryKo": "슬로바키아",
+    "countryEn": "Slovakia"
+  },
+  {
+    "id": "Europe/Brussels",
+    "aliases": ["Europe/Brussels"],
+    "ko": "브뤼셀",
+    "en": "Brussels",
+    "countryKo": "벨기에",
+    "countryEn": "Belgium"
+  },
+  {
+    "id": "Europe/Bucharest",
+    "aliases": ["Europe/Bucharest"],
+    "ko": "부쿠레슈티",
+    "en": "Bucharest",
+    "countryKo": "루마니아",
+    "countryEn": "Romania"
+  },
+  {
+    "id": "Europe/Budapest",
+    "aliases": ["Europe/Budapest"],
+    "ko": "부다페스트",
+    "en": "Budapest",
+    "countryKo": "헝가리",
+    "countryEn": "Hungary"
+  },
+  {
+    "id": "Europe/Busingen",
+    "aliases": ["Europe/Busingen"],
+    "ko": "뷔지겐",
+    "en": "Büsingen",
+    "countryKo": "독일",
+    "countryEn": "Germany"
+  },
+  {
+    "id": "Europe/Chisinau",
+    "aliases": ["Europe/Chisinau", "Europe/Tiraspol"],
+    "ko": "키시나우",
+    "en": "Chișinău",
+    "countryKo": "몰도바",
+    "countryEn": "Moldova"
+  },
+  {
+    "id": "Europe/Copenhagen",
+    "aliases": ["Europe/Copenhagen"],
+    "ko": "코펜하겐",
+    "en": "Copenhagen",
+    "countryKo": "덴마크",
+    "countryEn": "Denmark"
+  },
+  {
+    "id": "Europe/Dublin",
+    "aliases": ["Europe/Dublin"],
+    "ko": "더블린",
+    "en": "Dublin",
+    "countryKo": "아일랜드",
+    "countryEn": "Ireland"
+  },
+  {
+    "id": "Europe/Gibraltar",
+    "aliases": ["Europe/Gibraltar"],
+    "ko": "지브롤터",
+    "en": "Gibraltar",
+    "countryKo": "지브롤터",
+    "countryEn": "Gibraltar"
+  },
+  {
+    "id": "Europe/Guernsey",
+    "aliases": ["Europe/Guernsey"],
+    "ko": "건지",
+    "en": "Guernsey",
+    "countryKo": "건지",
+    "countryEn": "Guernsey"
+  },
+  {
+    "id": "Europe/Helsinki",
+    "aliases": ["Europe/Helsinki"],
+    "ko": "헬싱키",
+    "en": "Helsinki",
+    "countryKo": "핀란드",
+    "countryEn": "Finland"
+  },
+  {
+    "id": "Europe/Isle_of_Man",
+    "aliases": ["Europe/Isle_of_Man"],
+    "ko": "맨섬",
+    "en": "Isle of Man",
+    "countryKo": "맨섬",
+    "countryEn": "Isle of Man"
+  },
+  {
+    "id": "Europe/Istanbul",
+    "aliases": ["Europe/Istanbul", "Asia/Istanbul"],
+    "ko": "이스탄불",
+    "en": "Istanbul",
+    "countryKo": "튀르키예",
+    "countryEn": "Türkiye"
+  },
+  {
+    "id": "Europe/Jersey",
+    "aliases": ["Europe/Jersey"],
+    "ko": "저지",
+    "en": "Jersey",
+    "countryKo": "저지",
+    "countryEn": "Jersey"
+  },
+  {
+    "id": "Europe/Kaliningrad",
+    "aliases": ["Europe/Kaliningrad"],
+    "ko": "칼리닌그라드",
+    "en": "Kaliningrad",
+    "countryKo": "러시아",
+    "countryEn": "Russia"
+  },
+  {
+    "id": "Europe/Kirov",
+    "aliases": ["Europe/Kirov"],
+    "ko": "키로프",
+    "en": "Kirov",
+    "countryKo": "러시아",
+    "countryEn": "Russia"
+  },
+  {
+    "id": "Europe/Kyiv",
+    "aliases": [
+      "Europe/Kiev",
+      "Europe/Kyiv",
+      "Europe/Zaporozhye",
+      "Europe/Uzhgorod"
+    ],
+    "ko": "키예프",
+    "en": "Kyiv",
+    "countryKo": "우크라이나",
+    "countryEn": "Ukraine"
+  },
+  {
+    "id": "Europe/Lisbon",
+    "aliases": ["Europe/Lisbon"],
+    "ko": "리스본",
+    "en": "Lisbon",
+    "countryKo": "포르투갈",
+    "countryEn": "Portugal"
+  },
+  {
+    "id": "Europe/Ljubljana",
+    "aliases": ["Europe/Ljubljana"],
+    "ko": "류블랴나",
+    "en": "Ljubljana",
+    "countryKo": "슬로베니아",
+    "countryEn": "Slovenia"
+  },
+  {
+    "id": "Europe/London",
+    "aliases": ["Europe/London", "Europe/Belfast"],
+    "ko": "런던",
+    "en": "London",
+    "countryKo": "영국",
+    "countryEn": "United Kingdom"
+  },
+  {
+    "id": "Europe/Luxembourg",
+    "aliases": ["Europe/Luxembourg"],
+    "ko": "룩셈부르크",
+    "en": "Luxembourg",
+    "countryKo": "룩셈부르크",
+    "countryEn": "Luxembourg"
+  },
+  {
+    "id": "Europe/Madrid",
+    "aliases": ["Europe/Madrid"],
+    "ko": "마드리드",
+    "en": "Madrid",
+    "countryKo": "스페인",
+    "countryEn": "Spain"
+  },
+  {
+    "id": "Europe/Malta",
+    "aliases": ["Europe/Malta"],
+    "ko": "몰타",
+    "en": "Malta",
+    "countryKo": "몰타",
+    "countryEn": "Malta"
+  },
+  {
+    "id": "Europe/Mariehamn",
+    "aliases": ["Europe/Mariehamn"],
+    "ko": "마리에함",
+    "en": "Mariehamn",
+    "countryKo": "올란드 제도",
+    "countryEn": "Åland Islands"
+  },
+  {
+    "id": "Europe/Minsk",
+    "aliases": ["Europe/Minsk"],
+    "ko": "민스크",
+    "en": "Minsk",
+    "countryKo": "벨라루스",
+    "countryEn": "Belarus"
+  },
+  {
+    "id": "Europe/Monaco",
+    "aliases": ["Europe/Monaco"],
+    "ko": "모나코",
+    "en": "Monaco",
+    "countryKo": "모나코",
+    "countryEn": "Monaco"
+  },
+  {
+    "id": "Europe/Moscow",
+    "aliases": ["Europe/Moscow"],
+    "ko": "모스크바",
+    "en": "Moscow",
+    "countryKo": "러시아",
+    "countryEn": "Russia"
+  },
+  {
+    "id": "Europe/Oslo",
+    "aliases": ["Europe/Oslo"],
+    "ko": "오슬로",
+    "en": "Oslo",
+    "countryKo": "노르웨이",
+    "countryEn": "Norway"
+  },
+  {
+    "id": "Europe/Paris",
+    "aliases": ["Europe/Paris"],
+    "ko": "파리",
+    "en": "Paris",
+    "countryKo": "프랑스",
+    "countryEn": "France"
+  },
+  {
+    "id": "Europe/Podgorica",
+    "aliases": ["Europe/Podgorica"],
+    "ko": "포드고리차",
+    "en": "Podgorica",
+    "countryKo": "몬테네그로",
+    "countryEn": "Montenegro"
+  },
+  {
+    "id": "Europe/Prague",
+    "aliases": ["Europe/Prague"],
+    "ko": "프라하",
+    "en": "Prague",
+    "countryKo": "체코",
+    "countryEn": "Czechia"
+  },
+  {
+    "id": "Europe/Riga",
+    "aliases": ["Europe/Riga"],
+    "ko": "리가",
+    "en": "Riga",
+    "countryKo": "라트비아",
+    "countryEn": "Latvia"
+  },
+  {
+    "id": "Europe/Rome",
+    "aliases": ["Europe/Rome"],
+    "ko": "로마",
+    "en": "Rome",
+    "countryKo": "이탈리아",
+    "countryEn": "Italy"
+  },
+  {
+    "id": "Europe/Samara",
+    "aliases": ["Europe/Samara"],
+    "ko": "사마라",
+    "en": "Samara",
+    "countryKo": "러시아",
+    "countryEn": "Russia"
+  },
+  {
+    "id": "Europe/San_Marino",
+    "aliases": ["Europe/San_Marino"],
+    "ko": "산마리노",
+    "en": "San Marino",
+    "countryKo": "산마리노",
+    "countryEn": "San Marino"
+  },
+  {
+    "id": "Europe/Sarajevo",
+    "aliases": ["Europe/Sarajevo"],
+    "ko": "사라예보",
+    "en": "Sarajevo",
+    "countryKo": "보스니아 헤르체고비나",
+    "countryEn": "Bosnia & Herzegovina"
+  },
+  {
+    "id": "Europe/Saratov",
+    "aliases": ["Europe/Saratov"],
+    "ko": "사라토프",
+    "en": "Saratov",
+    "countryKo": "러시아",
+    "countryEn": "Russia"
+  },
+  {
+    "id": "Europe/Simferopol",
+    "aliases": ["Europe/Simferopol"],
+    "ko": "심페로폴",
+    "en": "Simferopol",
+    "countryKo": "우크라이나",
+    "countryEn": "Ukraine"
+  },
+  {
+    "id": "Europe/Skopje",
+    "aliases": ["Europe/Skopje"],
+    "ko": "스코페",
+    "en": "Skopje",
+    "countryKo": "북마케도니아",
+    "countryEn": "North Macedonia"
+  },
+  {
+    "id": "Europe/Sofia",
+    "aliases": ["Europe/Sofia"],
+    "ko": "소피아",
+    "en": "Sofia",
+    "countryKo": "불가리아",
+    "countryEn": "Bulgaria"
+  },
+  {
+    "id": "Europe/Stockholm",
+    "aliases": ["Europe/Stockholm"],
+    "ko": "스톡홀름",
+    "en": "Stockholm",
+    "countryKo": "스웨덴",
+    "countryEn": "Sweden"
+  },
+  {
+    "id": "Europe/Tallinn",
+    "aliases": ["Europe/Tallinn"],
+    "ko": "탈린",
+    "en": "Tallinn",
+    "countryKo": "에스토니아",
+    "countryEn": "Estonia"
+  },
+  {
+    "id": "Europe/Tirane",
+    "aliases": ["Europe/Tirane"],
+    "ko": "티라나",
+    "en": "Tirana",
+    "countryKo": "알바니아",
+    "countryEn": "Albania"
+  },
+  {
+    "id": "Europe/Ulyanovsk",
+    "aliases": ["Europe/Ulyanovsk"],
+    "ko": "울리야노프스크",
+    "en": "Ulyanovsk",
+    "countryKo": "러시아",
+    "countryEn": "Russia"
+  },
+  {
+    "id": "Europe/Vaduz",
+    "aliases": ["Europe/Vaduz"],
+    "ko": "파두츠",
+    "en": "Vaduz",
+    "countryKo": "리히텐슈타인",
+    "countryEn": "Liechtenstein"
+  },
+  {
+    "id": "Europe/Vatican",
+    "aliases": ["Europe/Vatican"],
+    "ko": "바티칸",
+    "en": "Vatican",
+    "countryKo": "바티칸 시국",
+    "countryEn": "Vatican City"
+  },
+  {
+    "id": "Europe/Vienna",
+    "aliases": ["Europe/Vienna"],
+    "ko": "비엔나",
+    "en": "Vienna",
+    "countryKo": "오스트리아",
+    "countryEn": "Austria"
+  },
+  {
+    "id": "Europe/Vilnius",
+    "aliases": ["Europe/Vilnius"],
+    "ko": "빌니우스",
+    "en": "Vilnius",
+    "countryKo": "리투아니아",
+    "countryEn": "Lithuania"
+  },
+  {
+    "id": "Europe/Volgograd",
+    "aliases": ["Europe/Volgograd"],
+    "ko": "볼고그라트",
+    "en": "Volgograd",
+    "countryKo": "러시아",
+    "countryEn": "Russia"
+  },
+  {
+    "id": "Europe/Warsaw",
+    "aliases": ["Europe/Warsaw"],
+    "ko": "바르샤바",
+    "en": "Warsaw",
+    "countryKo": "폴란드",
+    "countryEn": "Poland"
+  },
+  {
+    "id": "Europe/Zagreb",
+    "aliases": ["Europe/Zagreb"],
+    "ko": "자그레브",
+    "en": "Zagreb",
+    "countryKo": "크로아티아",
+    "countryEn": "Croatia"
+  },
+  {
+    "id": "Europe/Zurich",
+    "aliases": ["Europe/Zurich"],
+    "ko": "취리히",
+    "en": "Zurich",
+    "countryKo": "스위스",
+    "countryEn": "Switzerland"
+  },
+  {
+    "id": "Indian/Antananarivo",
+    "aliases": ["Indian/Antananarivo"],
+    "ko": "안타나나리보",
+    "en": "Antananarivo",
+    "countryKo": "마다가스카르",
+    "countryEn": "Madagascar"
+  },
+  {
+    "id": "Indian/Chagos",
+    "aliases": ["Indian/Chagos"],
+    "ko": "차고스",
+    "en": "Chagos Archipelago",
+    "countryKo": "영국령 인도양 지역",
+    "countryEn": "British Indian Ocean Territory"
+  },
+  {
+    "id": "Indian/Christmas",
+    "aliases": ["Indian/Christmas"],
+    "ko": "크리스마스",
+    "en": "Christmas Island",
+    "countryKo": "크리스마스섬",
+    "countryEn": "Christmas Island"
+  },
+  {
+    "id": "Indian/Cocos",
+    "aliases": ["Indian/Cocos"],
+    "ko": "코코스",
+    "en": "Cocos Islands",
+    "countryKo": "코코스 제도",
+    "countryEn": "Cocos (Keeling) Islands"
+  },
+  {
+    "id": "Indian/Comoro",
+    "aliases": ["Indian/Comoro"],
+    "ko": "코모로",
+    "en": "Comoros",
+    "countryKo": "코모로",
+    "countryEn": "Comoros"
+  },
+  {
+    "id": "Indian/Kerguelen",
+    "aliases": ["Indian/Kerguelen"],
+    "ko": "케르켈렌",
+    "en": "Kerguelen Islands",
+    "countryKo": "프랑스령 남방 지역",
+    "countryEn": "French Southern Territories"
+  },
+  {
+    "id": "Indian/Mahe",
+    "aliases": ["Indian/Mahe"],
+    "ko": "마헤",
+    "en": "Mahé",
+    "countryKo": "세이셸",
+    "countryEn": "Seychelles"
+  },
+  {
+    "id": "Indian/Maldives",
+    "aliases": ["Indian/Maldives"],
+    "ko": "몰디브",
+    "en": "Maldives",
+    "countryKo": "몰디브",
+    "countryEn": "Maldives"
+  },
+  {
+    "id": "Indian/Mauritius",
+    "aliases": ["Indian/Mauritius"],
+    "ko": "모리셔스",
+    "en": "Mauritius",
+    "countryKo": "모리셔스",
+    "countryEn": "Mauritius"
+  },
+  {
+    "id": "Indian/Mayotte",
+    "aliases": ["Indian/Mayotte"],
+    "ko": "메요트",
+    "en": "Mayotte",
+    "countryKo": "마요트",
+    "countryEn": "Mayotte"
+  },
+  {
+    "id": "Indian/Reunion",
+    "aliases": ["Indian/Reunion"],
+    "ko": "레위니옹",
+    "en": "Réunion",
+    "countryKo": "레위니옹",
+    "countryEn": "Réunion"
+  },
+  {
+    "id": "Pacific/Apia",
+    "aliases": ["Pacific/Apia"],
+    "ko": "아피아",
+    "en": "Apia",
+    "countryKo": "사모아",
+    "countryEn": "Samoa"
+  },
+  {
+    "id": "Pacific/Auckland",
+    "aliases": ["Pacific/Auckland"],
+    "ko": "오클랜드",
+    "en": "Auckland",
+    "countryKo": "뉴질랜드",
+    "countryEn": "New Zealand"
+  },
+  {
+    "id": "Pacific/Bougainville",
+    "aliases": ["Pacific/Bougainville"],
+    "ko": "부갱빌",
+    "en": "Bougainville",
+    "countryKo": "파푸아뉴기니",
+    "countryEn": "Papua New Guinea"
+  },
+  {
+    "id": "Pacific/Chatham",
+    "aliases": ["Pacific/Chatham"],
+    "ko": "채텀",
+    "en": "Chatham Islands",
+    "countryKo": "뉴질랜드",
+    "countryEn": "New Zealand"
+  },
+  {
+    "id": "Pacific/Chuuk",
+    "aliases": ["Pacific/Truk", "Pacific/Chuuk", "Pacific/Yap"],
+    "ko": "트루크",
+    "en": "Chuuk",
+    "countryKo": "미크로네시아",
+    "countryEn": "Micronesia"
+  },
+  {
+    "id": "Pacific/Easter",
+    "aliases": ["Pacific/Easter", "Chile/EasterIsland"],
+    "ko": "이스터 섬",
+    "en": "Easter Island",
+    "countryKo": "칠레",
+    "countryEn": "Chile"
+  },
+  {
+    "id": "Pacific/Efate",
+    "aliases": ["Pacific/Efate"],
+    "ko": "에파테",
+    "en": "Efate",
+    "countryKo": "바누아투",
+    "countryEn": "Vanuatu"
+  },
+  {
+    "id": "Pacific/Fakaofo",
+    "aliases": ["Pacific/Fakaofo"],
+    "ko": "파카오푸",
+    "en": "Fakaofo",
+    "countryKo": "토켈라우",
+    "countryEn": "Tokelau"
+  },
+  {
+    "id": "Pacific/Fiji",
+    "aliases": ["Pacific/Fiji"],
+    "ko": "피지",
+    "en": "Fiji",
+    "countryKo": "피지",
+    "countryEn": "Fiji"
+  },
+  {
+    "id": "Pacific/Funafuti",
+    "aliases": ["Pacific/Funafuti"],
+    "ko": "푸나푸티",
+    "en": "Funafuti",
+    "countryKo": "투발루",
+    "countryEn": "Tuvalu"
+  },
+  {
+    "id": "Pacific/Galapagos",
+    "aliases": ["Pacific/Galapagos"],
+    "ko": "갈라파고스",
+    "en": "Galápagos Islands",
+    "countryKo": "에콰도르",
+    "countryEn": "Ecuador"
+  },
+  {
+    "id": "Pacific/Gambier",
+    "aliases": ["Pacific/Gambier"],
+    "ko": "감비어",
+    "en": "Gambier",
+    "countryKo": "프랑스령 폴리네시아",
+    "countryEn": "French Polynesia"
+  },
+  {
+    "id": "Pacific/Guadalcanal",
+    "aliases": ["Pacific/Guadalcanal"],
+    "ko": "과달카날",
+    "en": "Guadalcanal",
+    "countryKo": "솔로몬 제도",
+    "countryEn": "Solomon Islands"
+  },
+  {
+    "id": "Pacific/Guam",
+    "aliases": ["Pacific/Guam"],
+    "ko": "괌",
+    "en": "Guam",
+    "countryKo": "괌",
+    "countryEn": "Guam"
+  },
+  {
+    "id": "Pacific/Honolulu",
+    "aliases": ["Pacific/Honolulu", "US/Hawaii", "Pacific/Johnston"],
+    "ko": "호놀룰루",
+    "en": "Honolulu",
+    "countryKo": "미국",
+    "countryEn": "United States"
+  },
+  {
+    "id": "Pacific/Kanton",
+    "aliases": ["Pacific/Enderbury", "Pacific/Kanton"],
+    "ko": "칸톤",
+    "en": "Canton Island",
+    "countryKo": "키리바시",
+    "countryEn": "Kiribati"
+  },
+  {
+    "id": "Pacific/Kiritimati",
+    "aliases": ["Pacific/Kiritimati"],
+    "ko": "키리티마티",
+    "en": "Kiritimati",
+    "countryKo": "키리바시",
+    "countryEn": "Kiribati"
+  },
+  {
+    "id": "Pacific/Kosrae",
+    "aliases": ["Pacific/Kosrae"],
+    "ko": "코스레",
+    "en": "Kosrae",
+    "countryKo": "미크로네시아",
+    "countryEn": "Micronesia"
+  },
+  {
+    "id": "Pacific/Kwajalein",
+    "aliases": ["Pacific/Kwajalein"],
+    "ko": "콰잘렌",
+    "en": "Kwajalein Atoll",
+    "countryKo": "마셜 제도",
+    "countryEn": "Marshall Islands"
+  },
+  {
+    "id": "Pacific/Majuro",
+    "aliases": ["Pacific/Majuro"],
+    "ko": "마주로",
+    "en": "Majuro",
+    "countryKo": "마셜 제도",
+    "countryEn": "Marshall Islands"
+  },
+  {
+    "id": "Pacific/Marquesas",
+    "aliases": ["Pacific/Marquesas"],
+    "ko": "마퀘사스",
+    "en": "Marquesas Islands",
+    "countryKo": "프랑스령 폴리네시아",
+    "countryEn": "French Polynesia"
+  },
+  {
+    "id": "Pacific/Midway",
+    "aliases": ["Pacific/Midway"],
+    "ko": "미드웨이",
+    "en": "Midway Atoll",
+    "countryKo": "미국령 해외 제도",
+    "countryEn": "U.S. Outlying Islands"
+  },
+  {
+    "id": "Pacific/Nauru",
+    "aliases": ["Pacific/Nauru"],
+    "ko": "나우루",
+    "en": "Nauru",
+    "countryKo": "나우루",
+    "countryEn": "Nauru"
+  },
+  {
+    "id": "Pacific/Niue",
+    "aliases": ["Pacific/Niue"],
+    "ko": "니우에",
+    "en": "Niue",
+    "countryKo": "니우에",
+    "countryEn": "Niue"
+  },
+  {
+    "id": "Pacific/Norfolk",
+    "aliases": ["Pacific/Norfolk"],
+    "ko": "노퍽",
+    "en": "Norfolk Island",
+    "countryKo": "노퍽섬",
+    "countryEn": "Norfolk Island"
+  },
+  {
+    "id": "Pacific/Noumea",
+    "aliases": ["Pacific/Noumea"],
+    "ko": "누메아",
+    "en": "Nouméa",
+    "countryKo": "뉴칼레도니아",
+    "countryEn": "New Caledonia"
+  },
+  {
+    "id": "Pacific/Pago_Pago",
+    "aliases": ["Pacific/Pago_Pago", "Pacific/Samoa", "US/Samoa"],
+    "ko": "파고파고",
+    "en": "Pago Pago",
+    "countryKo": "아메리칸 사모아",
+    "countryEn": "American Samoa"
+  },
+  {
+    "id": "Pacific/Palau",
+    "aliases": ["Pacific/Palau"],
+    "ko": "팔라우",
+    "en": "Palau",
+    "countryKo": "팔라우",
+    "countryEn": "Palau"
+  },
+  {
+    "id": "Pacific/Pitcairn",
+    "aliases": ["Pacific/Pitcairn"],
+    "ko": "핏케언",
+    "en": "Pitcairn Islands",
+    "countryKo": "핏케언 제도",
+    "countryEn": "Pitcairn Islands"
+  },
+  {
+    "id": "Pacific/Pohnpei",
+    "aliases": ["Pacific/Ponape", "Pacific/Pohnpei"],
+    "ko": "포나페",
+    "en": "Pohnpei",
+    "countryKo": "미크로네시아",
+    "countryEn": "Micronesia"
+  },
+  {
+    "id": "Pacific/Port_Moresby",
+    "aliases": ["Pacific/Port_Moresby"],
+    "ko": "포트모르즈비",
+    "en": "Port Moresby",
+    "countryKo": "파푸아뉴기니",
+    "countryEn": "Papua New Guinea"
+  },
+  {
+    "id": "Pacific/Rarotonga",
+    "aliases": ["Pacific/Rarotonga"],
+    "ko": "라로통가",
+    "en": "Rarotonga",
+    "countryKo": "쿡 제도",
+    "countryEn": "Cook Islands"
+  },
+  {
+    "id": "Pacific/Saipan",
+    "aliases": ["Pacific/Saipan"],
+    "ko": "사이판",
+    "en": "Saipan",
+    "countryKo": "북마리아나제도",
+    "countryEn": "Northern Mariana Islands"
+  },
+  {
+    "id": "Pacific/Tahiti",
+    "aliases": ["Pacific/Tahiti"],
+    "ko": "타히티",
+    "en": "Tahiti",
+    "countryKo": "프랑스령 폴리네시아",
+    "countryEn": "French Polynesia"
+  },
+  {
+    "id": "Pacific/Tarawa",
+    "aliases": ["Pacific/Tarawa"],
+    "ko": "타라와",
+    "en": "Tarawa",
+    "countryKo": "키리바시",
+    "countryEn": "Kiribati"
+  },
+  {
+    "id": "Pacific/Tongatapu",
+    "aliases": ["Pacific/Tongatapu"],
+    "ko": "통가타푸",
+    "en": "Tongatapu",
+    "countryKo": "통가",
+    "countryEn": "Tonga"
+  },
+  {
+    "id": "Pacific/Wake",
+    "aliases": ["Pacific/Wake"],
+    "ko": "웨이크",
+    "en": "Wake Island",
+    "countryKo": "미국령 해외 제도",
+    "countryEn": "U.S. Outlying Islands"
+  },
+  {
+    "id": "Pacific/Wallis",
+    "aliases": ["Pacific/Wallis"],
+    "ko": "월리스",
+    "en": "Wallis & Futuna",
+    "countryKo": "왈리스-푸투나 제도",
+    "countryEn": "Wallis & Futuna"
+  }
+]

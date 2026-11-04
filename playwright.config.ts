@@ -7,6 +7,7 @@ export default defineConfig({
     '**/base64.spec.ts',
     '**/color-converter.spec.ts',
     '**/date-calculator.spec.ts',
+    '**/time-zone-converter.spec.ts',
     '**/hash-generator.spec.ts',
     '**/locale-messages.spec.ts',
     '**/random-string-generator.spec.ts',

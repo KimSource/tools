@@ -340,3 +340,28 @@ test('opens Markdown preview for the first time offline', async ({
     'const x = 1',
   )
 })
+
+test('opens and converts time zones on the first offline visit', async ({
+  page,
+  context,
+}) => {
+  await page.goto('/tools/')
+  await page.evaluate(async () => {
+    await navigator.serviceWorker.ready
+  })
+  await page.reload()
+  await expect(
+    page
+      .locator('[data-tool-id="time-zone-converter"]')
+      .getByText('Available offline', { exact: true }),
+  ).toBeVisible()
+  await context.setOffline(true)
+  await page.goto('/tools/#/time-zone-converter')
+  await page.getByLabel('Date and time').fill('2024-01-01T12:00')
+  await page.getByLabel('Search base time zones').fill('seoul')
+  await page
+    .getByRole('combobox', { name: 'Base time zone' })
+    .selectOption('Asia/Seoul')
+  await page.getByRole('button', { name: 'Convert', exact: true }).click()
+  await expect(page.getByText(/2024-01-01 03:00 UTC\+00:00/)).toBeVisible()
+})

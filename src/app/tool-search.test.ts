@@ -27,6 +27,7 @@ describe('tool search', () => {
   it('handles empty queries and categories', () => {
     expect(ids('   ')).toHaveLength(toolRegistry.length)
     expect(ids('', 'date-time')).toEqual([
+      'time-zone-converter',
       'date-calculator',
       'unix-timestamp-converter',
     ])

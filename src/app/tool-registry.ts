@@ -83,6 +83,26 @@ async function loadDateCalculator(): Promise<void> {
 
 export const toolRegistry: readonly ToolDefinition[] = [
   {
+    id: 'time-zone-converter',
+    category: 'date-time',
+    tags: ['date'],
+    keywords: [
+      'time zone',
+      'timezone',
+      'world clock',
+      '시간대',
+      '세계 시간',
+      '시차',
+    ],
+    titleKey: 'tools.timeZone.title',
+    descriptionKey: 'tools.timeZone.description',
+    elementTag: 'time-zone-converter-tool',
+    offlineAssetPatterns: ['time-zone-converter-', 'clipboard-', 'luxon-'],
+    load: async () => {
+      await import('../tools/time-zone-converter')
+    },
+  },
+  {
     id: 'markdown-preview',
     category: 'text-data',
     tags: ['formatting'],
@@ -129,7 +149,7 @@ export const toolRegistry: readonly ToolDefinition[] = [
     titleKey: 'tools.dateCalculator.title',
     descriptionKey: 'tools.dateCalculator.description',
     elementTag: 'date-calculator-tool',
-    offlineAssetPatterns: ['date-calculator-'],
+    offlineAssetPatterns: ['date-calculator-', 'luxon-', 'clipboard-'],
     load: loadDateCalculator,
   },
   {
