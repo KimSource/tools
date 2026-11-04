@@ -52,6 +52,133 @@ const source = { width: 600, height: 400 }
 const defaults = defaultSettings(source, 'png')
 
 describe('image size calculations', () => {
+  it.each([
+    {
+      source: { width: 600, height: 300 },
+      axis: 'width' as const,
+      value: '101',
+      expected: { width: 101, height: 51 },
+    },
+    {
+      source: { width: 6000, height: 3000 },
+      axis: 'width' as const,
+      value: '1001',
+      expected: { width: 1001, height: 501 },
+    },
+    {
+      source: { width: 300, height: 600 },
+      axis: 'height' as const,
+      value: '101',
+      expected: { width: 51, height: 101 },
+    },
+    {
+      source: { width: 3000, height: 6000 },
+      axis: 'height' as const,
+      value: '1001',
+      expected: { width: 501, height: 1001 },
+    },
+  ])(
+    'preserves half-pixel rounding across repeated unit changes: $source, $axis',
+    ({ source, axis, value, expected }) => {
+      for (const keepAspect of [true, false]) {
+        let settings = {
+          ...editDimension(source, defaultSettings(source, 'png'), axis, value),
+          keepAspect,
+        }
+        expect(resizeDimensions(source, settings)).toEqual(expected)
+        for (let round = 0; round < 4; round++) {
+          settings = changeSizeMode(source, settings, 'percent')
+          expect(resizeDimensions(source, settings)).toEqual(expected)
+          settings = changeSizeMode(source, settings, 'pixels')
+          expect(resizeDimensions(source, settings)).toEqual(expected)
+        }
+      }
+    },
+  )
+  it('keeps independent dimensions across unit changes and recomputes explicit percent edits', () => {
+    const source = { width: 600, height: 300 }
+    const settings = {
+      ...defaultSettings(source, 'png'),
+      keepAspect: false,
+      width: '101',
+      height: '73',
+    }
+    let percent = changeSizeMode(source, settings, 'percent')
+    for (let round = 0; round < 4; round++) {
+      expect(resizeDimensions(source, percent)).toEqual({
+        width: 101,
+        height: 73,
+      })
+      percent = changeSizeMode(
+        source,
+        changeSizeMode(source, percent, 'pixels'),
+        'percent',
+      )
+    }
+    expect(
+      resizeDimensions(source, editDimension(source, percent, 'width', '25')),
+    ).toEqual({ width: 150, height: 73 })
+    const locked = changeSizeMode(
+      source,
+      editDimension(source, defaultSettings(source, 'png'), 'width', '101'),
+      'percent',
+    )
+    expect(
+      resizeDimensions(source, editDimension(source, locked, 'height', '25')),
+    ).toEqual({ width: 150, height: 75 })
+    expect(() =>
+      resizeDimensions(source, editDimension(source, locked, 'width', '101')),
+    ).toThrow('upscale')
+    expect(
+      resizeDimensions(source, {
+        ...editDimension(source, locked, 'width', '101'),
+        allowUpscale: true,
+      }),
+    ).toEqual({ width: 606, height: 303 })
+    expect(() =>
+      resizeDimensions(source, editDimension(source, locked, 'width', '')),
+    ).toThrow('dimensions')
+    // Editing settings directly must also invalidate a preserved unit-conversion result.
+    expect(resizeDimensions(source, { ...locked, width: '25' })).toEqual({
+      width: 150,
+      height: 75,
+    })
+  })
+  it('revalidates converted dimensions against source changes and enlargement policy', () => {
+    const source = { width: 600, height: 300 }
+    const enlarged = changeSizeMode(
+      source,
+      {
+        ...defaultSettings(source, 'png'),
+        width: '1200',
+        allowUpscale: true,
+      },
+      'percent',
+    )
+    expect(() =>
+      resizeDimensions(source, { ...enlarged, allowUpscale: false }),
+    ).toThrow('upscale')
+    const converted = changeSizeMode(
+      source,
+      {
+        ...defaultSettings(source, 'png'),
+        width: '101',
+      },
+      'percent',
+    )
+    expect(resizeDimensions({ width: 1200, height: 600 }, converted)).toEqual({
+      width: 202,
+      height: 101,
+    })
+    expect(
+      resizeDimensions(source, {
+        ...converted,
+        mode: 'pixels',
+        width: '150',
+        height: '75',
+      }),
+    ).toEqual({ width: 150, height: 75 })
+  })
   it('calculates both anchors from the original aspect ratio', () => {
     expect(resizeDimensions(source, { ...defaults, width: '301' })).toEqual({
       width: 301,

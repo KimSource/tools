@@ -83,6 +83,34 @@ for (const format of ['jpeg', 'webp'] as const) {
   })
 }
 
+test('keeps output pixels when switching units at a half-pixel boundary', async ({
+  page,
+}) => {
+  await open(page)
+  await page
+    .getByLabel('Choose an image')
+    .setInputFiles(await imageFile(page, 'png', 600, 300))
+  await page.getByLabel('Width (px)', { exact: true }).fill('101')
+  await expect(page.locator('.target')).toContainText('101 × 51 px')
+  for (let round = 0; round < 3; round++) {
+    await page.getByLabel('Size input mode').selectOption('percent')
+    await expect(page.locator('.target')).toContainText('101 × 51 px')
+    await generate(page)
+    expect(await pixels(page)).toMatchObject({ width: 101, height: 51 })
+    await page.getByLabel('Size input mode').selectOption('pixels')
+    await expect(page.getByLabel('Width (px)', { exact: true })).toHaveValue(
+      '101',
+    )
+    await expect(page.getByLabel('Height (px)', { exact: true })).toHaveValue(
+      '51',
+    )
+  }
+  await page.getByLabel('Size input mode').selectOption('percent')
+  await page.getByLabel('Width (%)', { exact: true }).fill('25')
+  await generate(page)
+  expect(await pixels(page)).toMatchObject({ width: 150, height: 75 })
+})
+
 test('resizes, exports all formats and downloads the exact previewed result', async ({
   page,
 }) => {

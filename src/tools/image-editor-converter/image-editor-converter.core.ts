@@ -39,6 +39,15 @@ export interface EditSettings {
   format: ImageFormat
   quality: string
   background: string
+  // A unit change is a display change, not a new resize request.
+  convertedSize?: {
+    source: Size
+    input: Pick<
+      EditSettings,
+      'mode' | 'width' | 'height' | 'anchor' | 'keepAspect'
+    >
+    size: Size
+  }
 }
 
 export function assertSize({ width, height }: Size): void {
@@ -182,7 +191,18 @@ export function resizeDimensions(source: Size, settings: EditSettings): Size {
   }
   let width: number
   let height: number
-  if (settings.keepAspect) {
+  const converted = settings.convertedSize
+  if (
+    converted &&
+    source.width === converted.source.width &&
+    source.height === converted.source.height &&
+    (['mode', 'width', 'height', 'anchor', 'keepAspect'] as const).every(
+      (key) => settings[key] === converted.input[key],
+    )
+  ) {
+    width = converted.size.width
+    height = converted.size.height
+  } else if (settings.keepAspect) {
     const axis = settings.anchor
     const value = parse(settings[axis])
     const scale =
@@ -212,7 +232,12 @@ export function editDimension(
   axis: 'width' | 'height',
   value: string,
 ): EditSettings {
-  const next = { ...settings, [axis]: value, anchor: axis }
+  const next = {
+    ...settings,
+    [axis]: value,
+    anchor: axis,
+    convertedSize: undefined,
+  }
   if (
     settings.keepAspect &&
     value &&
@@ -240,7 +265,22 @@ export function changeSizeMode(
     mode === 'pixels'
       ? String(size[axis])
       : String(percentage(settings.keepAspect ? settings.anchor : axis))
-  return { ...settings, mode, width: value('width'), height: value('height') }
+  const input = {
+    mode,
+    width: value('width'),
+    height: value('height'),
+    anchor: settings.anchor,
+    keepAspect: settings.keepAspect,
+  }
+  return {
+    ...settings,
+    ...input,
+    convertedSize: {
+      source: { width: source.width, height: source.height },
+      input,
+      size,
+    },
+  }
 }
 
 export function defaultSettings(size: Size, format: ImageFormat): EditSettings {
