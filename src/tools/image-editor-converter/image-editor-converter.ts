@@ -362,10 +362,9 @@ export class ImageEditorConverter extends LitElement {
                   <label for="format">${t('image.output')}</label>
                   <select
                     id="format"
-                    .value=${settings.format}
                     @change=${(event: Event) => this.change({ format: (event.target as HTMLSelectElement).value as ImageFormat })}
                   >
-                    ${imageFormats.map((format) => html`<option value=${format} ?disabled=${!this.formats?.has(format)}>${formatNames[format]}${this.formats?.has(format) ? '' : ` (${t('image.unsupported')})`}</option>`)}
+                    ${imageFormats.map((format) => html`<option value=${format} .selected=${settings.format === format} ?disabled=${!this.formats?.has(format)}>${formatNames[format]}${this.formats?.has(format) ? '' : ` (${t('image.unsupported')})`}</option>`)}
                   </select>
                   <p class="hint" id="format-help">${t('image.formatHelp')}</p>
                   ${

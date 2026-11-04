@@ -29,6 +29,60 @@ async function pixels(page: Page) {
   })
 }
 
+for (const format of ['jpeg', 'webp'] as const) {
+  test(`uses ${format} consistently when it is the first input, reset and replaced`, async ({
+    page,
+  }) => {
+    await open(page)
+    const file = await imageFile(page, format)
+    const output = page.getByLabel('Output format', { exact: true })
+    await page.getByLabel('Choose an image').setInputFiles(file)
+    await expect(output).toHaveValue(format)
+    await expect(
+      page.getByLabel('Quality (0–100)', { exact: true }),
+    ).toBeVisible()
+    await expect(
+      page.getByLabel('JPG background color (HEX)', { exact: true }),
+    ).toHaveCount(format === 'jpeg' ? 1 : 0)
+    await generate(page)
+    const mime = await page
+      .getByAltText('Result image preview')
+      .evaluate(async (image) =>
+        (await fetch((image as HTMLImageElement).src)).headers.get(
+          'content-type',
+        ),
+      )
+    expect(mime).toBe(`image/${format}`)
+    const pendingDownload = page.waitForEvent('download')
+    await page.getByRole('button', { name: 'Download', exact: true }).click()
+    const download = await pendingDownload
+    expect(download.suggestedFilename()).toBe(
+      `source-edited.${format === 'jpeg' ? 'jpg' : 'webp'}`,
+    )
+    const bytes = await readFile((await download.path())!)
+    expect(
+      format === 'jpeg'
+        ? bytes.subarray(0, 2).toString('hex')
+        : bytes.subarray(8, 12).toString(),
+    ).toBe(format === 'jpeg' ? 'ffd8' : 'WEBP')
+    await output.selectOption('png')
+    await expect(output).toHaveValue('png')
+    await expect(
+      page.getByLabel('Quality (0–100)', { exact: true }),
+    ).toHaveCount(0)
+    await page.getByRole('button', { name: 'Reset to original' }).click()
+    await expect(output).toHaveValue(format)
+    const replacement = format === 'jpeg' ? 'webp' : 'jpeg'
+    await page
+      .getByLabel('Choose an image')
+      .setInputFiles(await imageFile(page, replacement))
+    await expect(output).toHaveValue(replacement)
+    await expect(
+      page.getByLabel('JPG background color (HEX)', { exact: true }),
+    ).toHaveCount(replacement === 'jpeg' ? 1 : 0)
+  })
+}
+
 test('resizes, exports all formats and downloads the exact previewed result', async ({
   page,
 }) => {
@@ -309,18 +363,40 @@ test('disables unsupported encoders and rejects unexpected fallback or failed en
       return original.call(
         this,
         callback,
-        type === 'image/webp' ? 'image/png' : type,
+        type === 'image/webp' && this.width === 1 ? 'image/png' : type,
         quality,
       )
     }
   })
   await open(page)
-  await page.getByLabel('Choose an image').setInputFiles(await imageFile(page))
+  await page
+    .getByLabel('Choose an image')
+    .setInputFiles(await imageFile(page, 'webp'))
   await expect(
     page
       .getByLabel('Output format', { exact: true })
       .locator('option[value="webp"]'),
   ).toBeDisabled()
+  await expect(page.locator('dd').nth(1)).toHaveText('WebP')
+  await expect(page.getByLabel('Output format', { exact: true })).toHaveValue(
+    'png',
+  )
+  await expect(page.getByLabel('Quality (0–100)', { exact: true })).toHaveCount(
+    0,
+  )
+  await expect(page.getByRole('status')).toContainText(
+    'supported output format has been selected',
+  )
+  await generate(page)
+  expect(
+    await page
+      .getByAltText('Result image preview')
+      .evaluate(async (image) =>
+        (await fetch((image as HTMLImageElement).src)).headers.get(
+          'content-type',
+        ),
+      ),
+  ).toBe('image/png')
   // Capability probe succeeded for JPG; force a later fallback and verify no mislabeled download.
   await page.evaluate(() => {
     const original = HTMLCanvasElement.prototype.toBlob
@@ -339,7 +415,13 @@ test('disables unsupported encoders and rejects unexpected fallback or failed en
   await expect(
     page.getByRole('button', { name: 'Download', exact: true }),
   ).toHaveCount(0)
-  await page.getByLabel('Output format', { exact: true }).selectOption('png')
+  await page.getByRole('button', { name: 'Reset to original' }).click()
+  await expect(page.getByLabel('Output format', { exact: true })).toHaveValue(
+    'png',
+  )
+  await expect(page.getByLabel('Quality (0–100)', { exact: true })).toHaveCount(
+    0,
+  )
   await page.evaluate(() => {
     HTMLCanvasElement.prototype.toBlob = function (callback) {
       callback(null)
