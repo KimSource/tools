@@ -16,6 +16,9 @@ describe('tool search', () => {
     expect(ids('쿼리 parameter')).toContain('url-encoder')
     expect(ids('랜덤 문자열', 'text-data')).toContain('random-string-generator')
     expect(ids('random password')).toContain('random-string-generator')
+    expect(ids('이미지 resize', 'image-design')).toContain(
+      'image-editor-converter',
+    )
     expect(ids('색상')).toContain('color-converter')
     expect(ids('HSL', 'image-design')).toContain('color-converter')
   })
@@ -31,6 +34,10 @@ describe('tool search', () => {
       'date-calculator',
       'unix-timestamp-converter',
     ])
-    expect(ids('', 'image-design')).toEqual(['qr-code', 'color-converter'])
+    expect(ids('', 'image-design')).toEqual([
+      'image-editor-converter',
+      'qr-code',
+      'color-converter',
+    ])
   })
 })

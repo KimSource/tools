@@ -1,4 +1,74 @@
 export const en = {
+  'tools.image.title': 'Image Editor / Converter',
+  'tools.image.description': 'Resize and convert a still image on your device',
+  'tag.image': 'Image',
+  'image.inputHelp':
+    'One still PNG, JPG or WebP image. Up to 10 MiB, 16 million pixels, and 8,192 px per side. APNG and animated WebP are not supported.',
+  'image.drop': 'Drop an image here or choose a file.',
+  'image.file': 'Choose an image',
+  'image.original': 'Original',
+  'image.filename': 'Filename',
+  'image.format': 'Format',
+  'image.fileBytes': 'File size',
+  'image.imageDimensions': 'Dimensions',
+  'image.ratio': 'Aspect ratio',
+  'image.originalPreview': 'Original image preview',
+  'image.resultPreview': 'Result image preview',
+  'image.settings': 'Edit settings',
+  'image.resize': 'Resize',
+  'image.sizeMode': 'Size input mode',
+  'image.pixels': 'Pixels',
+  'image.percent': 'Percentage',
+  'image.width': 'Width',
+  'image.height': 'Height',
+  'image.keepAspect': 'Keep aspect ratio',
+  'image.allowUpscale': 'Allow enlargement',
+  'image.editHelp':
+    'Pixel values must be positive integers. Percentages must be positive. Linked dimensions are calculated from the original and rounded to pixels. Output limits match input pixel limits.',
+  'image.target': 'Output dimensions',
+  'image.export': 'Export',
+  'image.output': 'Output format',
+  'image.unsupported': 'unsupported in this browser',
+  'image.formatHelp':
+    'PNG keeps transparency without a quality control. JPG and WebP quality depends on the browser encoder; a smaller file is not guaranteed.',
+  'image.quality': 'Quality (0–100)',
+  'image.background': 'JPG background color (HEX)',
+  'image.backgroundPicker': 'Choose JPG background color',
+  'image.backgroundHelp':
+    'Transparent areas are filled with this opaque color. Enter #RRGGBB.',
+  'image.generate': 'Generate result',
+  'image.reset': 'Reset to original',
+  'image.processing': 'Preparing image…',
+  'image.result': 'Result',
+  'image.change': 'Change from original',
+  'image.larger':
+    'The result is larger than the original. Try reducing dimensions or JPG/WebP quality. You can still download this result.',
+  'image.needsGenerate':
+    'Generate a result to preview and download the current settings.',
+  'image.limitations':
+    'Files stay on this device and are not saved automatically. The original and settings remain while this tool is open. Browser decoding applies image orientation; metadata and exact color reproduction are not preserved. Large images may fail on devices with limited memory.',
+  'image.multiple': 'Choose one image at a time.',
+  'image.fileType':
+    'Only still PNG, JPG and WebP files are supported. Check the file contents.',
+  'image.fileSize': 'The file exceeds 10 MiB. Choose a smaller image.',
+  'image.imageSize':
+    'The image must be at least 1 px per side, at most 8,192 px per side and 16 million pixels in total.',
+  'image.imageInvalid':
+    'The image could not be read. It may be damaged or unsupported by this browser. Try a smaller image if memory is limited.',
+  'image.animation':
+    'Animated images are not supported. Choose a still PNG, JPG or WebP image. APNG and animated WebP cannot be converted in this version.',
+  'image.dimensions':
+    'Enter positive dimensions. Pixel dimensions must be whole numbers.',
+  'image.upscale':
+    'The output exceeds the original dimensions. Enable enlargement or reduce the size.',
+  'image.backgroundError': 'Enter an opaque JPG background color as #RRGGBB.',
+  'image.qualityError': 'Enter a quality from 0 to 100.',
+  'image.outputFormat':
+    'This browser could not produce the requested format. No download was created. Choose a supported output format.',
+  'image.encodeError':
+    'The result could not be generated. Try smaller dimensions or another supported format.',
+  'image.formatFallback':
+    'The original format cannot be exported in this browser. A supported output format has been selected.',
   'tools.timeZone.title': 'Time Zone Converter',
   'tools.timeZone.description': 'Compare a date and time across time zones',
   'tz.hint':

@@ -12,6 +12,7 @@ export default defineConfig({
     '**/locale-messages.spec.ts',
     '**/random-string-generator.spec.ts',
     '**/qr-code.spec.ts',
+    '**/image-editor-converter.spec.ts',
     '**/markdown-preview.spec.ts',
     '**/url-encoder.spec.ts',
     '**/unix-timestamp-converter.spec.ts',

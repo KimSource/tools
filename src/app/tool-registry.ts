@@ -21,6 +21,7 @@ export const tags = {
   color: 'tag.color',
   random: 'tag.random',
   qr: 'tag.qr',
+  image: 'tag.image',
 } as const satisfies Record<string, TranslationKey>
 export type TagId = keyof typeof tags
 
@@ -82,6 +83,35 @@ async function loadDateCalculator(): Promise<void> {
 }
 
 export const toolRegistry: readonly ToolDefinition[] = [
+  {
+    id: 'image-editor-converter',
+    category: 'image-design',
+    tags: ['image', 'encoding'],
+    keywords: [
+      'image',
+      'editor',
+      'converter',
+      'resize',
+      'compress',
+      'png',
+      'jpg',
+      'jpeg',
+      'webp',
+      '이미지',
+      '사진',
+      '편집',
+      '변환',
+      '크기',
+      '압축',
+    ],
+    titleKey: 'tools.image.title',
+    descriptionKey: 'tools.image.description',
+    elementTag: 'image-editor-converter-tool',
+    offlineAssetPatterns: ['image-editor-converter-', 'files-'],
+    load: async () => {
+      await import('../tools/image-editor-converter')
+    },
+  },
   {
     id: 'time-zone-converter',
     category: 'date-time',

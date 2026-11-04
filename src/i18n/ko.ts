@@ -1,6 +1,76 @@
 import type { TranslationKey } from './en'
 
 export const ko = {
+  'tools.image.title': '이미지 편집 / 변환',
+  'tools.image.description': '정지 이미지의 크기와 포맷을 기기 안에서 변환',
+  'tag.image': '이미지',
+  'image.inputHelp':
+    'PNG·JPG·WebP 정지 이미지 한 장을 지원합니다. 최대 10 MiB, 1,600만 픽셀, 가로·세로 각각 8,192px입니다. APNG와 애니메이션 WebP는 지원하지 않습니다.',
+  'image.drop': '이미지를 여기에 놓거나 파일을 선택하세요.',
+  'image.file': '이미지 선택',
+  'image.original': '원본',
+  'image.filename': '파일명',
+  'image.format': '포맷',
+  'image.fileBytes': '파일 용량',
+  'image.imageDimensions': '가로 × 세로',
+  'image.ratio': '가로세로 비율',
+  'image.originalPreview': '원본 이미지 미리보기',
+  'image.resultPreview': '결과 이미지 미리보기',
+  'image.settings': '편집 설정',
+  'image.resize': '크기 변경',
+  'image.sizeMode': '크기 입력 방식',
+  'image.pixels': '픽셀',
+  'image.percent': '백분율',
+  'image.width': '가로',
+  'image.height': '세로',
+  'image.keepAspect': '가로세로 비율 유지',
+  'image.allowUpscale': '확대 허용',
+  'image.editHelp':
+    '픽셀은 양의 정수, 백분율은 양수를 입력하세요. 비율 유지 시 원본 기준으로 계산하고 픽셀로 반올림합니다. 출력에도 입력과 같은 픽셀 제한을 적용합니다.',
+  'image.target': '출력 크기',
+  'image.export': '내보내기',
+  'image.output': '출력 포맷',
+  'image.unsupported': '이 브라우저에서 출력 불가',
+  'image.formatHelp':
+    'PNG는 투명도를 유지하며 품질 조절이 없습니다. JPG·WebP 품질은 브라우저 인코더에 따라 다르며 용량 감소를 보장하지 않습니다.',
+  'image.quality': '품질 (0–100)',
+  'image.background': 'JPG 배경색 (HEX)',
+  'image.backgroundPicker': 'JPG 배경색 선택',
+  'image.backgroundHelp':
+    '투명 영역을 이 불투명 색상으로 채웁니다. #RRGGBB 형식으로 입력하세요.',
+  'image.generate': '결과 생성',
+  'image.reset': '원본으로 초기화',
+  'image.processing': '이미지를 준비하는 중…',
+  'image.result': '결과',
+  'image.change': '원본 대비 용량 증감',
+  'image.larger':
+    '결과 용량이 원본보다 커졌습니다. 크기 또는 JPG·WebP 품질을 낮춰 보세요. 현재 결과도 다운로드할 수 있습니다.',
+  'image.needsGenerate':
+    '현재 설정의 미리보기와 다운로드를 위해 결과를 생성하세요.',
+  'image.limitations':
+    '파일은 기기 안에서 처리하며 자동 저장하지 않습니다. 도구가 열려 있는 동안 원본과 설정을 유지합니다. 방향 정보는 브라우저 디코딩에 따르며 메타데이터와 정확한 색상 재현은 보장하지 않습니다. 메모리가 부족한 기기에서는 큰 이미지 처리가 실패할 수 있습니다.',
+  'image.multiple': '이미지를 한 번에 한 장만 선택하세요.',
+  'image.fileType':
+    'PNG·JPG·WebP 정지 이미지만 지원합니다. 파일 내용을 확인하세요.',
+  'image.fileSize': '파일이 10 MiB를 초과합니다. 더 작은 이미지를 선택하세요.',
+  'image.imageSize':
+    '이미지는 가로·세로 각각 1–8,192px, 총 1,600만 픽셀 이하여야 합니다.',
+  'image.imageInvalid':
+    '이미지를 읽을 수 없습니다. 손상되었거나 브라우저가 지원하지 않을 수 있습니다. 메모리가 부족하면 더 작은 이미지를 사용하세요.',
+  'image.animation':
+    '애니메이션 이미지는 지원하지 않습니다. PNG·JPG·WebP 정지 이미지를 선택하세요. 이번 버전에서는 APNG와 애니메이션 WebP를 변환할 수 없습니다.',
+  'image.dimensions': '양수 크기를 입력하세요. 픽셀 크기는 정수여야 합니다.',
+  'image.upscale':
+    '출력 크기가 원본보다 큽니다. 확대를 허용하거나 크기를 줄이세요.',
+  'image.backgroundError':
+    'JPG 배경색을 #RRGGBB 형식의 불투명 색상으로 입력하세요.',
+  'image.qualityError': '품질을 0–100 사이로 입력하세요.',
+  'image.outputFormat':
+    '이 브라우저가 요청한 포맷을 생성하지 못했습니다. 다운로드 파일을 만들지 않았습니다. 지원되는 출력 포맷을 선택하세요.',
+  'image.encodeError':
+    '결과를 생성하지 못했습니다. 더 작은 크기나 지원되는 다른 포맷을 사용하세요.',
+  'image.formatFallback':
+    '이 브라우저에서는 원본 포맷으로 출력할 수 없어 지원되는 출력 포맷을 선택했습니다.',
   'tools.timeZone.title': '시간대 변환기',
   'tools.timeZone.description': '여러 시간대의 날짜와 시간 비교',
   'tz.hint':

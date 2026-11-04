@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test'
 import { readFile } from 'node:fs/promises'
+import { imageFile } from './image-fixtures'
 
 test('loads the manifest and works offline after the service worker is ready', async ({
   page,
@@ -364,4 +365,54 @@ test('opens and converts time zones on the first offline visit', async ({
     .selectOption('Asia/Seoul')
   await page.getByRole('button', { name: 'Convert', exact: true }).click()
   await expect(page.getByText(/2024-01-01 03:00 UTC\+00:00/)).toBeVisible()
+})
+
+test('opens the image editor for the first time offline and converts and downloads a local image', async ({
+  page,
+  context,
+}) => {
+  const onlineToolRequests: string[] = []
+  page.on('request', (request) => {
+    if (
+      request.resourceType() === 'script' &&
+      request.url().includes('/assets/image-editor-converter-')
+    )
+      onlineToolRequests.push(request.url())
+  })
+  await page.goto('/tools/')
+  await page.evaluate(async () => {
+    await navigator.serviceWorker.ready
+  })
+  await page.reload()
+  await expect(
+    page
+      .locator('[data-tool-id="image-editor-converter"]')
+      .getByText('Available offline', { exact: true }),
+  ).toBeVisible()
+  // The service worker precached this chunk, but the page has never imported it.
+  expect(onlineToolRequests).toEqual([])
+  const input = await imageFile(page)
+  await context.setOffline(true)
+  await page.goto('/tools/#/image-editor-converter')
+  await expect(page.getByLabel('Choose an image')).toBeEnabled()
+  await page.reload()
+  await page.getByLabel('Choose an image').setInputFiles(input)
+  await expect(page.getByLabel('Width (px)', { exact: true })).toHaveValue('60')
+  await page.getByLabel('Width (px)', { exact: true }).fill('30')
+  await page.getByLabel('Output format', { exact: true }).selectOption('webp')
+  await page.getByRole('button', { name: 'Generate result' }).click()
+  await expect(page.getByAltText('Result image preview')).toBeVisible()
+  const downloadPromise = page.waitForEvent('download')
+  await page.getByRole('button', { name: 'Download', exact: true }).click()
+  const download = await downloadPromise
+  expect(download.suggestedFilename()).toBe('source-edited.webp')
+  const bytes = await readFile((await download.path())!)
+  expect(bytes.subarray(8, 12).toString()).toBe('WEBP')
+  const dimensions = await page
+    .getByAltText('Result image preview')
+    .evaluate((img) => [
+      (img as HTMLImageElement).naturalWidth,
+      (img as HTMLImageElement).naturalHeight,
+    ])
+  expect(dimensions).toEqual([30, 20])
 })
