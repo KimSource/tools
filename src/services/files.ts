@@ -50,3 +50,30 @@ export async function readImagePixels(file: File): Promise<ImageData> {
     bitmap.close()
   }
 }
+
+// Keep file access and temporary browser URLs behind the shared file service.
+export function singleFile(
+  files: FileList | readonly File[] | null,
+): File | null {
+  if (!files?.length) return null
+  if (files.length !== 1) throw new Error('multiple')
+  return files[0] ?? null
+}
+
+export async function readFileBytes(file: File): Promise<Uint8Array> {
+  return new Uint8Array(await file.arrayBuffer())
+}
+
+export function decodeImage(file: File): Promise<ImageBitmap> {
+  return createImageBitmap(file, { imageOrientation: 'from-image' })
+}
+
+export interface PreviewUrl {
+  url: string
+  revoke(): void
+}
+
+export function previewUrl(blob: Blob): PreviewUrl {
+  const url = URL.createObjectURL(blob)
+  return { url, revoke: () => URL.revokeObjectURL(url) }
+}
