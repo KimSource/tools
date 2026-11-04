@@ -11,9 +11,14 @@ import '@awesome.me/webawesome/dist/components/option/option.js'
 export class JsonFormatterTool extends LitElement {
   @state() private input = ''
   @state() private output = ''
-  @state() private error = ''
+  @state() private error: 'error.emptyInput' | 'error.invalidJson' | '' = ''
   @state() private indentation: 2 | 4 = 2
-  @state() private notice = ''
+  @state() private notice:
+    | 'status.copied'
+    | 'status.copyFailed'
+    | 'status.downloadStarted'
+    | 'status.downloadFailed'
+    | '' = ''
   private unsubscribe?: () => void
 
   connectedCallback() {
@@ -34,17 +39,17 @@ export class JsonFormatterTool extends LitElement {
       this.output = ''
       this.error =
         error instanceof Error && error.message === 'empty-input'
-          ? t('error.emptyInput')
-          : t('error.invalidJson')
+          ? 'error.emptyInput'
+          : 'error.invalidJson'
     }
   }
 
   private async copy() {
     try {
       await copyText(this.output)
-      this.notice = t('status.copied')
+      this.notice = 'status.copied'
     } catch {
-      this.notice = t('status.copyFailed')
+      this.notice = 'status.copyFailed'
     }
   }
 
@@ -55,9 +60,9 @@ export class JsonFormatterTool extends LitElement {
         this.output,
         'application/json;charset=utf-8',
       )
-      this.notice = t('status.downloadStarted')
+      this.notice = 'status.downloadStarted'
     } catch {
-      this.notice = t('status.downloadFailed')
+      this.notice = 'status.downloadFailed'
     }
   }
 
@@ -106,7 +111,7 @@ export class JsonFormatterTool extends LitElement {
           >${t('actions.reset')}</wa-button
         >
       </div>
-      ${this.error ? html`<p class="error" role="alert">${this.error}</p>` : ''}<label
+      ${this.error ? html`<p class="error" role="alert">${t(this.error)}</p>` : ''}<label
         for="output"
         >${t('json.outputLabel')}</label
       ><textarea
@@ -120,7 +125,7 @@ export class JsonFormatterTool extends LitElement {
           >${t('actions.copy')}</wa-button
         ><wa-button ?disabled=${!this.output} @click=${this.download}
           >${t('actions.download')}</wa-button
-        >${this.notice ? html`<span role="status">${this.notice}</span>` : ''}
+        >${this.notice ? html`<span role="status">${t(this.notice)}</span>` : ''}
       </div>
     </section>`
   }

@@ -15,8 +15,13 @@ export class Base64Tool extends LitElement {
   @state() private operation: Base64Operation = 'encode'
   @state() private input = ''
   @state() private output = ''
-  @state() private error = ''
-  @state() private notice = ''
+  @state() private error: 'base64.errorEmpty' | 'base64.errorInvalid' | '' = ''
+  @state() private notice:
+    | 'status.copied'
+    | 'status.copyFailed'
+    | 'status.downloadStarted'
+    | 'status.downloadFailed'
+    | '' = ''
   private unsubscribe?: () => void
 
   connectedCallback() {
@@ -38,17 +43,17 @@ export class Base64Tool extends LitElement {
       this.output = ''
       this.error =
         error instanceof Error && error.message === 'empty-input'
-          ? t('base64.errorEmpty')
-          : t('base64.errorInvalid')
+          ? 'base64.errorEmpty'
+          : 'base64.errorInvalid'
     }
   }
 
   private async copy() {
     try {
       await copyText(this.output)
-      this.notice = t('status.copied')
+      this.notice = 'status.copied'
     } catch {
-      this.notice = t('status.copyFailed')
+      this.notice = 'status.copyFailed'
     }
   }
 
@@ -58,9 +63,9 @@ export class Base64Tool extends LitElement {
         this.operation === 'encode' ? 'encoded.txt' : 'decoded.txt',
         this.output,
       )
-      this.notice = t('status.downloadStarted')
+      this.notice = 'status.downloadStarted'
     } catch {
-      this.notice = t('status.downloadFailed')
+      this.notice = 'status.downloadFailed'
     }
   }
 
@@ -149,8 +154,8 @@ export class Base64Tool extends LitElement {
           >${t('actions.download')}</wa-button
         >
       </div>
-      ${this.error ? html`<p class="error" role="alert">${this.error}</p>` : ''}
-      ${this.notice ? html`<p class="notice" role="status">${this.notice}</p>` : ''}
+      ${this.error ? html`<p class="error" role="alert">${t(this.error)}</p>` : ''}
+      ${this.notice ? html`<p class="notice" role="status">${t(this.notice)}</p>` : ''}
     </section>`
   }
 

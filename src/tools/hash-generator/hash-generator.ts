@@ -11,7 +11,7 @@ export class HashGeneratorTool extends LitElement {
   @state() private algorithm: HashAlgorithm = 'SHA-256'
   @state() private output = ''
   @state() private failed = false
-  @state() private notice = ''
+  @state() private notice: 'status.copied' | 'status.copyFailed' | '' = ''
   @state() private pending = false
   private version = 0
   private unsubscribe?: () => void
@@ -52,9 +52,9 @@ export class HashGeneratorTool extends LitElement {
   private async copy() {
     try {
       await copyText(this.output)
-      this.notice = t('status.copied')
+      this.notice = 'status.copied'
     } catch {
-      this.notice = t('status.copyFailed')
+      this.notice = 'status.copyFailed'
     }
   }
 
@@ -117,7 +117,7 @@ export class HashGeneratorTool extends LitElement {
         >
       </div>
       ${this.failed ? html`<p class="error" role="alert">${t('hash.error')}</p>` : ''}
-      ${this.notice ? html`<p class="notice" role="status">${this.notice}</p>` : ''}
+      ${this.notice ? html`<p class="notice" role="status">${t(this.notice)}</p>` : ''}
     </section>`
   }
 

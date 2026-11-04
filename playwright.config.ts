@@ -8,6 +8,7 @@ export default defineConfig({
     '**/color-converter.spec.ts',
     '**/date-calculator.spec.ts',
     '**/hash-generator.spec.ts',
+    '**/locale-messages.spec.ts',
     '**/random-string-generator.spec.ts',
     '**/url-encoder.spec.ts',
     '**/unix-timestamp-converter.spec.ts',
