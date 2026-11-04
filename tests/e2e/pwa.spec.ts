@@ -282,3 +282,31 @@ test('opens the date calculator for the first time offline', async ({
   await page.getByRole('button', { name: 'Calculate' }).click()
   await expect(page.getByLabel('Result', { exact: true })).toHaveValue(/2 Days/)
 })
+
+test('generates and reads a QR code on the first offline visit', async ({
+  page,
+  context,
+}) => {
+  await page.goto('/tools/')
+  await page.evaluate(async () => {
+    await navigator.serviceWorker.ready
+  })
+  await page.reload()
+  await expect(
+    page
+      .locator('[data-tool-id="qr-code"]')
+      .getByText('Available offline', { exact: true }),
+  ).toBeVisible()
+  await context.setOffline(true)
+  await page.goto('/tools/#/qr-code')
+  await page.getByLabel('Text or URL').fill('offline QR')
+  await page.getByRole('button', { name: 'Generate QR code' }).click()
+  const download = page.waitForEvent('download')
+  await page.getByRole('button', { name: 'Download PNG' }).click()
+  const buffer = await readFile((await (await download).path())!)
+  await page.getByRole('button', { name: 'Read', exact: true }).click()
+  await page
+    .getByLabel('Choose an image')
+    .setInputFiles({ name: 'qr.png', mimeType: 'image/png', buffer })
+  await expect(page.getByLabel('QR content')).toHaveValue('offline QR')
+})

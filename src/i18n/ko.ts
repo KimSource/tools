@@ -1,6 +1,33 @@
 import type { TranslationKey } from './en'
 
 export const ko = {
+  'tools.qr.title': 'QR 코드',
+  'tools.qr.description': 'QR 코드를 생성하고 이미지에서 읽기',
+  'tag.qr': 'QR 코드',
+  'qr.generate': '생성',
+  'qr.read': '읽기',
+  'qr.mode': 'QR 모드',
+  'qr.input': '텍스트 또는 URL',
+  'qr.size': '이미지 크기',
+  'qr.generateAction': 'QR 코드 생성',
+  'qr.preview': 'QR 코드 미리보기',
+  'qr.png': 'PNG 다운로드',
+  'qr.svg': 'SVG 다운로드',
+  'qr.file': '이미지 선택',
+  'qr.drop':
+    'PNG, JPEG 또는 WebP 이미지를 여기에 놓거나 파일을 선택하세요. 최대 10 MB, 1600만 픽셀입니다.',
+  'qr.result': 'QR 내용',
+  'qr.open': '링크 열기',
+  'qr.empty': '텍스트 또는 URL을 입력하세요.',
+  'qr.capacity': '입력이 QR 코드 용량을 초과합니다.',
+  'qr.fileType': 'PNG, JPEG 또는 WebP 이미지를 선택하세요.',
+  'qr.fileSize': '파일 크기가 10 MB를 초과합니다.',
+  'qr.imageSize': '이미지가 1600만 픽셀을 초과합니다.',
+  'qr.imageInvalid': '이미지를 읽을 수 없습니다.',
+  'qr.notFound': '이미지에서 QR 코드를 찾지 못했습니다.',
+  'qr.multiple': '이미지를 한 번에 하나만 선택하세요.',
+  'qr.processing': '이미지를 읽는 중…',
+
   'tools.dateCalculator.title': '날짜 계산기',
   'tools.dateCalculator.description':
     '날짜 차이를 구하고 날짜에 단위를 더하거나 뺍니다.',

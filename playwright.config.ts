@@ -10,6 +10,7 @@ export default defineConfig({
     '**/hash-generator.spec.ts',
     '**/locale-messages.spec.ts',
     '**/random-string-generator.spec.ts',
+    '**/qr-code.spec.ts',
     '**/url-encoder.spec.ts',
     '**/unix-timestamp-converter.spec.ts',
     '**/smoke.spec.ts',

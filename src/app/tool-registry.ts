@@ -20,6 +20,7 @@ export const tags = {
   date: 'tag.date',
   color: 'tag.color',
   random: 'tag.random',
+  qr: 'tag.qr',
 } as const satisfies Record<string, TranslationKey>
 export type TagId = keyof typeof tags
 
@@ -81,6 +82,19 @@ async function loadDateCalculator(): Promise<void> {
 }
 
 export const toolRegistry: readonly ToolDefinition[] = [
+  {
+    id: 'qr-code',
+    category: 'image-design',
+    tags: ['qr', 'encoding', 'decoding'],
+    keywords: ['qr', 'qr code', '큐알', '코드', 'barcode', '바코드'],
+    titleKey: 'tools.qr.title',
+    descriptionKey: 'tools.qr.description',
+    elementTag: 'qr-code-tool',
+    offlineAssetPatterns: ['qr-code-', 'files-', 'clipboard-'],
+    load: async () => {
+      await import('../tools/qr-code')
+    },
+  },
   {
     id: 'date-calculator',
     category: 'date-time',

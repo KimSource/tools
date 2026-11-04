@@ -30,6 +30,6 @@ describe('tool search', () => {
       'date-calculator',
       'unix-timestamp-converter',
     ])
-    expect(ids('', 'image-design')).toEqual(['color-converter'])
+    expect(ids('', 'image-design')).toEqual(['qr-code', 'color-converter'])
   })
 })
