@@ -32,8 +32,14 @@ const offsetText = (offset: number) => {
 
 @customElement('time-zone-converter-tool')
 export class TimeZoneConverter extends LitElement {
-  @state() private value = DateTime.local().toFormat("yyyy-MM-dd'T'HH:mm")
-  @state() private base = 'UTC'
+  private local = Intl.DateTimeFormat().resolvedOptions().timeZone
+  private localZone = zones.find(
+    (zone) => zone.id === this.local || zone.aliases.includes(this.local),
+  )
+  @state() private base = this.localZone?.id ?? 'UTC'
+  @state() private value = DateTime.now()
+    .setZone(this.base)
+    .toFormat("yyyy-MM-dd'T'HH:mm")
   @state() private selected = 'UTC'
   @state() private targets: string[] = ['UTC']
   @state() private baseSearch = ''
@@ -41,19 +47,18 @@ export class TimeZoneConverter extends LitElement {
   @state() private error: 'invalid' | 'gap' | 'none' | '' = ''
   @state() private possibilities: DateTime[] = []
   @state() private choice = ''
-  @state() private results: { id: string; text: string }[] = []
+  @state() private results: {
+    id: string
+    time: DateTime
+    dayDifference: number
+  }[] = []
   @state() private notice: 'copied' | 'failed' | '' = ''
   @state() private offsets: Record<string, number[]> = {}
   @state() private loading = false
   private generation = 0
   private unsubscribe?: () => void
-  private local = Intl.DateTimeFormat().resolvedOptions().timeZone
   connectedCallback() {
     super.connectedCallback()
-    const local = zones.find(
-      (zone) => zone.id === this.local || zone.aliases.includes(this.local),
-    )
-    if (local) this.base = local.id
     this.unsubscribe = subscribeToLocale(() => this.requestUpdate())
     this.scheduleOffsets()
   }
@@ -90,11 +95,13 @@ export class TimeZoneConverter extends LitElement {
     this.choice = ''
     this.notice = ''
   }
-  private label(zone: Zone) {
+  private label(zone: Zone, includeOffsets = true) {
     const locale = getLocale()
     const name = locale === 'ko' ? zone.ko : zone.en
     const country = locale === 'ko' ? zone.countryKo : zone.countryEn
-    const offsets = this.offsets[zone.id]?.map(offsetText).join(' / ')
+    const offsets = includeOffsets
+      ? this.offsets[zone.id]?.map(offsetText).join(' / ')
+      : undefined
     return `${zone.id === this.base && zone.aliases.includes(this.local) ? `${t('tz.local')} · ` : ''}${name}${country ? ` · ${country}` : ''}${offsets ? ` (${offsets})` : ''} — ${zone.id}`
   }
   private filtered(query: string) {
@@ -201,18 +208,16 @@ export class TimeZoneConverter extends LitElement {
       this.error = 'invalid'
       return
     }
-    this.results = this.targets.map((id) => {
-      const { time, dayDifference } = convertTime(base, id)
-      const zone = zones.find((z) => z.id === id) ?? utc
-      const day =
-        dayDifference === 0
-          ? t('tz.same')
-          : `${t(dayDifference < 0 ? 'tz.before' : 'tz.after')} (${dayDifference > 0 ? '+' : ''}${dayDifference})`
-      return {
-        id,
-        text: `${this.label(zone).replace(/ \([^)]*\) —/, ' —')} · ${time.toFormat('yyyy-MM-dd HH:mm')} ${offsetText(time.offset)} · ${day}`,
-      }
-    })
+    this.results = this.targets.map((id) => ({ id, ...convertTime(base, id) }))
+  }
+  private resultText(result: (typeof this.results)[number]) {
+    const { id, time, dayDifference } = result
+    const zone = zones.find((candidate) => candidate.id === id) ?? utc
+    const day =
+      dayDifference === 0
+        ? t('tz.same')
+        : `${t(dayDifference < 0 ? 'tz.before' : 'tz.after')} (${dayDifference > 0 ? '+' : ''}${dayDifference})`
+    return `${this.label(zone, false)} · ${time.toFormat('yyyy-MM-dd HH:mm')} ${offsetText(time.offset)} · ${day}`
   }
   private async copy(value: string) {
     try {
@@ -242,6 +247,7 @@ export class TimeZoneConverter extends LitElement {
         ${t('tz.year')}: ${this.value.slice(0, 4)}
         ${this.loading ? t('tz.offsetLoading') : ''}
       </p>
+      ${!this.localZone && this.base === 'UTC' ? html`<p>${t('tz.fallback')}</p>` : nothing}
       ${this.select(this.baseSearch, this.base, 'base')}
       ${this.select(this.targetSearch, this.selected, 'target')}
       <wa-button
@@ -307,10 +313,10 @@ export class TimeZoneConverter extends LitElement {
         this.results.length
           ? html`<h2>${t('tz.results')}</h2>
               <ul>
-                ${this.results.map((r) => html`<li><span>${r.text}</span> <button @click=${() => this.copy(r.text)} aria-label=${`${t('tz.copy')} ${r.id}`}>${t('tz.copy')}</button></li>`)}
+                ${this.results.map((r) => html`<li><span>${this.resultText(r)}</span> <button @click=${() => this.copy(this.resultText(r))} aria-label=${`${t('tz.copy')} ${r.id}`}>${t('tz.copy')}</button></li>`)}
               </ul>
               <wa-button
-                @click=${() => this.copy(this.results.map((r) => r.text).join('\n'))}
+                @click=${() => this.copy(this.results.map((r) => this.resultText(r)).join('\n'))}
                 >${t('tz.copyAll')}</wa-button
               >`
           : nothing

@@ -22,6 +22,7 @@ export const en = {
   'tz.after': 'Later date',
   'tz.choose': 'Choose a matching time zone',
   'tz.noResults': 'No matching time zones',
+  'tz.fallback': 'Your time zone is unavailable; the initial time uses UTC.',
   'tz.local': 'My time zone',
   'tz.year': 'List offsets for year',
   'tz.offsetLoading': 'Calculating offsets…',

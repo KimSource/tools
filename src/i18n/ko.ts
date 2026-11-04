@@ -24,6 +24,7 @@ export const ko = {
   'tz.after': '이후 날짜',
   'tz.choose': '검색 결과에서 시간대를 선택하세요',
   'tz.noResults': '일치하는 시간대가 없습니다',
+  'tz.fallback': '내 시간대를 사용할 수 없어 초기 시간을 UTC로 표시합니다.',
   'tz.local': '내 시간대',
   'tz.year': '목록 오프셋 기준 연도',
   'tz.offsetLoading': '오프셋 계산 중…',
