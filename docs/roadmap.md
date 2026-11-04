@@ -7,13 +7,10 @@
 - 태그를 직접 선택하는 필터 UI는 도구가 더 늘어났을 때 검토
 - 새 도구를 추가할 때 Registry의 대표 카테고리·태그·한영 검색 키워드를 함께 정의
 
-## Markdown Preview
+## Markdown Preview 후속 검토
 
-- Markdown 입력과 렌더링 결과를 나란히 표시
-- 표와 코드 하이라이팅 지원
-- Markdown 원문 파일 다운로드
-- 원시 HTML 허용 범위와 렌더링 결과 정제 정책은 구현 시 결정
-- 파서·하이라이터는 도구 진입 시 lazy-load하고 초기 bundle·precache 영향을 확인
+- 외부 이미지 로드 시 사용자 선택과 개인정보 보호 방안
+- 추가 코드 언어 및 대용량 입력 처리
 
 ## Hash Generator 후속 검토
 

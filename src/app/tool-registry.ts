@@ -83,6 +83,24 @@ async function loadDateCalculator(): Promise<void> {
 
 export const toolRegistry: readonly ToolDefinition[] = [
   {
+    id: 'markdown-preview',
+    category: 'text-data',
+    tags: ['formatting'],
+    keywords: ['markdown', 'md', 'preview', '마크다운', '미리보기', '표'],
+    titleKey: 'tools.markdown.title',
+    descriptionKey: 'tools.markdown.description',
+    elementTag: 'markdown-preview-tool',
+    offlineAssetPatterns: [
+      'markdown-preview-',
+      'files-',
+      'unsafe-html-',
+      'rolldown-runtime-',
+    ],
+    load: async () => {
+      await import('../tools/markdown-preview')
+    },
+  },
+  {
     id: 'qr-code',
     category: 'image-design',
     tags: ['qr', 'encoding', 'decoding'],

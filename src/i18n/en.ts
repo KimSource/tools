@@ -1,4 +1,11 @@
 export const en = {
+  'tools.markdown.title': 'Markdown Preview',
+  'tools.markdown.description': 'Preview Markdown, tables and highlighted code',
+  'markdown.input': 'Markdown input',
+  'markdown.preview': 'Preview',
+  'markdown.policy':
+    'Images are shown as text and are not loaded. Opening a link contacts its destination.',
+  'markdown.empty': 'Your preview will appear here.',
   'tools.qr.title': 'QR Code',
   'tools.qr.description': 'Generate QR codes and read them from images',
   'tag.qr': 'QR code',

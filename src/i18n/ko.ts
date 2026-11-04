@@ -1,6 +1,13 @@
 import type { TranslationKey } from './en'
 
 export const ko = {
+  'tools.markdown.title': 'Markdown 미리보기',
+  'tools.markdown.description': 'Markdown과 표, 코드 강조 미리보기',
+  'markdown.input': 'Markdown 입력',
+  'markdown.preview': '미리보기',
+  'markdown.policy':
+    '이미지는 텍스트로 표시하며 불러오지 않습니다. 링크를 열면 해당 사이트에 접속합니다.',
+  'markdown.empty': '여기에 미리보기가 표시됩니다.',
   'tools.qr.title': 'QR 코드',
   'tools.qr.description': 'QR 코드를 생성하고 이미지에서 읽기',
   'tag.qr': 'QR 코드',

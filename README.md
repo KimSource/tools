@@ -2,7 +2,7 @@
 
 **입력 데이터는 사용자의 기기 안에서만 처리합니다. 서버로 전송하지 않습니다.**
 
-브라우저에서 사용하는 작은 유틸리티 모음입니다. 현재 JSON Formatter, Base64 인코더·디코더, Hash Generator, URL 인코더·디코더, Unix Timestamp Converter, Color Converter, Random String Generator, Date Calculator와 QR Code를 제공하며, 필요한 도구를 하나씩 추가하고 있습니다.
+브라우저에서 사용하는 작은 유틸리티 모음입니다. 현재 JSON Formatter, Base64 인코더·디코더, Hash Generator, URL 인코더·디코더, Unix Timestamp Converter, Color Converter, Random String Generator, Date Calculator, QR Code와 Markdown Preview를 제공하며, 필요한 도구를 하나씩 추가하고 있습니다.
 
 **[Local Tools 사용하기](https://kimsource.github.io/tools/)** · [JSON Formatter 바로 열기](https://kimsource.github.io/tools/#/json-formatter) · [Base64 바로 열기](https://kimsource.github.io/tools/#/base64) · [Hash Generator 바로 열기](https://kimsource.github.io/tools/#/hash-generator) · [URL 인코더 / 디코더 바로 열기](https://kimsource.github.io/tools/#/url-encoder) · [Unix Timestamp Converter 바로 열기](https://kimsource.github.io/tools/#/unix-timestamp-converter) · [Color Converter 바로 열기](https://kimsource.github.io/tools/#/color-converter) · [Random String Generator 바로 열기](https://kimsource.github.io/tools/#/random-string-generator)
 
@@ -80,6 +80,13 @@
 - 읽은 절대 HTTP·HTTPS URL은 사용자가 선택해 새 탭에서 열기
 - 모든 생성과 읽기는 기기에서 수행하며 입력과 결과를 저장하지 않음
 
+### Markdown Preview
+
+- Markdown을 입력하며 표와 코드 하이라이팅을 실시간 미리보기하고 원문을 `.md` 파일로 다운로드
+- JavaScript, TypeScript, JSON, HTML/XML, CSS, Bash, Python, SQL 코드 강조
+- 원시 HTML은 텍스트로 표시하며 이미지는 자동으로 불러오지 않음
+- 절대 HTTP·HTTPS 링크만 사용자가 선택해 새 탭에서 열 수 있음
+
 ### 도구 검색과 분류
 
 - 도구 이름·설명·태그와 한영 동의어를 표시 언어와 관계없이 검색
@@ -90,7 +97,7 @@
 
 - 한국어 / 영어 / 시스템 언어 설정
 - 라이트 / 다크 / 시스템 테마 설정
-- 캐시 준비 후 JSON Formatter, Base64, Hash Generator, URL 인코더·디코더, Unix Timestamp Converter, Color Converter, Random String Generator와 Date Calculator와 QR Code 오프라인 사용 및 도구별 준비 상태 표시
+- 캐시 준비 후 JSON Formatter, Base64, Hash Generator, URL 인코더·디코더, Unix Timestamp Converter, Color Converter, Random String Generator, Date Calculator, QR Code와 Markdown Preview 오프라인 사용 및 도구별 준비 상태 표시
 - 새 버전 알림과 업데이트 전 입력 유실 안내
 
 ### 오프라인 사용과 업데이트
@@ -100,6 +107,8 @@
 새 버전이 준비되면 업데이트 버튼이 표시됩니다. 버튼을 누르면 현재 입력이 사라질 수 있다는 안내를 보여주며, 취소하면 작업을 계속할 수 있습니다. 업데이트를 수락하면 새 버전으로 자동 갱신합니다. 보관할 입력이나 결과는 갱신 전에 복사하거나 다운로드해 두세요.
 
 ### 현재 제한
+
+- Markdown Preview는 원시 HTML을 렌더링하지 않고 이미지를 대체 텍스트로 표시합니다. 상대 링크와 HTTP·HTTPS 외의 링크는 열 수 없습니다. 지원하지 않는 코드 언어는 일반 텍스트로 표시합니다. 링크를 열면 해당 사이트에 접속합니다.
 
 - QR Code 읽기는 한 번에 한 장의 PNG·JPEG·WebP 이미지(최대 10 MB, 1600만 픽셀)와 한 개의 QR 결과를 지원합니다. 이미지 품질에 따라 읽기에 실패할 수 있으며 애니메이션은 지원하지 않습니다. QR 생성 용량은 입력과 문자 구성에 따라 달라집니다. 카메라 스캔과 전용 입력 양식은 제공하지 않습니다.
 
@@ -124,7 +133,6 @@
 
 구현 순서는 미정이며, 세부 요구사항과 구현 방침은 [로드맵](./docs/roadmap.md)에 정리합니다.
 
-- Markdown Preview: 표·코드 하이라이팅을 지원하는 미리보기
 - Time Zone Converter: 시간대 검색과 서머타임을 반영한 여러 지역 시간 변환
 - Image Editor / Converter: 크기 변경·압축·포맷 변환·자르기·회전·정보 확인
 
@@ -155,14 +163,14 @@ npm run e2e:pwa
 
 Linux에서 브라우저 시스템 의존성도 설치하려면 `npx playwright install --with-deps chromium`을 사용합니다.
 
-| 명령                 | 검증 범위                                                                                                                                                                                                                                                                                                                                                                                                               |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `npm test`           | QR Unicode 디코딩·URL 판별·빈 입력, Date Calculator의 차이·포함·역순·월말·윤년·복합 단위·경계·오류·시간대 독립성, JSON core의 값 종류·오류·Unicode 처리, Base64 core의 UTF-8 왕복 변환·공백·오류 처리, Hash Generator의 알고리즘·UTF-8 처리, URL 변환·쿼리 분해·오류 처리, Unix 타임스탬프 단위 감지·변환·날짜 유효성, 색상 변환·경계·오류·왕복, 랜덤 문자열 집합·경계·필수 포함·난수 선택, 도구 검색·분류, Hash Router |
-| `npm run e2e`        | QR 생성·다운로드·이미지 읽기·복사·드롭·검색, Date Calculator의 두 모드·오류·복사·검색, 개발 서버에서 JSON 변환·상태 초기화·오류 복구·로딩·설정 유지 및 Base64 UTF-8 인코딩·디코딩 및 Hash Generator 생성·복사 및 URL 변환·쿼리 분해·복사 및 Unix 타임스탬프 양방향 변환·오류·복사·현재 시간 및 색상 변환·피커·복사·오류 및 랜덤 문자열 생성·옵션·오류·복사 및 도구 검색·필터·초기화                                     |
-| `npm run e2e:smoke`  | production build의 앱 진입과 JSON 변환                                                                                                                                                                                                                                                                                                                                                                                  |
-| `npm run e2e:pwa`    | QR 오프라인 첫 진입·생성·읽기, JSON Formatter의 캐시 준비 표시·현재 자산 누락 시 이전 캐시 제외·오프라인 첫 진입·새로고침·복사·다운로드 내용 및 Hash Generator, URL 도구와 Unix Timestamp Converter와 Color Converter와 Random String Generator와 Date Calculator 오프라인 첫 진입 및 오프라인 검색·필터                                                                                                                |
-| `npm run e2e:update` | A/B 빌드 간 업데이트 취소·재열기·수락, 자동 갱신 및 B 버전 오프라인 변환                                                                                                                                                                                                                                                                                                                                                |
-| `npm run e2e:pages`  | 실제 Pages 배포의 manifest scope와 오프라인 JSON 변환                                                                                                                                                                                                                                                                                                                                                                   |
+| 명령                 | 검증 범위                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm test`           | Markdown 렌더링·코드 강조·HTML 및 URL 처리, QR Unicode 디코딩·URL 판별·빈 입력, Date Calculator의 차이·포함·역순·월말·윤년·복합 단위·경계·오류·시간대 독립성, JSON core의 값 종류·오류·Unicode 처리, Base64 core의 UTF-8 왕복 변환·공백·오류 처리, Hash Generator의 알고리즘·UTF-8 처리, URL 변환·쿼리 분해·오류 처리, Unix 타임스탬프 단위 감지·변환·날짜 유효성, 색상 변환·경계·오류·왕복, 랜덤 문자열 집합·경계·필수 포함·난수 선택, 도구 검색·분류, Hash Router |
+| `npm run e2e`        | Markdown 입력·미리보기·보안·다운로드·모바일, QR 생성·다운로드·이미지 읽기·복사·드롭·검색, Date Calculator의 두 모드·오류·복사·검색, 개발 서버에서 JSON 변환·상태 초기화·오류 복구·로딩·설정 유지 및 Base64 UTF-8 인코딩·디코딩 및 Hash Generator 생성·복사 및 URL 변환·쿼리 분해·복사 및 Unix 타임스탬프 양방향 변환·오류·복사·현재 시간 및 색상 변환·피커·복사·오류 및 랜덤 문자열 생성·옵션·오류·복사 및 도구 검색·필터·초기화                                    |
+| `npm run e2e:smoke`  | production build의 앱 진입과 JSON 변환                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `npm run e2e:pwa`    | Markdown 오프라인 첫 진입·미리보기·다운로드, QR 오프라인 첫 진입·생성·읽기, JSON Formatter의 캐시 준비 표시·현재 자산 누락 시 이전 캐시 제외·오프라인 첫 진입·새로고침·복사·다운로드 내용 및 Hash Generator, URL 도구와 Unix Timestamp Converter와 Color Converter와 Random String Generator와 Date Calculator 오프라인 첫 진입 및 오프라인 검색·필터                                                                                                               |
+| `npm run e2e:update` | A/B 빌드 간 업데이트 취소·재열기·수락, 자동 갱신 및 B 버전 오프라인 변환                                                                                                                                                                                                                                                                                                                                                                                            |
+| `npm run e2e:pages`  | 실제 Pages 배포의 manifest scope와 오프라인 JSON 변환                                                                                                                                                                                                                                                                                                                                                                                                               |
 
 `e2e:smoke`와 `e2e:pwa`는 먼저 `npm run build`를 실행해야 합니다. 개발 서버 테스트는 3000, production 테스트는 3001, A/B 업데이트 테스트는 3002 포트를 사용합니다.
 

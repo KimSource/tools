@@ -310,3 +310,33 @@ test('generates and reads a QR code on the first offline visit', async ({
     .setInputFiles({ name: 'qr.png', mimeType: 'image/png', buffer })
   await expect(page.getByLabel('QR content')).toHaveValue('offline QR')
 })
+
+test('opens Markdown preview for the first time offline', async ({
+  page,
+  context,
+}) => {
+  await page.goto('/tools/')
+  await page.evaluate(async () => {
+    await navigator.serviceWorker.ready
+  })
+  await page.reload()
+  await expect(
+    page
+      .locator('[data-tool-id="markdown-preview"]')
+      .getByText('Available offline', { exact: true }),
+  ).toBeVisible()
+  await context.setOffline(true)
+  await page.goto('/tools/#/markdown-preview')
+  await page
+    .getByLabel('Markdown input')
+    .fill('| A | B |\n| - | - |\n| 1 | 2 |\n\n```js\nconst x = 1\n```')
+  await expect(page.locator('markdown-preview-tool table')).toBeVisible()
+  await expect(page.locator('markdown-preview-tool .hljs-keyword')).toHaveText(
+    'const',
+  )
+  const download = page.waitForEvent('download')
+  await page.getByRole('button', { name: 'Download', exact: true }).click()
+  expect(await readFile((await (await download).path())!, 'utf8')).toContain(
+    'const x = 1',
+  )
+})
