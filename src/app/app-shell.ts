@@ -106,7 +106,12 @@ export class AppShell extends LitElement {
     this.requestUpdate()
   }
   private renderMain() {
-    if (this.route.kind === 'home')
+    if (this.route.kind === 'home') {
+      const filteredTools = filterTools(
+        toolRegistry,
+        this.searchQuery,
+        this.category,
+      )
       return html`<section class="intro">
         <p class="eyebrow">${t('app.eyebrow')}</p>
         <h1>${t('home.title')}</h1>
@@ -147,8 +152,7 @@ export class AppShell extends LitElement {
           </fieldset>
         </div>
         ${
-          filterTools(toolRegistry, this.searchQuery, this.category).length ===
-          0
+          filteredTools.length === 0
             ? html`<div class="empty" role="status">
                 <p>${t('tools.noResults')}</p>
                 <wa-button @click=${this.clearFilters}
@@ -156,11 +160,7 @@ export class AppShell extends LitElement {
                 >
               </div>`
             : html`<div class="tool-grid">
-                ${filterTools(
-                  toolRegistry,
-                  this.searchQuery,
-                  this.category,
-                ).map(
+                ${filteredTools.map(
                   (tool) =>
                     html`<article class="tool-card" data-tool-id=${tool.id}>
                       <span class="tool-icon">{ }</span>
@@ -177,6 +177,7 @@ export class AppShell extends LitElement {
               </div>`
         }
       </section>`
+    }
     if (this.route.kind === 'not-found')
       return html`<h1>${t('route.notFound')}</h1>
         <wa-button @click=${() => navigate('')}
