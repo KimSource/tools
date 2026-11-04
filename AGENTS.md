@@ -6,7 +6,7 @@
 - 사용자 데이터는 기기 안에서 처리하며, 서버 전송이나 자동 영구 저장을 추가하지 않는다.
 - 도구 UI의 저장소·파일·클립보드 접근은 공통 서비스를 통한다. 실제로 필요한 서비스만 만든다.
 - UI 문자열은 타입이 지정된 ko/en i18n key로 관리하고, 자체 design tokens와 라이트/다크·모바일·키보드 접근성을 유지한다.
-- GitHub Pages `/tools/` base·scope와 hash routing을 유지한다. 기본 도구는 캐시 준비 후 오프라인에서 동작해야 한다.
+- GitHub Pages `/tools/` base·scope와 hash routing을 유지한다. 작은 기본 도구와 필수 의존성은 사용 이력과 관계없이 자동 precache하여, 캐시 준비 후 처음 진입해도 오프라인에서 동작해야 한다. 도구별 lazy loading과 파일 다운로드·캐시 정책은 구분한다.
 - 무거운 의존성·WASM·모델을 Shell이나 기본 precache에 넣지 않는다. 의존성·추상화는 현재 기능에 필요할 때만 추가한다.
 - 브라우저 표준 API와 순수 TypeScript를 우선하며, 측정되거나 검증된 필요가 있을 때만 Web Worker, WASM, Offline Pack 순서로 복잡도를 높인다. 새 런타임 의존성은 도입 이유와 초기 bundle·precache 영향을 확인한다.
 - 코드 변경 시 core 동작은 Vitest로, 주요 브라우저 흐름은 Playwright로 검증한다. PWA 변경은 build 후 `e2e:pwa`, 업데이트 변경은 `e2e:update`로 확인한다. 명령·검증 범위는 `README.md`를 참고한다.
