@@ -1,9 +1,25 @@
+import process from 'node:process'
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
+
+const updateTestVersion = process.env.VITE_UPDATE_TEST_VERSION
 
 export default defineConfig({
   base: '/tools/',
   plugins: [
+    updateTestVersion && {
+      name: 'update-test-version',
+      apply: 'build',
+      transformIndexHtml() {
+        return [
+          {
+            tag: 'meta',
+            attrs: { name: 'build-version', content: updateTestVersion },
+            injectTo: 'head',
+          },
+        ]
+      },
+    },
     VitePWA({
       registerType: 'prompt',
       includeAssets: ['favicon.svg'],
