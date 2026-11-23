@@ -8,51 +8,81 @@ on:
 permissions:
   contents: read
 
-concurrency:
-  group: pages-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
   validate:
     runs-on: ubuntu-latest
+    outputs:
+      needs-validation: ${{ steps.changes.outputs.needs-validation }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check changed files
+        id: changes
+        env:
+          BEFORE: ${{ github.event.before }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+        run: |
+          base="${PR_BASE:-$BEFORE}"
+          if [[ -z "$base" || "$base" =~ ^0+$ ]] || ! git cat-file -e "$base^{commit}" 2>/dev/null; then
+            echo 'needs-validation=true' >> "$GITHUB_OUTPUT"
+          elif git diff --quiet --no-renames "$base" HEAD -- . ':(exclude)README.md' ':(exclude)AGENTS.md' ':(exclude)docs/**'; then
+            echo 'needs-validation=false' >> "$GITHUB_OUTPUT"
+          else
+            status=$?
+            if [ "$status" -ne 1 ]; then exit "$status"; fi
+            echo 'needs-validation=true' >> "$GITHUB_OUTPUT"
+          fi
       - name: Setup Node
+        if: steps.changes.outputs.needs-validation == 'true'
         uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
           cache: npm
       - name: Install dependencies
+        if: steps.changes.outputs.needs-validation == 'true'
         run: npm ci
       - name: Typecheck
+        if: steps.changes.outputs.needs-validation == 'true'
         run: npm run typecheck
       - name: Lint
+        if: steps.changes.outputs.needs-validation == 'true'
         run: npm run lint
       - name: Format check
+        if: steps.changes.outputs.needs-validation == 'true'
         run: npm run format:check
       - name: Unit tests
+        if: steps.changes.outputs.needs-validation == 'true'
         run: npm test
       - name: Install Playwright browser
+        if: steps.changes.outputs.needs-validation == 'true'
         run: npx playwright install --with-deps chromium
       - name: Browser tests
+        if: steps.changes.outputs.needs-validation == 'true'
         run: npm run e2e
       - name: Build
+        if: steps.changes.outputs.needs-validation == 'true'
         run: npm run build
       - name: Production smoke test
+        if: steps.changes.outputs.needs-validation == 'true'
         run: npm run e2e:smoke
       - name: Production PWA test
+        if: steps.changes.outputs.needs-validation == 'true'
         run: npm run e2e:pwa
       - name: Upload Pages artifact
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: steps.changes.outputs.needs-validation == 'true' && github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
   deploy:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: needs.validate.outputs.needs-validation == 'true' && github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: validate
     runs-on: ubuntu-latest
+    concurrency:
+      group: pages-deploy
+      cancel-in-progress: false
     permissions:
       pages: write
       id-token: write
