@@ -240,7 +240,7 @@ npm run preview
 
 ## 배포
 
-[GitHub Actions workflow](./.github/workflows/ci-pages.yml)는 PR과 `main` push에서 타입·린트·서식·단위 테스트·개발 서버 E2E·빌드·production smoke·PWA 테스트를 검증합니다. `main` push에서는 검증을 통과한 `dist/`를 GitHub Pages에 배포합니다. A/B 업데이트와 실제 Pages 테스트는 현재 CI에 포함되지 않습니다.
+[GitHub Actions workflow](./.github/workflows/ci-pages.yml)는 PR과 `main` push에서 변경 파일을 확인합니다. `README.md`, `AGENTS.md`, `docs/`만 변경된 경우에는 필수 검사 결과를 남기고 나머지 검증과 배포를 생략합니다. 다른 파일이 포함되면 타입·린트·서식·단위 테스트·개발 서버 E2E·빌드·production smoke·PWA 테스트를 검증하고, `main` push에서는 검증을 통과한 `dist/`를 GitHub Pages에 배포합니다. A/B 업데이트와 실제 Pages 테스트는 현재 CI에 포함되지 않습니다.
 
 저장소의 **Settings → Pages → Source**는 **GitHub Actions**로 설정합니다. 앱의 base, manifest scope와 start URL은 `/tools/`를 기준으로 합니다.
 
