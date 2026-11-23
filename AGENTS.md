@@ -13,4 +13,5 @@
 - 코드 변경 시 core 동작은 Vitest로, 주요 브라우저 흐름은 Playwright로 검증한다. PWA 변경은 build 후 `e2e:pwa`, 업데이트 변경은 `e2e:update`로 확인한다. 명령·검증 범위는 `README.md`를 참고한다.
 - 코드·설정 변경 후 프로젝트에 정의된 typecheck, lint, format check, unit test, build 및 관련 E2E를 실행하고, 실행하지 못한 검증은 명시한다. 문서만 변경했다면 내용·링크를 확인한다.
 - `e2e:update`는 `dist/`를 테스트 빌드로 덮어쓴다. 이후 배포·일반 preview 전에는 다시 build한다.
+- 동작에 변화가 없는 단순 문서 수정만 담은 커밋의 메시지에는 `[skip ci]`를 포함한다.
 - 커밋 시 `docs/agents/git-convention.md`를 따른다.

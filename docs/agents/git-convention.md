@@ -12,6 +12,7 @@
 - 설명은 변경의 목적을 드러내는 간결한 한국어 문장으로 작성한다.
 - 설명 끝에 마침표를 붙이지 않는다.
 - 한 커밋에는 하나의 논리적인 변경만 담는다.
+- 동작에 변화가 없는 단순 문서 수정만 담은 커밋의 메시지에는 `[skip ci]`를 포함한다. CI 검증과 GitHub Pages 배포가 모두 생략되며, PR의 필수 검사가 대기 상태로 남아 병합이 막힐 수 있다.
 - 커밋 제목은 가능하면 모호한 표현보다 실제 변경 대상을 포함해 작성한다.
 - `scope`는 강제하지 않는다. 변경 범위가 명확할 때만 선택적으로 사용한다.
 
@@ -41,7 +42,7 @@ feat: JSON Formatter 도구 목록 추가
 feat(json-formatter): JSON 포맷 변환 기능 추가
 fix: 잘못된 경로에서 로딩 상태가 남는 문제 수정
 test: JSON 변환 core의 중첩 객체 테스트 추가
-docs: 초기 구현 계획 링크 정리
+docs: 초기 구현 계획 링크 정리 [skip ci]
 build: TypeScript strict 설정 적용
 ci: GitHub Pages 배포 workflow 추가
 refactor: 도구 로딩 결과 처리 분리
