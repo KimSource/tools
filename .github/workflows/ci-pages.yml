@@ -84,12 +84,34 @@ jobs:
       group: pages-deploy
       cancel-in-progress: false
     permissions:
+      contents: read
       pages: write
       id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Checkout deployment commit
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Check for newer changes
+        id: freshness
+        run: |
+          git fetch --no-tags origin refs/heads/main
+          if ! git merge-base --is-ancestor HEAD FETCH_HEAD; then
+            echo '::error::Cannot verify that the deployment commit is an ancestor of main.'
+            exit 1
+          fi
+          if git diff --quiet --no-renames HEAD FETCH_HEAD -- . ':(exclude)README.md' ':(exclude)AGENTS.md' ':(exclude)docs/**'; then
+            echo 'deploy=true' >> "$GITHUB_OUTPUT"
+          else
+            status=$?
+            if [ "$status" -ne 1 ]; then exit "$status"; fi
+            echo 'A newer change requires validation; skipping this deployment.'
+            echo 'deploy=false' >> "$GITHUB_OUTPUT"
+          fi
       - name: Deploy to GitHub Pages
         id: deployment
+        if: steps.freshness.outputs.deploy == 'true'
         uses: actions/deploy-pages@v5
