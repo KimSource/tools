@@ -1,7 +1,21 @@
 import { describe, expect, it } from 'vitest'
-import { generateHash } from './hash-generator.core'
+import { generateHash, hashInputByteLength } from './hash-generator.core'
+
+describe('hashInputByteLength', () => {
+  it('counts the UTF-8 bytes used to hash the text', () => {
+    expect(hashInputByteLength('')).toBe(0)
+    expect(hashInputByteLength('한🌍\n')).toBe(8)
+  })
+})
 
 describe('generateHash', () => {
+  it('hashes only the raw bytes in the input view', async () => {
+    const bytes = new Uint8Array([0x61, 0x00, 0xff, 0x62])
+    await expect(generateHash(bytes.subarray(1, 3), 'SHA-256')).resolves.toBe(
+      '06eb7d6a69ee19e5fbdf749018d3d2abfa04bcbd1365db312eb86dc7169389b8',
+    )
+  })
+
   it('hashes empty text and preserves whitespace and UTF-8', async () => {
     await expect(generateHash('', 'SHA-256')).resolves.toBe(
       'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',

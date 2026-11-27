@@ -60,7 +60,9 @@ export function singleFile(
   return files[0] ?? null
 }
 
-export async function readFileBytes(file: File): Promise<Uint8Array> {
+export async function readFileBytes(
+  file: File,
+): Promise<Uint8Array<ArrayBuffer>> {
   return new Uint8Array(await file.arrayBuffer())
 }
 
