@@ -1,9 +1,14 @@
 import { LitElement, css, html } from 'lit'
 import { customElement, state } from 'lit/decorators.js'
 import '@awesome.me/webawesome/dist/components/button/button.js'
-import { subscribeToLocale, t } from '../../i18n/i18n'
+import { getLocale, subscribeToLocale, t } from '../../i18n/i18n'
 import { copyText } from '../../services/clipboard'
-import { generateHash, type HashAlgorithm } from './hash-generator.core'
+import { toolStyles } from '../../theme/tool-styles'
+import {
+  generateHash,
+  hashInputByteLength,
+  type HashAlgorithm,
+} from './hash-generator.core'
 
 @customElement('hash-generator-tool')
 export class HashGeneratorTool extends LitElement {
@@ -59,158 +64,202 @@ export class HashGeneratorTool extends LitElement {
   }
 
   render() {
+    const inputSize = new Intl.NumberFormat(getLocale(), {
+      style: 'unit',
+      unit: 'byte',
+      unitDisplay: 'long',
+    }).format(hashInputByteLength(this.input))
+
     return html`<section class="tool" aria-labelledby="title">
-      <p class="eyebrow">${t('hash.eyebrow')}</p>
       <h1 id="title">${t('tools.hashGenerator.title')}</h1>
-      <label for="algorithm">${t('hash.algorithm')}</label>
-      <select
-        id="algorithm"
-        .value=${this.algorithm}
-        @change=${(event: Event) => {
-          this.algorithm = (event.target as HTMLSelectElement)
-            .value as HashAlgorithm
-          this.invalidate()
-        }}
-      >
-        <option value="SHA-256">SHA-256</option>
-        <option value="SHA-384">SHA-384</option>
-        <option value="SHA-512">SHA-512</option>
-      </select>
       <div class="panels">
         <div>
-          <label for="input">${t('hash.input')}</label>
+          <div class="panel-header">
+            <label for="input">${t('hash.input')}</label>
+            <wa-button
+              appearance="plain"
+              @click=${() => {
+                this.input = ''
+                this.invalidate()
+              }}
+              >${t('actions.reset')}</wa-button
+            >
+          </div>
           <textarea
             id="input"
             .value=${this.input}
+            aria-describedby="input-hint"
             @input=${(event: Event) => {
               this.input = (event.target as HTMLTextAreaElement).value
               this.invalidate()
             }}
             spellcheck="false"
           ></textarea>
-          <p class="hint">${t('hash.inputHint')}</p>
+          <div class="input-meta">
+            <span>UTF-8 · ${inputSize}</span>
+            <span id="input-hint">${t('hash.inputHint')}</span>
+          </div>
+          <div class="controls">
+            <div class="algorithm">
+              <label for="algorithm">${t('hash.algorithm')}</label>
+              <select
+                id="algorithm"
+                .value=${this.algorithm}
+                @change=${(event: Event) => {
+                  this.algorithm = (event.target as HTMLSelectElement)
+                    .value as HashAlgorithm
+                  this.invalidate()
+                }}
+              >
+                <option value="SHA-256">SHA-256</option>
+                <option value="SHA-384">SHA-384</option>
+                <option value="SHA-512">SHA-512</option>
+              </select>
+            </div>
+            <wa-button
+              class="generate"
+              variant="brand"
+              ?disabled=${this.pending}
+              @click=${this.run}
+              >${t('hash.generate')}</wa-button
+            >
+          </div>
+          ${
+            this.failed
+              ? html`<p class="error" role="alert">${t('hash.error')}</p>`
+              : ''
+          }
         </div>
-        <div>
-          <label for="output">${t('hash.output')}</label>
-          <textarea
-            id="output"
-            .value=${this.output}
-            readonly
-            spellcheck="false"
-          ></textarea>
-        </div>
+        <section class="results" aria-labelledby="result-title">
+          <div class="panel-header">
+            <h2 id="result-title">${t('hash.result')}</h2>
+            <wa-button ?disabled=${!this.output} @click=${this.copy}
+              >${t('actions.copy')}</wa-button
+            >
+          </div>
+          <div class="result-field">
+            <p class="result-format">${this.algorithm} · HEX</p>
+            <textarea
+              class="digest"
+              aria-label=${t('hash.output')}
+              .value=${this.output}
+              rows="6"
+              readonly
+              spellcheck="false"
+            ></textarea>
+          </div>
+          ${
+            this.notice
+              ? html`<p class="notice" role="status">${t(this.notice)}</p>`
+              : ''
+          }
+        </section>
       </div>
-      <div class="actions">
-        <wa-button variant="brand" ?disabled=${this.pending} @click=${this.run}
-          >${t('hash.generate')}</wa-button
-        >
-        <wa-button
-          appearance="outlined"
-          @click=${() => {
-            this.input = ''
-            this.invalidate()
-          }}
-          >${t('actions.reset')}</wa-button
-        >
-        <wa-button ?disabled=${!this.output} @click=${this.copy}
-          >${t('actions.copy')}</wa-button
-        >
-      </div>
-      ${this.failed ? html`<p class="error" role="alert">${t('hash.error')}</p>` : ''}
-      ${this.notice ? html`<p class="notice" role="status">${t(this.notice)}</p>` : ''}
     </section>`
   }
 
-  static styles = css`
-    :host {
-      display: block;
-      color: var(--app-text);
-    }
-    .tool {
-      padding: 32px;
-      border: 1px solid var(--app-border);
-      border-radius: var(--app-radius-lg);
-      background: var(--app-surface);
-      box-shadow: var(--app-shadow);
-    }
-    .eyebrow {
-      color: var(--app-brand);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-    }
-    h1 {
-      margin: 12px 0 24px;
-    }
-    label {
-      display: block;
-      margin: 0 0 8px;
-      font-weight: 600;
-    }
-    select,
-    textarea {
-      box-sizing: border-box;
-      border: 1px solid var(--app-border);
-      border-radius: var(--app-radius-md);
-      background: var(--app-surface);
-      color: var(--app-text);
-    }
-    select {
-      padding: 8px;
-      margin-bottom: 20px;
-    }
-    .panels {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-    textarea {
-      display: block;
-      width: 100%;
-      min-height: 280px;
-      padding: 16px;
-      font:
-        14px/1.5 ui-monospace,
-        monospace;
-      resize: vertical;
-      overflow-wrap: anywhere;
-    }
-    textarea:focus-visible,
-    select:focus-visible {
-      outline: 2px solid var(--app-brand);
-      outline-offset: 2px;
-    }
-    .hint,
-    .notice {
-      color: var(--app-muted);
-      font-size: 0.875rem;
-    }
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 20px;
-    }
-    .error {
-      padding: 12px;
-      border-radius: 8px;
-      background: #fee2e2;
-      color: #991b1b;
-    }
-    @media (max-width: 700px) {
-      .tool {
-        padding: 16px;
+  static styles = [
+    toolStyles,
+    css`
+      h1 {
+        margin-bottom: 24px;
       }
       .panels {
-        grid-template-columns: 1fr;
-      }
-      .actions {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+        gap: 24px;
       }
-      .actions wa-button {
+      .panel-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 8px;
+      }
+      .panel-header h2,
+      .panel-header label {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 600;
+      }
+      .input-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px 16px;
+        margin-top: 10px;
+      }
+      .input-meta,
+      .result-format,
+      .notice {
+        color: var(--tool-muted);
+        font-size: 0.875rem;
+        line-height: 1.5;
+      }
+      .controls {
+        display: grid;
+        grid-template-columns: max-content max-content;
+        align-items: end;
+        gap: 12px;
+        margin-top: 20px;
+      }
+      .algorithm label {
+        margin-bottom: 8px;
+      }
+      select {
+        box-sizing: border-box;
         width: 100%;
+        min-height: 48px;
+        padding: 0 12px;
+        border: 1px solid transparent;
+        border-radius: 14px;
+        background: var(--tool-field);
+        color: var(--tool-text);
+        font: inherit;
+        font-weight: 600;
       }
-    }
-  `
+      select:focus-visible {
+        outline: 2px solid var(--tool-focus);
+        outline-offset: 3px;
+      }
+      .result-field {
+        padding: 16px;
+        border-radius: 16px;
+        background: color-mix(
+          in srgb,
+          var(--tool-field),
+          var(--tool-primary) 4%
+        );
+      }
+      .result-format {
+        margin: 0 0 8px;
+      }
+      .digest {
+        min-height: 2lh;
+        padding: 0;
+        border-radius: 0;
+        background: transparent;
+        overflow-wrap: anywhere;
+        resize: none;
+        field-sizing: content;
+      }
+      @media (max-width: 720px) {
+        .panels {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+      @media (max-width: 600px) {
+        .controls {
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+        }
+        .generate::part(button) {
+          padding-inline: 10px;
+        }
+      }
+      @media (forced-colors: active) {
+        select {
+          border-color: ButtonText;
+        }
+      }
+    `,
+  ]
 }

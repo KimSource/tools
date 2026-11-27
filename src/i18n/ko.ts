@@ -317,12 +317,12 @@ export const ko = {
   'url.transform': '변환',
   'url.errorEmpty': '값을 입력해주세요.',
   'url.errorInvalid': '올바른 URL, 퍼센트 인코딩 또는 UTF-8 텍스트가 아닙니다.',
-  'hash.eyebrow': '개발자 도구',
   'hash.algorithm': '알고리즘',
   'hash.input': '텍스트 입력',
   'hash.inputHint':
     '공백과 줄바꿈을 그대로 반영합니다. 빈 텍스트도 사용할 수 있습니다.',
   'hash.output': 'HEX 결과',
+  'hash.result': '해시 결과',
   'hash.generate': '해시 생성',
   'hash.error':
     '해시를 생성하지 못했습니다. Web Crypto는 HTTPS 또는 localhost에서 사용할 수 있습니다.',

@@ -23,3 +23,37 @@ test('generates, copies, and invalidates hashes', async ({ page, context }) => {
   await expect(output).toHaveValue('')
   await expect(page.getByLabel('Text input')).toHaveValue('')
 })
+
+test('shows the byte count and keeps the entire hash visible on mobile', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 320, height: 760 })
+  await page.goto('/tools/#/hash-generator')
+  await page.getByLabel('Text input').fill('한🌍\n')
+  await expect(page.getByText('UTF-8 · 8 bytes')).toBeVisible()
+
+  const algorithm = page.getByLabel('Algorithm')
+  await algorithm.selectOption('SHA-512')
+  await algorithm.focus()
+  await page.keyboard.press('Tab')
+  const generate = page.getByRole('button', { name: 'Generate hash' })
+  await expect(generate).toBeFocused()
+  await page.keyboard.press('Enter')
+
+  const result = page.getByLabel('HEX result')
+  await expect(result).toHaveValue(/^[a-f0-9]{128}$/)
+  await expect(page.getByText('SHA-512 · HEX')).toBeVisible()
+  const generateBox = await generate.boundingBox()
+  const resultBox = await result.boundingBox()
+  expect(resultBox!.y).toBeGreaterThan(generateBox!.y + generateBox!.height)
+  expect(
+    await result.evaluate(
+      (field) =>
+        field.scrollWidth <= field.clientWidth &&
+        field.scrollHeight <= field.clientHeight + 1,
+    ),
+  ).toBe(true)
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(
+    320,
+  )
+})

@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest'
-import { generateHash } from './hash-generator.core'
+import { generateHash, hashInputByteLength } from './hash-generator.core'
+
+describe('hashInputByteLength', () => {
+  it('counts the UTF-8 bytes used to hash the text', () => {
+    expect(hashInputByteLength('')).toBe(0)
+    expect(hashInputByteLength('한🌍\n')).toBe(8)
+  })
+})
 
 describe('generateHash', () => {
   it('hashes empty text and preserves whitespace and UTF-8', async () => {

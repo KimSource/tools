@@ -316,12 +316,12 @@ export const en = {
   'url.transform': 'Convert',
   'url.errorEmpty': 'Enter a value.',
   'url.errorInvalid': 'Invalid URL, percent encoding, or UTF-8 text.',
-  'hash.eyebrow': 'DEVELOPER TOOL',
   'hash.algorithm': 'Algorithm',
   'hash.input': 'Text input',
   'hash.inputHint':
     'Whitespace and line breaks are included. Empty text is allowed.',
   'hash.output': 'HEX result',
+  'hash.result': 'Hash result',
   'hash.generate': 'Generate hash',
   'hash.error':
     'Could not generate the hash. Web Crypto requires HTTPS or localhost.',
