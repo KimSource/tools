@@ -2,7 +2,7 @@ import { LitElement, css, html } from 'lit'
 import { customElement, state } from 'lit/decorators.js'
 import '@awesome.me/webawesome/dist/components/button/button.js'
 import { getLocale, subscribeToLocale, t } from '../../i18n/i18n'
-import { copyText } from '../../services/clipboard'
+import { copyText, readPastedImages } from '../../services/clipboard'
 import { readFileBytes, singleFile } from '../../services/files'
 import { toolStyles } from '../../theme/tool-styles'
 import {
@@ -15,17 +15,19 @@ const fileLimitMiB = 32
 const fileLimitBytes = fileLimitMiB * 1024 * 1024
 
 type InputMode = 'text' | 'file'
+type FileSelection = { file: File; source: 'file' | 'paste' }
 type HashError =
   | 'hash.error'
   | 'hash.fileReadError'
   | 'hash.fileTooLarge'
   | 'hash.fileMultiple'
+  | 'hash.pasteMultiple'
 
 @customElement('hash-generator-tool')
 export class HashGeneratorTool extends LitElement {
   @state() private mode: InputMode = 'text'
   @state() private input = ''
-  @state() private file: File | null = null
+  @state() private selection: FileSelection | null = null
   @state() private algorithm: HashAlgorithm = 'SHA-256'
   @state() private output = ''
   @state() private error: HashError | '' = ''
@@ -60,16 +62,20 @@ export class HashGeneratorTool extends LitElement {
 
   private reset() {
     if (this.mode === 'text') this.input = ''
-    else this.file = null
+    else this.selection = null
     this.invalidate()
   }
 
-  private selectFile(files: FileList | null) {
+  private selectFile(
+    files: FileList | readonly File[] | null,
+    source: FileSelection['source'] = 'file',
+  ) {
     let file: File | null
     try {
       file = singleFile(files)
     } catch {
-      this.error = 'hash.fileMultiple'
+      this.error =
+        source === 'paste' ? 'hash.pasteMultiple' : 'hash.fileMultiple'
       return
     }
     if (!file) return
@@ -77,12 +83,25 @@ export class HashGeneratorTool extends LitElement {
       this.error = 'hash.fileTooLarge'
       return
     }
-    this.file = file
+    this.selection = { file, source }
     this.invalidate()
+    if (this.mode === 'text') {
+      this.mode = 'file'
+      this.renderRoot
+        .querySelector<HTMLButtonElement>('#file-mode')
+        ?.focus({ preventScroll: true })
+    }
+  }
+
+  private paste(event: ClipboardEvent) {
+    const images = readPastedImages(event)
+    if (!images.length) return
+    event.preventDefault()
+    this.selectFile(images, 'paste')
   }
 
   private async run() {
-    const file = this.mode === 'file' ? this.file : null
+    const file = this.mode === 'file' ? this.selection?.file : null
     if (this.pending || (this.mode === 'file' && !file)) return
     this.invalidate()
     const version = this.version
@@ -144,12 +163,12 @@ export class HashGeneratorTool extends LitElement {
   }
 
   private renderFileInput() {
-    const file = this.file
+    const selection = this.selection
     return html`<div
         class="file-drop"
         role="group"
         aria-labelledby="file-title"
-        aria-describedby="file-limit"
+        aria-describedby="file-limit file-paste-hint"
         @dragover=${(event: DragEvent) => event.preventDefault()}
         @drop=${(event: DragEvent) => {
           event.preventDefault()
@@ -158,9 +177,17 @@ export class HashGeneratorTool extends LitElement {
       >
         <div class="file-info" aria-live="polite">
           ${
-            file
-              ? html`<p class="file-name">${file.name}</p>
-                  <p class="file-detail">${this.formatSize(file.size)}</p>`
+            selection
+              ? html`<p class="file-name">
+                    ${
+                      selection.source === 'paste'
+                        ? `${t('hash.pastedImage')} · ${selection.file.type.slice('image/'.length).toUpperCase()}`
+                        : selection.file.name
+                    }
+                  </p>
+                  <p class="file-detail">
+                    ${this.formatSize(selection.file.size)}
+                  </p>`
               : ''
           }
         </div>
@@ -181,10 +208,13 @@ export class HashGeneratorTool extends LitElement {
             @click=${() =>
               this.renderRoot.querySelector<HTMLInputElement>('#file')?.click()}
           >
-            ${t(file ? 'hash.fileChange' : 'hash.fileChoose')}
+            ${t(selection ? 'hash.fileChange' : 'hash.fileChoose')}
           </wa-button>
           <span class="file-detail">${t('hash.fileDrop')}</span>
         </div>
+        <p id="file-paste-hint" class="file-detail paste-hint">
+          ${t('hash.filePasteHint')}
+        </p>
       </div>
       <p class="input-meta" id="file-limit">
         ${this.fileMessage('hash.fileLimit')}
@@ -192,15 +222,24 @@ export class HashGeneratorTool extends LitElement {
   }
 
   render() {
-    return html`<section class="tool" aria-labelledby="title">
+    return html`<section
+      class="tool"
+      aria-labelledby="title"
+      @paste=${this.paste}
+    >
       <h1 id="title">${t('tools.hashGenerator.title')}</h1>
       <div class="input-modes" role="group" aria-label=${t('hash.inputType')}>
         ${(['text', 'file'] as const).map(
           (mode) =>
             html`<button
+              id=${`${mode}-mode`}
               type="button"
               aria-pressed=${this.mode === mode}
-              @click=${() => this.selectMode(mode)}
+              @click=${(event: MouseEvent) => {
+                const button = event.currentTarget as HTMLButtonElement
+                button.focus({ preventScroll: true })
+                this.selectMode(mode)
+              }}
             >
               <span aria-hidden="true" ?hidden=${this.mode !== mode}>✓</span>
               ${t(mode === 'text' ? 'hash.textMode' : 'hash.fileMode')}
@@ -240,7 +279,9 @@ export class HashGeneratorTool extends LitElement {
             <wa-button
               class="generate"
               variant="brand"
-              ?disabled=${this.pending || (this.mode === 'file' && !this.file)}
+              ?disabled=${
+                this.pending || (this.mode === 'file' && !this.selection)
+              }
               ?loading=${this.pending}
               @click=${this.run}
               >${t('hash.generate')}</wa-button
@@ -363,6 +404,9 @@ export class HashGeneratorTool extends LitElement {
         flex-wrap: wrap;
         align-items: center;
         gap: 8px 12px;
+      }
+      .paste-hint {
+        margin: 8px 0 0;
       }
       wa-button.file-picker::part(button) {
         border-color: var(--app-border);

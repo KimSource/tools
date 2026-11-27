@@ -328,9 +328,12 @@ export const ko = {
   'hash.fileChoose': '파일 선택',
   'hash.fileChange': '파일 변경',
   'hash.fileDrop': '또는 여기로 파일을 끌어다 놓으세요',
+  'hash.filePasteHint': 'Ctrl+V 또는 ⌘V로 이미지를 붙여넣을 수 있습니다.',
+  'hash.pastedImage': '붙여넣은 이미지',
+  'hash.pasteMultiple': '이미지를 한 번에 한 장만 붙여넣으세요.',
   'hash.fileLimit': '파일당 최대 {limit} MiB까지 지원합니다.',
   'hash.fileTooLarge':
-    '파일이 {limit} MiB를 초과합니다. 더 작은 파일을 선택하세요.',
+    '파일이 {limit} MiB를 초과합니다. 더 작은 파일을 사용하세요.',
   'hash.fileMultiple': '파일을 한 번에 하나만 선택하세요.',
   'hash.fileReadError': '파일을 읽지 못했습니다. 파일을 다시 선택해 주세요.',
   'hash.output': 'HEX 결과',

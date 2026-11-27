@@ -200,3 +200,109 @@ test('discards a file read that finishes after switching to text', async ({
     'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad',
   )
 })
+
+test('pastes text normally and accepts images from both input modes', async ({
+  page,
+  context,
+}) => {
+  await context.grantPermissions(['clipboard-read', 'clipboard-write'])
+  await page.setViewportSize({ width: 320, height: 760 })
+  await page.goto('/tools/#/hash-generator')
+  const input = page.getByLabel('Text input')
+  const fileMode = page.getByRole('button', { name: 'File', exact: true })
+  const output = page.getByLabel('HEX result')
+  const generate = page.getByRole('button', { name: 'Generate hash' })
+
+  await page.evaluate(() => navigator.clipboard.writeText('text draft'))
+  await input.focus()
+  await page.keyboard.press('ControlOrMeta+V')
+  await expect(input).toHaveValue('text draft')
+  await generate.click()
+  await expect(output).toHaveValue(/^[a-f0-9]{64}$/)
+
+  await page.evaluate(async () => {
+    const canvas = document.createElement('canvas')
+    canvas.width = canvas.height = 1
+    const image = await new Promise<Blob>((resolve, reject) => {
+      canvas.toBlob((blob) => {
+        if (blob) resolve(blob)
+        else reject(new Error('Could not create PNG'))
+      }, 'image/png')
+    })
+    await navigator.clipboard.write([new ClipboardItem({ 'image/png': image })])
+  })
+  await input.focus()
+  await page.keyboard.press('ControlOrMeta+V')
+  await expect(fileMode).toHaveAttribute('aria-pressed', 'true')
+  await expect(fileMode).toBeFocused()
+  await expect(page.getByText('Pasted image · PNG')).toBeVisible()
+  await expect(output).toHaveValue('')
+  await generate.click()
+  await expect(output).toHaveValue(/^[a-f0-9]{64}$/)
+
+  await page.getByRole('button', { name: 'Text', exact: true }).click()
+  await expect(input).toHaveValue('text draft')
+  await fileMode.click()
+  await expect(fileMode).toBeFocused()
+  await fileMode.evaluate((button) => {
+    const clipboardData = new DataTransfer()
+    clipboardData.items.add(
+      new File([new Uint8Array([0, 255])], 'image.jpg', { type: 'image/jpeg' }),
+    )
+    button.dispatchEvent(
+      new ClipboardEvent('paste', {
+        clipboardData,
+        bubbles: true,
+        cancelable: true,
+      }),
+    )
+  })
+  await expect(page.getByText('Pasted image · JPEG')).toBeVisible()
+  await expect(page.getByText('2 bytes', { exact: true })).toBeVisible()
+  await expect(output).toHaveValue('')
+  await generate.click()
+  await expect(output).toHaveValue(binaryHash)
+  await fileMode.click()
+  await page.keyboard.press('ControlOrMeta+V')
+  await expect(page.getByText('Pasted image · PNG')).toBeVisible()
+  await expect(output).toHaveValue('')
+})
+
+test('rejects oversized or multiple pasted images without changing the text input', async ({
+  page,
+}) => {
+  await page.goto('/tools/#/hash-generator')
+  const input = page.getByLabel('Text input')
+  const textMode = page.getByRole('button', { name: 'Text', exact: true })
+  await input.fill('text draft')
+  await input.focus()
+
+  for (const { sizes, error } of [
+    { sizes: [32 * 1024 * 1024 + 1], error: 'exceeds 32 MiB' },
+    { sizes: [1, 1], error: 'Paste one image at a time.' },
+  ]) {
+    const defaultPrevented = await input.evaluate((element, lengths) => {
+      const clipboardData = new DataTransfer()
+      clipboardData.setData('text/plain', 'clipboard text')
+      for (const length of lengths) {
+        clipboardData.items.add(
+          new File([new Uint8Array(length)], 'image.png', {
+            type: 'image/png',
+          }),
+        )
+      }
+      const event = new ClipboardEvent('paste', {
+        clipboardData,
+        bubbles: true,
+        cancelable: true,
+      })
+      element.dispatchEvent(event)
+      return event.defaultPrevented
+    }, sizes)
+    expect(defaultPrevented).toBe(true)
+    await expect(page.getByRole('alert')).toContainText(error)
+    await expect(textMode).toHaveAttribute('aria-pressed', 'true')
+    await expect(input).toHaveValue('text draft')
+    await expect(input).toBeFocused()
+  }
+})

@@ -161,6 +161,25 @@ test('opens the hash generator for the first time offline', async ({
   await expect(page.getByLabel('HEX result')).toHaveValue(
     '06eb7d6a69ee19e5fbdf749018d3d2abfa04bcbd1365db312eb86dc7169389b8',
   )
+  await page.getByRole('button', { name: 'Text', exact: true }).click()
+  await page.getByLabel('Text input').evaluate((element) => {
+    const clipboardData = new DataTransfer()
+    clipboardData.items.add(
+      new File([new Uint8Array([0, 255])], 'paste.png', { type: 'image/png' }),
+    )
+    element.dispatchEvent(
+      new ClipboardEvent('paste', {
+        clipboardData,
+        bubbles: true,
+        cancelable: true,
+      }),
+    )
+  })
+  await expect(page.getByText('Pasted image · PNG')).toBeVisible()
+  await page.getByRole('button', { name: 'Generate hash' }).click()
+  await expect(page.getByLabel('HEX result')).toHaveValue(
+    '06eb7d6a69ee19e5fbdf749018d3d2abfa04bcbd1365db312eb86dc7169389b8',
+  )
 })
 
 test('opens the URL tool for the first time offline', async ({
