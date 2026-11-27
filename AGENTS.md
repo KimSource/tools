@@ -1,5 +1,6 @@
 # 프로젝트 규칙
 
+- 작업을 시작할 때 [Git 컨벤션](docs/agents/git-convention.md)을 확인하고 작업 브랜치, 커밋, 병합 규칙을 따른다.
 - Vite + Lit + TypeScript strict를 사용한다. Web Awesome은 UI primitives에만 사용한다.
 - 도구는 Registry를 통해 lazy-load·렌더링하며, 다른 도구를 직접 import하지 않는다. 계산·변환 로직은 UI와 분리한다.
 - Registry를 도구 metadata의 단일 진실 공급원으로 유지하고, 목록·검색·카테고리·라우팅·오프라인 기능은 여기서 파생한다. Tool ID·route·저장 key는 언어와 무관한 안정적인 식별자를 사용한다.
@@ -13,4 +14,3 @@
 - 코드 변경 시 core 동작은 Vitest로, 주요 브라우저 흐름은 Playwright로 검증한다. PWA 변경은 build 후 `e2e:pwa`, 업데이트 변경은 `e2e:update`로 확인한다. 명령·검증 범위는 `README.md`를 참고한다.
 - 코드·설정 변경 후 프로젝트에 정의된 typecheck, lint, format check, unit test, build 및 관련 E2E를 실행하고, 실행하지 못한 검증은 명시한다. 문서만 변경했다면 내용·링크를 확인한다.
 - `e2e:update`는 `dist/`를 테스트 빌드로 덮어쓴다. 이후 배포·일반 preview 전에는 다시 build한다.
-- 커밋 시 `docs/agents/git-convention.md`를 따른다.

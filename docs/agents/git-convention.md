@@ -66,6 +66,18 @@ refactor: 도구 Registry 계약 변경
 BREAKING CHANGE: Registry 항목에 번역 key를 필수로 요구한다.
 ```
 
+## 작업 브랜치와 병합
+
+- 별도 요청이 없으면 `main`에서 작업 브랜치를 만들어 작업과 커밋을 진행한다. 해당 작업의 브랜치가 이미 있으면 이어서 사용한다.
+- 브랜치 이름은 `feat/hash-generator`, `fix/tool-routing`, `docs/design-guide`처럼 작업 목적을 드러내는 접두사와 대상을 사용한다.
+- 작업 내용을 `main`에 반영할 때는 `--no-ff --no-edit`으로 병합해 기본 메시지의 머지 커밋을 남긴다.
+- `main`에 직접 커밋하거나 원격에 푸시하는 작업은 사용자가 명시적으로 요청한 경우에 진행한다.
+
+```sh
+git switch main
+git merge --no-ff --no-edit feat/hash-generator
+```
+
 ## 커밋 전 확인
 
 코드나 설정을 변경한 커밋은 프로젝트에 정의된 typecheck, lint, format check, unit test, build 및 관련 E2E를 실행한다. 실행하지 못한 검증은 커밋 또는 PR 설명에 남긴다. 문서만 변경한 경우에는 문서 내용과 링크를 확인한다.
