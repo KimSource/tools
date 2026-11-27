@@ -13,6 +13,8 @@ describe('tool search', () => {
     expect(ids('TIMESTAMP')).toContain('unix-timestamp-converter')
     expect(ids('체크섬')).toContain('hash-generator')
     expect(ids('SHA-256')).toContain('hash-generator')
+    expect(ids('file checksum')).toContain('hash-generator')
+    expect(ids('파일 검증')).toContain('hash-generator')
     expect(ids('쿼리 parameter')).toContain('url-encoder')
     expect(ids('랜덤 문자열', 'text-data')).toContain('random-string-generator')
     expect(ids('random password')).toContain('random-string-generator')

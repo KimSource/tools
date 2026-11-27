@@ -3,6 +3,7 @@ import { customElement, state } from 'lit/decorators.js'
 import '@awesome.me/webawesome/dist/components/button/button.js'
 import { getLocale, subscribeToLocale, t } from '../../i18n/i18n'
 import { copyText } from '../../services/clipboard'
+import { readFileBytes, singleFile } from '../../services/files'
 import { toolStyles } from '../../theme/tool-styles'
 import {
   generateHash,
@@ -10,12 +11,24 @@ import {
   type HashAlgorithm,
 } from './hash-generator.core'
 
+const fileLimitMiB = 32
+const fileLimitBytes = fileLimitMiB * 1024 * 1024
+
+type InputMode = 'text' | 'file'
+type HashError =
+  | 'hash.error'
+  | 'hash.fileReadError'
+  | 'hash.fileTooLarge'
+  | 'hash.fileMultiple'
+
 @customElement('hash-generator-tool')
 export class HashGeneratorTool extends LitElement {
+  @state() private mode: InputMode = 'text'
   @state() private input = ''
+  @state() private file: File | null = null
   @state() private algorithm: HashAlgorithm = 'SHA-256'
   @state() private output = ''
-  @state() private failed = false
+  @state() private error: HashError | '' = ''
   @state() private notice: 'status.copied' | 'status.copyFailed' | '' = ''
   @state() private pending = false
   private version = 0
@@ -35,70 +48,178 @@ export class HashGeneratorTool extends LitElement {
   private invalidate() {
     this.version++
     this.output = ''
-    this.failed = false
+    this.error = ''
     this.notice = ''
-    this.pending = false
+  }
+
+  private selectMode(mode: InputMode) {
+    if (mode === this.mode) return
+    this.mode = mode
+    this.invalidate()
+  }
+
+  private reset() {
+    if (this.mode === 'text') this.input = ''
+    else this.file = null
+    this.invalidate()
+  }
+
+  private selectFile(files: FileList | null) {
+    let file: File | null
+    try {
+      file = singleFile(files)
+    } catch {
+      this.error = 'hash.fileMultiple'
+      return
+    }
+    if (!file) return
+    if (file.size > fileLimitBytes) {
+      this.error = 'hash.fileTooLarge'
+      return
+    }
+    this.file = file
+    this.invalidate()
   }
 
   private async run() {
+    const file = this.mode === 'file' ? this.file : null
+    if (this.pending || (this.mode === 'file' && !file)) return
     this.invalidate()
     const version = this.version
+    const algorithm = this.algorithm
+    let error: HashError = file ? 'hash.fileReadError' : 'hash.error'
     this.pending = true
     try {
-      const output = await generateHash(this.input, this.algorithm)
+      const input = file ? await readFileBytes(file) : this.input
+      if (version !== this.version) return
+      error = 'hash.error'
+      const output = await generateHash(input, algorithm)
       if (version === this.version) this.output = output
     } catch {
-      if (version === this.version) this.failed = true
+      if (version === this.version) this.error = error
     } finally {
-      if (version === this.version) this.pending = false
+      this.pending = false
     }
   }
 
   private async copy() {
+    if (!this.output) return
+    const version = this.version
+    let notice: typeof this.notice = 'status.copied'
     try {
       await copyText(this.output)
-      this.notice = 'status.copied'
     } catch {
-      this.notice = 'status.copyFailed'
+      notice = 'status.copyFailed'
     }
+    if (version === this.version) this.notice = notice
   }
 
-  render() {
-    const inputSize = new Intl.NumberFormat(getLocale(), {
+  private formatSize(bytes: number): string {
+    return new Intl.NumberFormat(getLocale(), {
       style: 'unit',
       unit: 'byte',
       unitDisplay: 'long',
-    }).format(hashInputByteLength(this.input))
+    }).format(bytes)
+  }
 
+  private fileMessage(key: HashError | 'hash.fileLimit'): string {
+    return t(key).replace('{limit}', String(fileLimitMiB))
+  }
+
+  private renderTextInput() {
+    return html`<textarea
+        id="input"
+        .value=${this.input}
+        aria-describedby="input-hint"
+        @input=${(event: Event) => {
+          this.input = (event.target as HTMLTextAreaElement).value
+          this.invalidate()
+        }}
+        spellcheck="false"
+      ></textarea>
+      <div class="input-meta">
+        <span>UTF-8 · ${this.formatSize(hashInputByteLength(this.input))}</span>
+        <span id="input-hint">${t('hash.inputHint')}</span>
+      </div>`
+  }
+
+  private renderFileInput() {
+    const file = this.file
+    return html`<div
+        class="file-drop"
+        role="group"
+        aria-labelledby="file-title"
+        aria-describedby="file-limit"
+        @dragover=${(event: DragEvent) => event.preventDefault()}
+        @drop=${(event: DragEvent) => {
+          event.preventDefault()
+          this.selectFile(event.dataTransfer?.files ?? null)
+        }}
+      >
+        <div class="file-info" aria-live="polite">
+          ${
+            file
+              ? html`<p class="file-name">${file.name}</p>
+                  <p class="file-detail">${this.formatSize(file.size)}</p>`
+              : ''
+          }
+        </div>
+        <div class="file-actions">
+          <input
+            id="file"
+            type="file"
+            aria-label=${t('hash.fileChoose')}
+            hidden
+            @change=${(event: Event) => {
+              const input = event.target as HTMLInputElement
+              this.selectFile(input.files)
+              input.value = ''
+            }}
+          />
+          <wa-button
+            class="file-picker"
+            @click=${() =>
+              this.renderRoot.querySelector<HTMLInputElement>('#file')?.click()}
+          >
+            ${t(file ? 'hash.fileChange' : 'hash.fileChoose')}
+          </wa-button>
+          <span class="file-detail">${t('hash.fileDrop')}</span>
+        </div>
+      </div>
+      <p class="input-meta" id="file-limit">
+        ${this.fileMessage('hash.fileLimit')}
+      </p>`
+  }
+
+  render() {
     return html`<section class="tool" aria-labelledby="title">
       <h1 id="title">${t('tools.hashGenerator.title')}</h1>
+      <div class="input-modes" role="group" aria-label=${t('hash.inputType')}>
+        ${(['text', 'file'] as const).map(
+          (mode) =>
+            html`<button
+              type="button"
+              aria-pressed=${this.mode === mode}
+              @click=${() => this.selectMode(mode)}
+            >
+              <span aria-hidden="true" ?hidden=${this.mode !== mode}>✓</span>
+              ${t(mode === 'text' ? 'hash.textMode' : 'hash.fileMode')}
+            </button>`,
+        )}
+      </div>
       <div class="panels">
         <div>
           <div class="panel-header">
-            <label for="input">${t('hash.input')}</label>
-            <wa-button
-              appearance="plain"
-              @click=${() => {
-                this.input = ''
-                this.invalidate()
-              }}
+            ${
+              this.mode === 'text'
+                ? html`<label for="input">${t('hash.input')}</label>`
+                : html`<h2 id="file-title">${t('hash.fileInput')}</h2>`
+            }
+            <wa-button appearance="plain" @click=${this.reset}
               >${t('actions.reset')}</wa-button
             >
           </div>
-          <textarea
-            id="input"
-            .value=${this.input}
-            aria-describedby="input-hint"
-            @input=${(event: Event) => {
-              this.input = (event.target as HTMLTextAreaElement).value
-              this.invalidate()
-            }}
-            spellcheck="false"
-          ></textarea>
-          <div class="input-meta">
-            <span>UTF-8 · ${inputSize}</span>
-            <span id="input-hint">${t('hash.inputHint')}</span>
-          </div>
+          ${this.mode === 'text' ? this.renderTextInput() : this.renderFileInput()}
           <div class="controls">
             <div class="algorithm">
               <label for="algorithm">${t('hash.algorithm')}</label>
@@ -119,14 +240,17 @@ export class HashGeneratorTool extends LitElement {
             <wa-button
               class="generate"
               variant="brand"
-              ?disabled=${this.pending}
+              ?disabled=${this.pending || (this.mode === 'file' && !this.file)}
+              ?loading=${this.pending}
               @click=${this.run}
               >${t('hash.generate')}</wa-button
             >
           </div>
           ${
-            this.failed
-              ? html`<p class="error" role="alert">${t('hash.error')}</p>`
+            this.error
+              ? html`<p class="error" role="alert">
+                  ${this.fileMessage(this.error)}
+                </p>`
               : ''
           }
         </div>
@@ -164,6 +288,32 @@ export class HashGeneratorTool extends LitElement {
       h1 {
         margin-bottom: 24px;
       }
+      .input-modes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+      .input-modes button {
+        min-width: 92px;
+        min-height: 48px;
+        padding: 0 16px;
+        border: 1px solid var(--app-border);
+        border-radius: 14px;
+        background: var(--tool-surface);
+        color: var(--tool-text);
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .input-modes button[aria-pressed='true'] {
+        border-color: var(--tool-focus);
+        background: color-mix(
+          in srgb,
+          var(--tool-field),
+          var(--tool-primary) 12%
+        );
+      }
       .panels {
         display: grid;
         grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
@@ -186,9 +336,40 @@ export class HashGeneratorTool extends LitElement {
         display: flex;
         flex-wrap: wrap;
         gap: 4px 16px;
-        margin-top: 10px;
+        margin: 10px 0 0;
+      }
+      .file-drop {
+        display: grid;
+        align-content: center;
+        box-sizing: border-box;
+        min-height: 220px;
+        padding: 20px;
+        border: 1px dashed var(--tool-muted);
+        border-radius: 16px;
+        background: var(--tool-field);
+      }
+      .file-info p {
+        margin: 0;
+      }
+      .file-info .file-detail {
+        margin: 4px 0 12px;
+      }
+      .file-name {
+        overflow-wrap: anywhere;
+        font-weight: 600;
+      }
+      .file-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px 12px;
+      }
+      wa-button.file-picker::part(button) {
+        border-color: var(--app-border);
+        background: var(--tool-surface);
       }
       .input-meta,
+      .file-detail,
       .result-format,
       .notice {
         color: var(--tool-muted);
@@ -217,7 +398,8 @@ export class HashGeneratorTool extends LitElement {
         font: inherit;
         font-weight: 600;
       }
-      select:focus-visible {
+      select:focus-visible,
+      .input-modes button:focus-visible {
         outline: 2px solid var(--tool-focus);
         outline-offset: 3px;
       }
@@ -248,6 +430,10 @@ export class HashGeneratorTool extends LitElement {
         }
       }
       @media (max-width: 600px) {
+        .file-drop {
+          min-height: 160px;
+          padding: 16px;
+        }
         .controls {
           grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
         }
@@ -256,7 +442,10 @@ export class HashGeneratorTool extends LitElement {
         }
       }
       @media (forced-colors: active) {
-        select {
+        select,
+        .input-modes button,
+        .file-drop,
+        wa-button.file-picker::part(button) {
           border-color: ButtonText;
         }
       }
