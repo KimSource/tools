@@ -78,12 +78,11 @@ test('hashes picked and dropped files and keeps each input when changing modes',
   await expect(generate).toBeDisabled()
 
   const choose = page.getByRole('button', { name: 'Choose file' })
-  await choose.focus()
-  const chooser = page.waitForEvent('filechooser')
-  await page.keyboard.press('Enter')
-  await (
-    await chooser
-  ).setFiles({
+  const [chooser] = await Promise.all([
+    page.waitForEvent('filechooser'),
+    choose.press('Enter'),
+  ])
+  await chooser.setFiles({
     name: 'sample.bin',
     mimeType: 'application/octet-stream',
     buffer: Buffer.from([0, 255]),
