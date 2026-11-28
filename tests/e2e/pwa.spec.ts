@@ -198,9 +198,11 @@ test('opens the URL tool for the first time offline', async ({
   ).toBeVisible()
   await context.setOffline(true)
   await page.goto('/tools/#/url-encoder')
-  await page.getByLabel('Input', { exact: true }).fill('offline & ready')
+  await page.getByLabel('Plain text').fill('offline & ready')
   await page.getByRole('button', { name: 'Convert' }).click()
-  await expect(page.getByLabel('Result')).toHaveValue('offline%20%26%20ready')
+  await expect(page.getByLabel('Encoded result')).toHaveValue(
+    'offline%20%26%20ready',
+  )
 })
 
 test('opens the timestamp converter for the first time offline', async ({
